@@ -2,7 +2,7 @@
 <html>
   <head>
   
-    <title>Gradun otsikko</title>
+    <title>Scalable Cloud Architecture on Platform Level</title>
 
 
     <link rel="stylesheet" href="stylesheets/lattex.css">    
@@ -26,7 +26,7 @@
       <h1 data-lattex="title"></h1>
 
       <address>
-        Author Ace
+        Matti Paksula
       </address>
       
     </header>
@@ -94,30 +94,39 @@
 			
 			Later the computers become more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
 			
-			This time introduced a concept called <em>multitenancy</em>.  This means that a single resource was shared for different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used [TimeSharing64].
+			This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used [TimeSharing64].  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
 
-
-			As the costs of manufacturing computers reduced, the computers became personal.  This also gave birth to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
+			As the costs of manufacturing computers reduced, the computers became personal.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
           </pre>
 		</section>
 
 
 		<section>
-        	<h1>Networking Computing Paradigms</h1>
+        	<h1>Networked Computing</h1>
          
-        	<pre>
-			During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture  made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location.
-
-			During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management [ClientServer96, CloudComputing08].
-
-			When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
+			<pre>
+				The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
+				
+				Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
 			</pre>
+			
+			
+        	<section>
+				<h1>Client-Server</h1>
+				
+				<pre>During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
+
+					When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
+			
+					During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities [ClientServer96].
+			</pre>
+
 
 			<section>
 				<h1>Software Packaged in the Web</h1>
 
 				<pre>
-				The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware was delivered through the web browser. [Cusumano10].        
+				The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].        
 				</pre>
 			</section>
 
@@ -125,7 +134,13 @@
 				<h1>Application Service Providers</h1>
 
 				<pre>
-				Host existing       
+					An organization can outsource their software to a separate company to gain savings of operationing costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
+					
+					Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
+					
+					<em>Savings in upfront and total costs</em> are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availablity.  This is usually enforced with service level agreements (SLAs).  Also, the expertice needed in <em>maintenance</em> are not needed inside the customer.
+					
+					This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
 				</pre>
 			</section>
 			
@@ -144,7 +159,7 @@
 				<pre>
 				In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers [TheGrid08]. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article [WhatIsGrid02].
 				
-				In the article following description for a grid system is given: “Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service.”  This can be divided into three separate parts.
+				In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
 				</pre>
 				
 				<ol>
@@ -193,8 +208,12 @@
 				Infinite Scaling
 			
 				On-demand Elastic Allocation of Resources
-			
+					
+					dna-albumi
+					
 				Self-healing
+				
+				Commodity Hardware
 			</pre>
 			
 		</section>
@@ -236,7 +255,19 @@
 		</section>
 		
 		<section>
-			<h1>Critic to Cloud Computing Paradigm</h1>	
+			<h1>Critic to Cloud Computing Paradigm</h1>
+			
+			<pre>
+				"Critics of outsourcing argue that, in many instances, outsourcing can result in organizations inadvertently becoming dependent on vendors." vs Open Source
+				
+				"ASP applications are generally packaged, of the shelf rather than customized to the organizations business processes. ASP"
+				
+				"An ASP is not just for hosting applications but ensuring that the applications are maintained, monitored, scaled and upgrades effectively over time."
+				
+				"Security issues are likely to deter the adoption of web-enabled ASP applications."
+				<cite>Licence</cite>
+				
+			</pre>
 		</section>
 		
 		
@@ -315,7 +346,20 @@
 			
 			<p>Ceruzzi P. The early computers of Konrad Zuse, 1935 to 1945. Annals of the History of Computing. 2008;3(3). Available at: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4640687.</p>	
 		</section>
-		
+
+		<section>
+			<abrr data-lattex="Ethernet">MBo76</abrr>
+			
+			<p>Metcalfe R, Boggs D. Ethernet: Distributed packet switching for local computer networks. Communications of the ACM. 1976;19(7). Available at: http://portal.acm.org/citation.cfm?id=360248.360253.</p>
+			
+		</section>
+
+		<section>
+			<abrr data-lattex="asp">ASP</abrr>
+			
+			<p>Patnayakuni R, Seth N. Why license when you can rent? Risks and rewards of the application service provider model. Proceedings of the 2001 ACM SIGCPR conference on Computer personnel research - SIGCPR '01. 2001:182-188. Available at: http://portal.acm.org/citation.cfm?doid=371209.371233.</p>
+			
+		</section>
 		<section>
 			<abbr data-lattex="YCBS10">YCBS10</abbr>
 	

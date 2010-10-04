@@ -1,10 +1,12 @@
 
 if ( typeof(console) == "undefined" ) {
-	console = {}
-	console.log = function(str) {}
-}
+	console = {};
+	console.log = function(str) {};
+};
 
-var LatteX = {};
+var LatteX = function() {
+	
+};
 
 LatteX.SectionNumbering = function() {
 	this.rootElement = document.body;
@@ -202,7 +204,33 @@ LatteX.Cite.prototype.process = function() {
 	}
 }
 
+
+LatteX.Data = function() {
+	this.rootElement = document.body;
+	
+	this.data = {};
+	this.data.title = document.getElementsByTagName("title")[0].text;
+}
+
+LatteX.Data.prototype.process = function() {
+
+	var h1s = this.rootElement.getElementsByTagName("h1");
+	
+	for (var i=0; i<h1s.length; i++) {
+		var h1 = h1s[i];
+		var dataKey = h1.getAttribute("data-lattex");
+		
+		switch (dataKey) {
+			case "title":
+				h1.innerHTML = this.data.title;
+				break;
+		}
+	}
+}
+
+
 window.onload = function() {
+
 	var ltoc = new LatteX.ToC;
 	ltoc.process();
 	
@@ -214,4 +242,7 @@ window.onload = function() {
 
 	var lcite = new LatteX.Cite;
 	lcite.process();
+	
+	var ldata = new LatteX.Data;
+	ldata.process();
 }
