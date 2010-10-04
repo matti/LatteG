@@ -1,4 +1,11 @@
 
+if ( typeof(console) == "undefined" ) {
+	console = {}
+	console.log = function(str) {
+		
+	}
+}
+
 var LatteX = {};
 
 LatteX.ToC = function() {
