@@ -6,7 +6,7 @@ if ( typeof(console) == "undefined" ) {
 
 var LatteX = {};
 
-LatteX.ToC = function() {
+LatteX.SectionNumbering = function() {
 	this.rootElement = document.body;
 
 	this.level = 0;
@@ -16,15 +16,14 @@ LatteX.ToC = function() {
 
 };
 
-LatteX.ToC.prototype.generate = function() {
+LatteX.SectionNumbering.prototype.process = function() {
 	var article = this.rootElement.getElementsByTagName("article")[0];
-
 	var children = article.children;
 	
 	this._numberSections(children);	
 }
 
-LatteX.ToC.prototype._numberSections = function(children) {
+LatteX.SectionNumbering.prototype._numberSections = function(children) {
 
 	for ( var i=0; i<children.length; i++ ) {
 		
@@ -47,10 +46,9 @@ LatteX.ToC.prototype._numberSections = function(children) {
 				case 2:
 					this.subsection++;
 					title.innerHTML = this.chapter + "." + this.section + "." + this.subsection + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;					
+					break;
 			}
-			
-			console.log(title.innerHTML);
-			
+						
 			if ( section.children.length > 0 ) {
 				this.level++;
 				this._numberSections(section.children);
@@ -89,10 +87,78 @@ LatteX.PreParagraphs.prototype.process = function() {
 	
 }
 
+
+
+LatteX.ToC = function() {
+	this.rootElement = document.body;
+	
+	this.level = 0;
+	this.chapter = 0;
+  	this.section = 0;
+  	this.subsection = 0;
+
+	this.preContents = "";
+}
+
+LatteX.ToC.prototype.process = function() {
+	var article = this.rootElement.getElementsByTagName("article")[0];
+	var children = article.children;
+	
+	this._generateContents(children);
+
+	var preElement = document.createElement("pre");
+	preElement.innerHTML = this.preContents;
+	document.body.getElementsByTagName("nav")[0].appendChild(preElement);
+}
+
+LatteX.ToC.prototype._generateContents = function(children) {
+	
+	for ( var i=0; i<children.length; i++ ) {
+		
+		if ( children[i].tagName == "SECTION" ) {
+			var section = children[i];
+			
+			var title = section.getElementsByTagName("h1")[0];
+			
+			switch ( this.level ) {	
+				case 0:
+					this.chapter++;
+					this.preContents = this.preContents + this.chapter + " " + title.innerHTML;
+					break;
+			
+				case 1:
+					this.section++;
+					this.preContents = this.preContents + this.chapter + "." + this.section + " " + title.innerHTML;
+					break;
+				
+				case 2:
+					this.subsection++;
+					this.preContents = this.preContents + this.chapter + " " + this.section + "." + this.subsection + " " + title.innerHTML;
+					break;
+			}
+			
+			this.preContents = this.preContents + "\n\n";
+			
+			if ( section.children.length > 0 ) {
+				this.level++;
+				this._generateContents(section.children);
+			}
+		}
+		
+	}
+
+	this.level--;
+
+}
+
+
 window.onload = function() {
 	var ltoc = new LatteX.ToC;
-	ltoc.generate();
-
+	ltoc.process();
+	
+	var lsections = new LatteX.SectionNumbering;
+	lsections.process();
+	
 	var lpre = new LatteX.PreParagraphs;
 	lpre.process();
 }
