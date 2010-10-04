@@ -1,9 +1,7 @@
 
 if ( typeof(console) == "undefined" ) {
 	console = {}
-	console.log = function(str) {
-		
-	}
+	console.log = function(str) {}
 }
 
 var LatteX = {};
@@ -70,11 +68,14 @@ LatteX.PreParagraphs = function() {
 }
 
 LatteX.PreParagraphs.prototype.process = function() {
+	// whitespaces, like tabs between \n\n need to be detected
+	
 	var pre_elements = document.getElementsByTagName("pre");
 	
 	for (var i=0; i < pre_elements.length; i++) {
 		var pre = pre_elements[i];
-		var paragraphs = pre.innerHTML.split('\n\n');
+		
+		var paragraphs = pre.innerHTML.split(/\s*\n\s*\n/);
 		
 		for ( paragraph_i in paragraphs ) {
 			var p = document.createElement("p");
