@@ -36,16 +36,25 @@ LatteX.SectionNumbering.prototype._numberSections = function(children) {
 			switch ( this.level ) {	
 				case 0:
 					this.chapter++;
+					this.section = 0;
+					this.subsection = 0;
+					this.subsubsection = 0;
+					
 					title.innerHTML = this.chapter + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;
 					break;
 			
 				case 1:
 					this.section++;
+					this.subsection = 0;
+					this.subsubsection = 0;
+
 					title.innerHTML = this.chapter + "." + this.section + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;
 					break;
 				
 				case 2:
 					this.subsection++;
+					this.subsubsection = 0;
+
 					title.innerHTML = this.chapter + "." + this.section + "." + this.subsection + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;					
 					break;
 				
@@ -130,16 +139,25 @@ LatteX.ToC.prototype._generateContents = function(children) {
 			switch ( this.level ) {	
 				case 0:
 					this.chapter++;
+					this.section = 0;
+					this.subsection = 0;
+					this.subsubsection = 0;
+					
 					this.preContents = this.preContents + this.chapter + " " + title.innerHTML;
 					break;
 			
 				case 1:
 					this.section++;
+					this.subsection = 0;
+					this.subsubsection = 0;
+					
 					this.preContents = this.preContents + this.chapter + "." + this.section + " " + title.innerHTML;
 					break;
 				
 				case 2:
 					this.subsection++;
+					this.subsubsection = 0;
+					
 					this.preContents = this.preContents + this.chapter + "." + this.section + "." + this.subsection + " " + title.innerHTML;
 					break;
 
