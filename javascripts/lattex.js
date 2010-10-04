@@ -13,6 +13,7 @@ LatteX.SectionNumbering = function() {
 	this.chapter = 0;
   	this.section = 0;
   	this.subsection = 0;
+	this.subsubsection = 0;
 
 };
 
@@ -46,6 +47,11 @@ LatteX.SectionNumbering.prototype._numberSections = function(children) {
 				case 2:
 					this.subsection++;
 					title.innerHTML = this.chapter + "." + this.section + "." + this.subsection + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;					
+					break;
+				
+				case 3:
+					this.subsubsection++;
+					title.innerHTML = this.chapter + "." + this.section + "." + this.subsection + "." + this.subsubsection + "&nbsp;&nbsp;&nbsp;&nbsp;" + title.innerHTML;					
 					break;
 			}
 						
@@ -96,7 +102,8 @@ LatteX.ToC = function() {
 	this.chapter = 0;
   	this.section = 0;
   	this.subsection = 0;
-
+	this.subsubsection = 0;
+	
 	this.preContents = "";
 }
 
@@ -133,7 +140,12 @@ LatteX.ToC.prototype._generateContents = function(children) {
 				
 				case 2:
 					this.subsection++;
-					this.preContents = this.preContents + this.chapter + " " + this.section + "." + this.subsection + " " + title.innerHTML;
+					this.preContents = this.preContents + this.chapter + "." + this.section + "." + this.subsection + " " + title.innerHTML;
+					break;
+
+				case 3:
+					this.subsubsection++;
+					this.preContents = this.preContents + this.chapter + "." + this.section + "." + this.subsection + "." + this.subsubsection + " "+ title.innerHTML;
 					break;
 			}
 			
