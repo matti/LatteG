@@ -182,6 +182,26 @@ LatteX.ToC.prototype._generateContents = function(children) {
 }
 
 
+
+LatteX.Cite = function() {
+	
+	// TODO: rootElement toistuu kaikille, perintä?
+	this.rootElement = document.body;
+	
+}
+
+LatteX.Cite.prototype.process = function() {
+	
+	var cites = this.rootElement.getElementsByTagName("cite");
+	
+	for (var i=0; i<cites.length; i++) {
+		var cite = cites[i];
+		var citeKey = cite.innerHTML;
+		
+		cite.innerHTML = "[<a href=\"#cite-"+citeKey+"\">"+citeKey+"</a>]";
+	}
+}
+
 window.onload = function() {
 	var ltoc = new LatteX.ToC;
 	ltoc.process();
@@ -191,4 +211,7 @@ window.onload = function() {
 	
 	var lpre = new LatteX.PreParagraphs;
 	lpre.process();
+
+	var lcite = new LatteX.Cite;
+	lcite.process();
 }
