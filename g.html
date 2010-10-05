@@ -107,18 +107,20 @@
 					The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
 				
 					Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
+					
 				</pre>
 			
 			
 	        	<section>
 					<h1>Client-Server</h1>
 				
-					<pre>During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
+					<pre>
+						During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
 
 						When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
 			
 						During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities [ClientServer96].
-				</pre>
+					</pre>
 				</section>
 			
 
@@ -126,7 +128,9 @@
 					<h1>Software Packaged in the Web</h1>
 
 					<pre>
-					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].        
+					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].
+					
+					From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however <em>not</em> part of the cloud computing, because it does not satisfy the attributes that will be explored in the last section of this chapter.
 					</pre>
 				</section>
 
@@ -147,13 +151,85 @@
 
 			
 				<section>
-					<h1>Autonomic Computing</h1>
+					<h1>Service-Oriented Architectures</h1>
 
 					<pre>
-					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services exposes the functionality it provides by publishing a description as Web Services Description Language (WSDL) that is based on XML.  Services can be composed of many autonomous services.        
+					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
+					
+					The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page <cite>vogels</cite>.
 					</pre>
 				</section>
+
 			
+				<section>
+					<h1>Autonomic Computing</h1>
+					
+					<pre>
+						Distributed large scale systems add complexity to the overall service architecture.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personel to focus on higher level goals.  Other initiatives are presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) <cite>autonomic_vision</cite>
+						
+						<cite>autonomic_research</cite>
+						
+						Adapive Enterprise HP
+						Dynamic Systems Microsoft
+						
+						any resources can be viewed as autonomic: storage, load balanced, app server
+						
+						
+						problem determination and remediation, automated provisioning, work- load management,
+						
+						learning, stability, control and emergent be- havior in multiagent systems, and
+						
+						For example, a database component might need to answer what-if questions from application server middleware t
+						They need models of workload so that they can forecast future demand and plan accordingly. In
+						
+						element’s optimization landscape is bound to change over time.	
+						
+						human interaction
+						
+						--
+						beides
+						
+						self-configuration, self-healing, self-optimization, and self-protection
+						
+						self-configuration, self-optimization, self-healing, self-protection
+						
+						systems will manage themselves in accordance with high-level objectives specified by humans. The
+						--
+						
+						The need to integrate several het- erogeneous environments into corporate-wide com- puting systems,
+						
+						looming soft- ware complexity crisis.1 The
+						
+						
+						will maintain and adjust their operation in the face of changing components, workloads, demands, and external conditions and in the face of hardware or software failures
+						
+						Autonomic systems will continually seek ways to improve their operation,
+						
+						will defend the system as a whole against large-scale problems
+						
+						will anticipate problems based on early reports from sensors and take steps to avoid or mitigate them.
+						
+						The element may require assistance from other elements to achieve its goals
+						
+						high-level objectives, such as “maximize this utility function,”
+						
+						Second, as consumers, auto- nomic elements will autonomously and proactively issue requests to other elements to carry out their objectives.
+						
+						
+						
+						As systems become more interconnected and diverse, architects are less able to anticipate and design interactions among components, leaving such issues to be dealt with at runtime. Soon
+						
+						
+						autonomic
+						term with a biological conno- tation. The autonomic nervous system governs our heart rate and body temperature, thus freeing our conscious brain from the burden of dealing with these and many other low-leve
+						
+
+						<em>Recovery-Oriented Computing</em> (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter <cite>ROC</cite>.
+						
+					</pre>
+				</section>
+
+
 			
 				<section>
 					<h1>Grid Computing</h1>
@@ -344,6 +420,28 @@
     <article class="references">
 		<h1>References</h1>
 
+		<section>
+			<p><abbr data-lattex="autonomic_research">autonomic_research</abbr> Kephart J. Research challenges of autonomic computing. Proceedings. 27th International Conference on Software Engineering, 2005. ICSE 2005. 2005:15-22. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1553533.</p>
+		</section>	
+		
+		<section>
+			<abbr data-lattex="autonomic_vision">autonomic_vision</abbr>
+			
+			<p>Kephart J, Chess D. The vision of autonomic computing. Computer. 2003;(January):41-50. Available at: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1160055.</p>
+		</section>
+		
+
+		<section>
+			<abbr data-lattex="ROC">ROC</abbr>
+			
+			<p>Fox A. Toward recovery-oriented computing. Proceedings of the 28th VLDB Conference. 2002. Available at: http://portal.acm.org/citation.cfm?id=1287443.</p>
+		</section>
+		
+		<section>
+			<abbr data-lattex="vogels">Vogels</abbr>
+			<p>O'Hanlon C. A conversation with Werner Vogels. Queue. Volume 4,  Issue 4 May 2006. Available at: http://portal.acm.org/citation.cfm?id=1142065.</p>
+		</section>
+		
 		<section>
 			<abbr data-lattex="zuse">Cer81</abbr>
 			
