@@ -35,245 +35,246 @@
     
     
     <article>
-      <h1 data-lattex="title"></h1>
-      
-      <section>
-        <h1>Introduction</h1>
+		<h1 data-lattex="title"></h1>
+		
+		<section>
+        	<h1>Introduction</h1>
         
-        <pre>
-       		Cloud Computing has recently gained huge popularity in business, academia and everyday peoples lives.
-        </pre>
+        	<pre>
+	       		Cloud Computing has recently gained huge popularity in business, academia and everyday peoples lives.
+	        </pre>
 
-		<section>
-			<h1>Research Questions</h1>
+			<section>
+				<h1>Research Questions</h1>
 		
-			<pre>The main research questions that this thesis provides answers to are..</pre>
-		</section>
+				<pre>The main research questions that this thesis provides answers to are..</pre>
+			</section>
 
-		<section>
-			<h1>Scope of The Thesis</h1>
+			<section>
+				<h1>Scope of The Thesis</h1>
 		
-			<pre>PaaS</pre>
+				<pre>PaaS</pre>
+			</section>
+		
+		
+			<section>
+				<h1>Structure of The Thesis</h1>
+		
+				<pre>
+					Cloud definition
+			
+					Scalability
+			
+					Measuring
+			
+					Problems
+				</pre>
+			</section>
+		
 		</section>
-		
-		
+              
+              
+              
 		<section>
-			<h1>Structure of The Thesis</h1>
-		
-			<pre>
-				Cloud definition
-			
-				Scalability
-			
-				Measuring
-			
-				Problems
-			</pre>
-		</section>
-      </section>
-              
-              
-              
-              
-              
-      <section>
-        <h1>Background for Cloud Computing</h1>
+        	<h1>Background for Cloud Computing</h1>
       
-        <pre>
-			What is paradigm
+        	<pre>
+				What is paradigm
 
-			Cloud computing is the latest paradigm shift in the history of computing.  It draws technical background and principles from all computing paradigms since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.  In the next sections the previous paradigms with their supporting architectures are briefly explored to identify the background from what the cloud is composed of.  Then the attributes that are unique to cloud computing of are presented justifying cloud computing as a true paradigm shift.
-        </pre>
+				Cloud computing is the latest paradigm shift in the history of computing.  It draws technical background and principles from all computing paradigms since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.  In the next sections the previous paradigms with their supporting architectures are briefly explored to identify the background from what the cloud is composed of.  Then the attributes that are unique to cloud computing of are presented justifying cloud computing as a true paradigm shift.
+	        </pre>
       
       
         <section>
-          <h1>Pre-networking Computing</h1>
+        	<h1>Pre-networking Computing</h1>
         
-          <pre>
-			In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularry performed by <em>"human computers"</em>.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high <cite>zuse</cite>.
+          	<pre>
+				In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularry performed by <em>"human computers"</em>.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high <cite>zuse</cite>.
 			
-			Later the computers become more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
+				Later the computers become more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
 			
-			This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used [TimeSharing64].  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
+				This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used [TimeSharing64].  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
 
-			As the costs of manufacturing computers reduced, the computers became personal.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
-          </pre>
-		</section>
+				As the costs of manufacturing computers reduced, the computers became personal.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
+	          </pre>
+			</section>
 
 
-		<section>
-        	<h1>Networked Computing</h1>
+			<section>
+	        	<h1>Networked Computing</h1>
          
-			<pre>
-				The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
+				<pre>
+					The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
 				
-				Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
-			</pre>
+					Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
+				</pre>
 			
 			
-        	<section>
-				<h1>Client-Server</h1>
+	        	<section>
+					<h1>Client-Server</h1>
 				
-				<pre>During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
+					<pre>During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
 
-					When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
+						When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
 			
-					During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities [ClientServer96].
-			</pre>
+						During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities [ClientServer96].
+				</pre>
+				</section>
+			
+
+				<section>
+					<h1>Software Packaged in the Web</h1>
+
+					<pre>
+					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].        
+					</pre>
+				</section>
 
 
+				<section>
+					<h1>Application Service Providers</h1>
+
+					<pre>
+						An organization can outsource their software to a separate company to gain savings of operationing costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
+					
+						Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
+					
+						<em>Savings</em> in upfront and total costs are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availablity.  This is usually enforced with service level agreements (SLAs).  Also, the expertice needed in <em>maintenance</em> are not needed inside the customer.
+					
+						This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
+					</pre>
+				</section>
+
+			
+				<section>
+					<h1>Autonomic Computing</h1>
+
+					<pre>
+					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services exposes the functionality it provides by publishing a description as Web Services Description Language (WSDL) that is based on XML.  Services can be composed of many autonomous services.        
+					</pre>
+				</section>
+			
+			
+				<section>
+					<h1>Grid Computing</h1>
+
+					<pre>
+					In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers [TheGrid08]. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article [WhatIsGrid02].
+				
+					In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
+					</pre>
+				
+					<ol>
+						<li><em>"coordinates resources that are not subject to centralized control ..."</em>
+							<br/>System is accessible for example, for users of different administrative units of the same company or different companies.</li>
+				
+						<li><em>"... using standard, open, general-purpose protocols and interfaces ..."</em>
+							<br/>All protocols used in grid are open standards. Using closed or proprietary standards would mean that grid is application specific and not an utility.
+						</li>
+				
+						<li><em>"... to deliver nontrivial qualities of service."</em>
+							<br/>Grid as whole delivers various qualities of service, such as response time, availability and security so that utility of the combined system (grid) is greater than separate components that it consists of.
+						</li>
+					</ol>
+
+				</section>
+
+			</section>
+		
 			<section>
-				<h1>Software Packaged in the Web</h1>
+				<h1>Cloud Computing Paradigm</h1>
 
 				<pre>
-				The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].        
-				</pre>
-			</section>
+					Time-sharing: pay-as-you-go, expensive investment becomes cheaper due utilization rate
+			
+					Client-server: many clients accessing many servers, centralized data management, utilize server resources
+			
+					Thin-clients: different devices, computing resources on server
+			
+					Web software: distribution method, centralized updates
+			
+					SOA: service composed of many individual services, but with simple http rest
+			
+					Grid computing: computing as electricity, illusion of infinity
+			
+					Autonomic computing: self-healing systems        
+		      	</pre>                     
 
-			<section>
-				<h1>Application Service Providers</h1>
 
-				<pre>
-					An organization can outsource their software to a separate company to gain savings of operationing costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
+
+				<section>
+					<h1>Attributes of Cloud Service</h1>
+		
+					<pre>				
+						Infinite Scaling
+			
+						On-demand Elastic Allocation of Resources
 					
-					Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
+							dna-albumi
 					
-					<em>Savings in upfront and total costs</em> are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availablity.  This is usually enforced with service level agreements (SLAs).  Also, the expertice needed in <em>maintenance</em> are not needed inside the customer.
+						Self-healing
+				
+						Commodity Hardware
+					</pre>
+			
+				</section>
+		
+				<section>
+					<h1>Components of Cloud Service</h1>
+
+					<pre>
+						XaaS and Service Oriented Architectures
+
+						implementation levels
 					
-					This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
-				</pre>
-			</section>
-			
-			<section>
-				<h1>Autonomic Computing</h1>
-
-				<pre>
-				In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services exposes the functionality it provides by publishing a description as Web Services Description Language (WSDL) that is based on XML.  Services can be composed of many autonomous services.        
-				</pre>
-			</section>
-			
-			
-			<section>
-				<h1>Grid Computing</h1>
-
-				<pre>
-				In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers [TheGrid08]. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article [WhatIsGrid02].
+						cloud ontologies
+					</pre>
 				
-				In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
-				</pre>
-				
-				<ol>
-					<li><em>"coordinates resources that are not subject to centralized control ..."</em>
-						<br/>System is accessible for example, for users of different administrative units of the same company or different companies.</li>
-				
-					<li><em>"... using standard, open, general-purpose protocols and interfaces ..."</em>
-						<br/>All protocols used in grid are open standards. Using closed or proprietary standards would mean that grid is application specific and not an utility.
-					</li>
-				
-					<li><em>"... to deliver nontrivial qualities of service."</em>
-						<br/>Grid as whole delivers various qualities of service, such as response time, availability and security so that utility of the combined system (grid) is greater than separate components that it consists of.
-					</li>
-				</ol>
-
-			</section>
-		</section>
-
-		</section>
+					<section>
+						<h1>Infrastucture as a Service</h1>
+					</section>
 		
-    <section>
-		<h1>Cloud Computing Paradigm</h1>
-
-		<pre>
-			Time-sharing: pay-as-you-go, expensive investment becomes cheaper due utilization rate
-			
-			Client-server: many clients accessing many servers, centralized data management, utilize server resources
-			
-			Thin-clients: different devices, computing resources on server
-			
-			Web software: distribution method, centralized updates
-			
-			SOA: service composed of many individual services, but with simple http rest
-			
-			Grid computing: computing as electricity, illusion of infinity
-			
-			Autonomic computing: self-healing systems        
-      	</pre>                     
-
-
-
-		<section>
-			<h1>Attributes of Cloud Service</h1>
+					<section>
+						<h1>Platform as a Service</h1>
+					</section>
 		
-			<pre>				
-				Infinite Scaling
-			
-				On-demand Elastic Allocation of Resources
+					<section>
+						<h1>Software as a Service</h1>
+					</section>
+
+					<section>
+						<h1>XaaS</h1>
+
+						<pre>
+							Datastorage as a Service
+
+							Communications as a Service
 					
-					dna-albumi
-					
-				Self-healing
-				
-				Commodity Hardware
-			</pre>
+							Hardware as a Service
+						</pre>
+					</section>
+				</section>
+		
+				<section>
+					<h1>Critic to Cloud Computing Paradigm</h1>
 			
-		</section>
-		
-		<section>
-			<h1>Components of Cloud Service</h1>
-
-			<pre>
-				XaaS and Service Oriented Architectures
-
-				implementation levels
-					
-				cloud ontologies
-			</pre>
+					<pre>
+						"Critics of outsourcing argue that, in many instances, outsourcing can result in organizations inadvertently becoming dependent on vendors." vs Open Source
 				
-			<section>
-				<h1>Infrastucture as a Service</h1>
+						"ASP applications are generally packaged, of the shelf rather than customized to the organizations business processes. ASP"
+				
+						"An ASP is not just for hosting applications but ensuring that the applications are maintained, monitored, scaled and upgrades effectively over time."
+				
+						"Security issues are likely to deter the adoption of web-enabled ASP applications."
+						<cite>Licence</cite>
+				
+					</pre>
+				</section>
 			</section>
-		
-			<section>
-				<h1>Platform as a Service</h1>
-			</section>
-		
-			<section>
-				<h1>Software as a Service</h1>
-			</section>
-
-			<section>
-				<h1>XaaS</h1>
-
-				<pre>
-					Datastorage as a Service
-
-					Communications as a Service
-					
-					Hardware as a Service
-				</pre>
-			</section>
-		</section>
-		
-		<section>
-			<h1>Critic to Cloud Computing Paradigm</h1>
-			
-			<pre>
-				"Critics of outsourcing argue that, in many instances, outsourcing can result in organizations inadvertently becoming dependent on vendors." vs Open Source
-				
-				"ASP applications are generally packaged, of the shelf rather than customized to the organizations business processes. ASP"
-				
-				"An ASP is not just for hosting applications but ensuring that the applications are maintained, monitored, scaled and upgrades effectively over time."
-				
-				"Security issues are likely to deter the adoption of web-enabled ASP applications."
-				<cite>Licence</cite>
-				
-			</pre>
-		</section>
-		
-		
-    </section>
-
-
+	</section>
+	
+	
+	
 	<section>
 		<h1>Ye olde</h1>
 		
@@ -333,6 +334,8 @@
 				none.
 			</pre>
 		</section>
+		
+		
 		
     </article>
     

@@ -184,7 +184,6 @@ LatteX.ToC.prototype._generateContents = function(children) {
 }
 
 
-
 LatteX.Cite = function() {
 	
 	// TODO: rootElement toistuu kaikille, perintä?
