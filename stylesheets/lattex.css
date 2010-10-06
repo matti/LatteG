@@ -4,13 +4,17 @@ article,aside,figure,footer,header,hgroup,nav,section {
 
 
 html {
-	font-size: 12pt;
-	line-height: 20pt;
+	font-size: 11pt;
+	line-height: 15pt;
 	max-width: 600pt;
+	
+	margin-top: 20pt;
+	margin-bottom: 20pt;
 }
 
 article {
-	margin-left: 100pt;
+	margin-left: 45pt;
+	margin-right: 20pt;
 }
 
 section h1 {
@@ -28,8 +32,6 @@ section section section h1 {
 }
 
 
-
-
 article.references dt {
 	float: left;
 }
@@ -42,3 +44,14 @@ article.references dd {
 	margin-left: 5em;
 }
 
+/* print */
+
+article > section {
+	page-break-before: always;
+}
+
+/* hyphenate */
+p {
+	text-align: justify;
+}
+}

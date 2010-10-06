@@ -94,6 +94,9 @@ LatteX.PreParagraphs.prototype.process = function() {
 		
 		for ( paragraph_i in paragraphs ) {
 			var p = document.createElement("p");
+			
+			p.setAttribute("class", "hyphenate");
+
 			p.innerHTML = paragraphs[paragraph_i];
 			pre.parentNode.insertBefore(p, pre);
 			
@@ -305,4 +308,6 @@ window.onload = function() {
 	
 	var lref = new LatteX.References;
 	lref.process();
+	
+	Hyphenator.run();
 }
