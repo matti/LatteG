@@ -26,3 +26,19 @@ section section h1 {
 section section section h1 {
 	font-size: 1.2em;
 }
+
+
+
+
+article.references dt {
+	float: left;
+}
+
+article.references dt:nth-child(n+2), dd:nth-child(n+3) {
+	margin-top: 3em;
+}
+
+article.references dd {
+	margin-left: 5em;
+}
+
