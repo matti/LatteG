@@ -197,11 +197,69 @@ LatteX.Cite.prototype.process = function() {
 	
 	for (var i=0; i<cites.length; i++) {
 		var cite = cites[i];
-		var citeKey = cite.innerHTML;
+		var citeKeys = cite.innerHTML.split(",");
 		
-		cite.innerHTML = "[<a href=\"#cite-"+citeKey+"\">"+citeKey+"</a>]";
+		cite.innerHTML = "[";
+		
+		for (var j=0; j < citeKeys.length; j++) {
+			if (j>0) {
+				cite.innerHTML += ", ";
+			}
+			
+			var citeKey = citeKeys[j].trim();
+			
+			var refKey = this._getReferenceKey(citeKey);
+			
+			cite.innerHTML += "<a href=\"#ref-"+refKey+"\">"+refKey+"</a>";
+		}
+		
+		cite.innerHTML += "]";
+	}
+	
+}
+
+LatteX.Cite.prototype._getReferenceKey = function(key) {
+	
+	// TODO: too large scope
+	
+	var dts = document.body.getElementsByTagName("dt");
+	
+	for (var i = 0; i < dts.length; i++) {
+		if ( dts[i].getAttribute("data-lattex") == key )
+			return dts[i].innerHTML;
+	}
+	
+	alert("Reference with key " + key + " was not found.")
+}
+
+
+LatteX.References = function () {
+	var articles = document.body.getElementsByTagName("article");
+	
+	for (var i = 0; i < articles.length; i++) {
+		if (articles[i].className == "references") {
+			this.rootElement = articles[i];
+		}
+	}
+
+	for (var i = 0; i < this.rootElement.children.length; i++) {
+		if ( this.rootElement.children[i].tagName == "DL" ) {
+			this.dl = this.rootElement.children[i];
+		}
+	}
+
+}
+
+LatteX.References.prototype.process = function() {
+	
+	for (var i = 0; i < this.dl.children.length; i++) {
+		var element = this.dl.children[i];
+		if ( element.tagName == "DT") {
+			element.id = "ref-" + element.innerHTML;
+		}
 	}
 }
+
 
 
 LatteX.Data = function() {
@@ -244,4 +302,7 @@ window.onload = function() {
 	
 	var ldata = new LatteX.Data;
 	ldata.process();
+	
+	var lref = new LatteX.References;
+	lref.process();
 }
