@@ -30,10 +30,10 @@
       </address>
       
     </header>
-      
-    <nav></nav>
     
-    
+  
+	<nav style="display:none;"></nav>
+	
     <article>
 		<h1 data-lattex="title"></h1>
 		
@@ -41,26 +41,33 @@
         	<h1>Introduction</h1>
         
         	<pre>
-	       		Cloud Computing has recently gained huge popularity in business, academia and everyday peoples lives.
+				The ways and purposes for what computers have been used has changed many times in the history of computing.  The concept of how computers are used, a paradigm, defines not only individual experience, but also the business models available to the the IT industry.
+	
+	       		Cloud Computing is the latest paradigm shift in the history of computing.  The word <em>cloud</em> refers to networking diagrams, where a complex network, usually the Internet, is abstracted in a cloud form shape.  Raise of the abstraction level is done because the things presented in the diagram do not require that the implementation details of the Internet are also presented: the Internet is assumed to operate correctly with the architecture presented in the diagram.  In Cloud Computing, the networked computing resources are abstracted in the same sense, so that it is possible to focus on actual service implementation.
+		
+				The definition of Cloud Computing is as vague.  Computing is not the only part that is abstracted in the Cloud, as also data storage, networking and other resources are also part of the.  Moreover, the definition varies among the stakeholders. One of the few common attributes of Cloud is that the nature of resources abstracted is service based.  Resources are transferred in to utilities that are delivered by service providers.  Therefore, the term <em>Utility Computing</em> is also used.
+				
+				To implement such distributed, large scale, high reliability and scalability services is not trivial.  Many of the problems are being solved for the very first time in the history.  This thesis explores the background for Cloud Computing, gives an overview on desired attributes for Cloud services and identifies common problems associated when designing scalable cloud architectures.
 	        </pre>
 
-			<section>
+			<section style="display: none;">
 				<h1>Research Questions</h1>
 		
 				<pre>The main research questions that this thesis provides answers to are..</pre>
 			</section>
 
-			<section>
+			<section style="display: none;">
 				<h1>Scope of The Thesis</h1>
 		
 				<pre>PaaS</pre>
 			</section>
 		
 		
-			<section>
+			<section style="display: none;">
 				<h1>Structure of The Thesis</h1>
 		
 				<pre>
+
 					Cloud definition
 			
 					Scalability
@@ -79,9 +86,7 @@
         	<h1>Background for Cloud Computing</h1>
       
         	<pre>
-				What is paradigm
-
-				Cloud computing is the latest paradigm shift in the history of computing.  It draws technical background and principles from all computing paradigms since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.  In the next sections the previous paradigms with their supporting architectures are briefly explored to identify the background from what the cloud is composed of.  Then the attributes that are unique to cloud computing of are presented justifying cloud computing as a true paradigm shift.
+				Cloud Computing draws technical background and principles from all computing paradigms since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.  In the next sections the previous paradigms with their supporting architectures are briefly explored to identify the background from what the cloud is composed of.  Then the attributes that are unique to cloud computing of are presented justifying cloud computing as a true paradigm shift.
 	        </pre>
       
       
@@ -93,7 +98,7 @@
 			
 				Later the computers become more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
 			
-				This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used [TimeSharing64].  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
+				This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used <cite>TimeSharing64</cite>.  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
 
 				As the costs of manufacturing computers reduced, the computers became personal.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
 	          </pre>
@@ -107,18 +112,20 @@
 					The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
 				
 					Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
+					
 				</pre>
 			
 			
 	        	<section>
 					<h1>Client-Server</h1>
 				
-					<pre>During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location [ClientServer96, CloudComputing08].
+					<pre>
+						During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location <cite>ClientServer96, CloudComputing</cite>.
 
-						When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular [InTheClouds07].
+						When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular <cite>InTheClouds07</cite>.
 			
-						During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities [ClientServer96].
-				</pre>
+						During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities <cite>ClientServer96</cite>.
+					</pre>
 				</section>
 			
 
@@ -126,7 +133,9 @@
 					<h1>Software Packaged in the Web</h1>
 
 					<pre>
-					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance [Cusumano10].        
+					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance <cite>Cusumano10</cite>.
+					
+					From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however <em>not</em> part of the cloud computing, because it does not satisfy the attributes that will be explored in the last section of this chapter.
 					</pre>
 				</section>
 
@@ -135,11 +144,11 @@
 					<h1>Application Service Providers</h1>
 
 					<pre>
-						An organization can outsource their software to a separate company to gain savings of operationing costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
+						An organization can outsource their software to a separate company to gain savings of operating costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
 					
 						Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
 					
-						<em>Savings</em> in upfront and total costs are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availablity.  This is usually enforced with service level agreements (SLAs).  Also, the expertice needed in <em>maintenance</em> are not needed inside the customer.
+						<em>Savings</em> in upfront and total costs are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availability.  This is usually enforced with service level agreements (SLAs).  Also, the expertise needed in <em>maintenance</em> are not needed inside the customer.
 					
 						This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
 					</pre>
@@ -147,19 +156,38 @@
 
 			
 				<section>
-					<h1>Autonomic Computing</h1>
+					<h1>Service-Oriented Architectures</h1>
 
 					<pre>
-					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services exposes the functionality it provides by publishing a description as Web Services Description Language (WSDL) that is based on XML.  Services can be composed of many autonomous services.        
+					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
+					
+					The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page <cite>vogels</cite>.
 					</pre>
 				</section>
+
 			
+				<section>
+					<h1>Autonomic Computing</h1>
+					
+					<pre>
+						Distributed large scale systems are complex to design.  Due their asynchronous nature, many issues are dealt with at runtime, not in the design phase.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personnel to focus on higher level goals <cite>autonomic_vision</cite>.  Other similar initiatives are also presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) <cite>autonomic_research</cite>
+						
+						Similarly to Service-oriented Architectures, monolithic systems are decomposed as smaller resources.  Any resource can be viewed as an autonomic element: data storage, load balancer, application servers and so on.  Each of the resources will manage its operations over the life time of operation.  Human operators will only define high-level goals and the elements will continuously seek ways to fulfill these goals.  This frees human resources required for maintaining the services <cite>autonomic_research</cite>.
+						
+						This self-management of autonomic elements consists of four aspects: self-configuration, self-optimization, self-healing and self-protection.  Elements will continuously ensure that they are configured in the best possible way for their environment.  Same goes for optimization, as systems evolution might change the operation environment.  Self-healing ensures that systems try to recover from failures by themselves.  In addition to just preventing unauthorized access, elements will also try detect access violations and isolate these issues.  This kind of mitigation of bigger problems is part of all aspects in autonomic elements <cite>autonomic_research, autonomic_vision</cite>
+												
+						<em>Recovery-Oriented Computing</em> (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter <cite>ROC</cite>.
+						
+					</pre>
+				</section>
+
+
 			
 				<section>
 					<h1>Grid Computing</h1>
 
 					<pre>
-					In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers [TheGrid08]. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article [WhatIsGrid02].
+					In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers <cite>TheGrid08</cite>. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article <cite>WhatIsGrid02</cite>.
 				
 					In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
 					</pre>
@@ -266,7 +294,7 @@
 						"An ASP is not just for hosting applications but ensuring that the applications are maintained, monitored, scaled and upgrades effectively over time."
 				
 						"Security issues are likely to deter the adoption of web-enabled ASP applications."
-						<cite>Licence</cite>
+						<cite>asp</cite>
 				
 					</pre>
 				</section>
@@ -344,80 +372,54 @@
     <article class="references">
 		<h1>References</h1>
 
-		<section>
-			<abbr data-lattex="zuse">Cer81</abbr>
-			
-			<p>Ceruzzi P. The early computers of Konrad Zuse, 1935 to 1945. Annals of the History of Computing. 2008;3(3). Available at: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4640687.</p>	
-		</section>
+		<dl>
+			<dt data-lattex="autonomic_research">Kep05</dt>
+			<dd>Kephart J., Research challenges of autonomic computing. Proceedings. 27th International Conference on Software Engineering, 2005. ICSE 2005. 2005:15-22. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=1553533.</dd>
 
-		<section>
-			<abrr data-lattex="Ethernet">MBo76</abrr>
-			
-			<p>Metcalfe R, Boggs D. Ethernet: Distributed packet switching for local computer networks. Communications of the ACM. 1976;19(7). Available at: http://portal.acm.org/citation.cfm?id=360248.360253.</p>
-			
-		</section>
+			<dt data-lattex="autonomic_vision">KeC03</dt>
+			<dd>Kephart J, Chess D. The vision of autonomic computing. Computer. 2003;(January):41-50. Available at: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1160055.</dd>
 
-		<section>
-			<abrr data-lattex="asp">ASP</abrr>
-			
-			<p>Patnayakuni R, Seth N. Why license when you can rent? Risks and rewards of the application service provider model. Proceedings of the 2001 ACM SIGCPR conference on Computer personnel research - SIGCPR '01. 2001:182-188. Available at: http://portal.acm.org/citation.cfm?doid=371209.371233.</p>
-			
-		</section>
-		<section>
-			<abbr data-lattex="YCBS10">YCBS10</abbr>
-	
-			<p>Cooper BF, Silberstein A, Tam E, Ramakrishnan R, Sears R. Benchmarking cloud serving systems with YCSB. Proceedings of the 1st ACM symposium on Cloud computing - SoCC '10. 2010:143. Available at: http://portal.acm.org/citation.cfm?doid=1807128.1807152.</p>
-		</section>
+			<dt data-lattex="ROC">Fox02</dt>			
+			<dd>Fox A. Toward recovery-oriented computing. Proceedings of the 28th VLDB Conference. 2002. Available at: http://portal.acm.org/citation.cfm?id=1287443.</dd>
+		
+			<dt data-lattex="vogels">Oha06</dt>
+			<dd>O'Hanlon C. A conversation with Werner Vogels. Queue. Volume 4,  Issue 4 May 2006. Available at: http://portal.acm.org/citation.cfm?id=1142065.</dd>
+		
+			<dt data-lattex="zuse">Cer81</dt>
+			<dd>Ceruzzi P. The early computers of Konrad Zuse, 1935 to 1945. Annals of the History of Computing. July-Sept. 1981. Available at: http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=4640687.</dd>
 
-		<section>
-			<abbr data-lattex="WhatsInside09">WhatsInside09</abbr>
+			<dt data-lattex="Ethernet">MeB76</dt>
+			<dd>Metcalfe R, Boggs D. Ethernet: Distributed packet switching for local computer networks. Communications of the ACM. 1976;19(7). Available at: http://portal.acm.org/citation.cfm?id=360248.360253.</dd>
 			
-			<p>Lenk A, Klems M, Nimis J, Tai S, Sandholm T. What's inside the Cloud? An architectural map of the Cloud landscape. 2009 ICSE Workshop on Software Engineering Challenges of Cloud Computing. 2009:23-31. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5071529.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="CloudComputing08">CloudComputing08</abbr>
-	     	
-			<p>Hayes B. Cloud computing. Communications of the ACM. 2008;51(7):9. Available at: http://portal.acm.org/citation.cfm?doid=1364782.1364786.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="TimeSharing64">TimeSharing64</abbr>
-	    
-			<p>Schwartz J, Coffman E, Weissman C. A general-purpose time-sharing system. of the April 21-23, 1964,. 1964:397. Available at: http://portal.acm.org/citation.cfm?id=1464163.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="ClientServer96">ClientServer96</abbr>
+			<dt data-lattex="asp">PaS01</dt>
+			<dd>Patnayakuni R, Seth N. Why license when you can rent? Risks and rewards of the application service provider model. Proceedings of the 2001 ACM SIGCPR conference on Computer personnel research - SIGCPR '01. 2001:182-188. Available at: http://portal.acm.org/citation.cfm?doid=371209.371233.</dd>
 			
-	    	<p>Franklin MJ, Jónsson BT, Kossmann D. Performance tradeoffs for client-server query processing. ACM SIGMOD Record. 1996;25(2):149-160. Available at: http://portal.acm.org/citation.cfm?doid=235968.233328.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="InTheClouds07">InTheClouds07</abbr>
-	    
-			<p>Weiss A. Computing in the clouds. netWorker. 2007;11:16-25. Available at: http://portal.acm.org/citation.cfm?doid=1327512.1327513.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="Cusumano10">Cusumano10</abbr>
-	﻿       
-			<p>Cusumano M. Cloud computing and SaaS as new computing platforms. Communications of the ACM. 2010;53(4):27. Available at: http://portal.acm.org/citation.cfm?doid=1721654.1721667.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="WhatIsGrid02">WhatIsGrid02</abbr>
-	        <p>Foster I. What is the grid? a three point checklist. GRID today. 2002.</p>
-		</section>
-		
-		<section>
-			<abbr data-lattex="TheGrid08">TheGrid08</abbr>
+			<dt data-lattex="YCBS10">CST10</dt> <!-- todo: miten viitemerkintä muodostuu? -->
+			<dd>Cooper BF, Silberstein A, Tam E, Ramakrishnan R, Sears R. Benchmarking cloud serving systems with YCSB. Proceedings of the 1st ACM symposium on Cloud computing - SoCC '10. 2010:143. Available at: http://portal.acm.org/citation.cfm?doid=1807128.1807152.</dd>
+
+			<dt data-lattex="WhatsInside09">LKN09</dt>
+			<dd>Lenk A, Klems M, Nimis J, Tai S, Sandholm T. What's inside the Cloud? An architectural map of the Cloud landscape. 2009 ICSE Workshop on Software Engineering Challenges of Cloud Computing. 2009:23-31. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=5071529.</dd>
+
+			<dt data-lattex="CloudComputing">Hay08</dt>
+			<dd>Hayes B. Cloud computing. Communications of the ACM. 2008;51(7):9. Available at: http://portal.acm.org/citation.cfm?doid=1364782.1364786.</dd>
+
+			<dt data-lattex="TimeSharing64">SCW64</dt>
+			<dd>Schwartz J, Coffman E, Weissman C. A general-purpose time-sharing system. of the April 21-23, 1964,. 1964:397. Available at: http://portal.acm.org/citation.cfm?id=1464163.</dd>
+
+			<dt data-lattex="ClientServer96">FJK96</dt>	
+	    	<dd>Franklin MJ, Jónsson BT, Kossmann D. Performance tradeoffs for client-server query processing. ACM SIGMOD Record. 1996;25(2):149-160. Available at: http://portal.acm.org/citation.cfm?doid=235968.233328.</dd>
+			<dt data-lattex="InTheClouds07">Wei07</dt>    
+			<dd>Weiss A. Computing in the clouds. netWorker. 2007;11:16-25. Available at: http://portal.acm.org/citation.cfm?doid=1327512.1327513.</dd>
+
+			<dt data-lattex="Cusumano10">Cus10</dt>
+			<dd>Cusumano M. Cloud computing and SaaS as new computing platforms. Communications of the ACM. 2010;53(4):27. Available at: http://portal.acm.org/citation.cfm?doid=1721654.1721667.</dd>
+
+			<dt data-lattex="WhatIsGrid02">Fos02</dt>
+	        <dd>Foster I. What is the grid? a three point checklist. GRID today. 2002.</dd>
+
+			<dt data-lattex="TheGrid08">KeF08</dt>
+			<dd>Kesselman, C. &amp; Foster, I. The Grid: Blueprint for a New Computing Infrastructure (Morgan Kaufmann Publishers, 1998). URL http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20\&amp;path=ASIN/1558604758.</dd>
 	        
-			<p>Kesselman, C. &amp; Foster, I. The Grid: Blueprint for a New Computing Infrastructure (Morgan Kaufmann Publishers, 1998). URL http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20\&amp;path=ASIN/1558604758.</p>
-		</section>
-	
-
-        
     </article>
   
 
