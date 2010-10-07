@@ -5,7 +5,7 @@ article,aside,figure,footer,header,hgroup,nav,section {
 
 html {
 	font-size: 11pt;
-	line-height: 15pt;
+	line-height: 18pt;
 	max-width: 600pt;
 	
 	margin-top: 20pt;
@@ -16,6 +16,8 @@ article {
 	margin-left: 45pt;
 	margin-right: 20pt;
 }
+
+
 
 section h1 {
 	font-size: 1.6em;
@@ -30,6 +32,7 @@ section section h1 {
 section section section h1 {
 	font-size: 1.2em;
 }
+
 
 
 article.references dt {

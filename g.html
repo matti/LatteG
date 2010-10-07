@@ -98,7 +98,9 @@
         	<h1>Background for Cloud Computing</h1>
       
         	<pre>
-				Cloud Computing draws technical background and principles from all computing paradigms since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.  In the next sections the previous paradigms with their supporting architectures are briefly explored to identify the background from what the cloud is composed of.  Then the attributes that are unique to cloud computing of are presented justifying cloud computing as a true paradigm shift.
+				Cloud Computing draws technical background and principles from all computing paradigms and industry business models since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.
+				
+				In the next sections the history of computing is briefly explored to identify the background from what the Cloud is composed of.  Then the attributes that are unique to the Cloud Computing of are presented justifying Cloud Computing as a true paradigm shift.
 	        </pre>
       
       
@@ -106,25 +108,25 @@
         	<h1>Pre-networking Computing</h1>
         
           	<pre>
-				In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularry performed by <em>"human computers"</em>.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high <cite>zuse</cite>.
+				In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularly performed by <em>"human computers"</em>.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high <cite>zuse</cite>.
 			
-				Later the computers become more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
-			
-				This time introduced a concept called <em>multitenancy</em>.  This means that a single resource hosts different users with different needs.  <em>Time-sharing systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used <cite>TimeSharing64</cite>.  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing we know today.
+				These computers evolved in to more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
+				
+				In the early 1960's a concept called <em>multi-tenancy</em> was introduced.  This means that a single resource hosts different users with different needs at the same time.  These <em>Time-sharing Systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used <cite>TimeSharing64</cite>.  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing that we know today.
 
-				As the costs of manufacturing computers reduced, the computers became personal.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>.  
-	          </pre>
+				Cloud Computing shares the same idea of providing computing power for different tenants, who can rent the resources for the time they need them.  After the tenant frees the resources, they are instantly provisioned for the next customer.  As these isolated and flexible resources are available for any organization or individual,  the utilization rate of the data centers is high and this brings the costs down.
+	  			</pre>
 			</section>
 
 
+			
 			<section>
 	        	<h1>Networked Computing</h1>
          
 				<pre>
-					The networked computing as we know it today, evolved from terminal-computer communication.  Large networks already existed between large centralized mainframes, but as the need for computer-computer interconnectivity grew, technology called Ethernet become successfull.
+					The networked computing as we know it today, evolved from terminal-computer communication needed to access mainframes.  Wide networks already existed between centralized mainframes, but as the need for computer-computer interconnectivity grew, a technology called Ethernet become successful.
 				
-					Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probalisitic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
-					
+					Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probabilistic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influence architectural design patterns of modern web applications <cite>Ethernet</cite>.
 				</pre>
 			
 			
@@ -137,6 +139,8 @@
 						When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular <cite>InTheClouds07</cite>.
 			
 						During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities <cite>ClientServer96</cite>.
+						
+						Services running on top of Cloud are accessed in client-server fashion, usually with a web browser.  Computing is done in the distributed application servers, and data is stored and replicated across different data centers.  RDBMSes are still used by the Cloud service providers to provide reliable data storage, although more scalable alternatives have recently appeared. 
 					</pre>
 				</section>
 			
@@ -145,9 +149,11 @@
 					<h1>Software Packaged in the Web</h1>
 
 					<pre>
+					As the costs of manufacturing computers reduced, the computers became personal in the beginning of the 1980's.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called "shrink-wrapped software".  Users became responsible of maintaining their hardware, software and the data associated with it <cite>CloudComputing</cite>. 
+				
 					The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance <cite>Cusumano10</cite>.
 					
-					From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however <em>not</em> part of the cloud computing, because it does not satisfy the attributes that will be explored in the last section of this chapter.
+					From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however <em>not</em> automatically Cloud Computing, because it often does not satisfy the attributes that will be explored in the last section of this chapter.
 					</pre>
 				</section>
 
