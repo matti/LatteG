@@ -1,0 +1,60 @@
+article,aside,figure,footer,header,hgroup,nav,section {
+	display:block
+}
+
+
+html {
+	font-size: 11pt;
+	line-height: 18pt;
+	max-width: 600pt;
+	
+	margin-top: 20pt;
+	margin-bottom: 20pt;
+}
+
+article {
+	margin-left: 45pt;
+	margin-right: 20pt;
+}
+
+
+
+section h1 {
+	font-size: 1.6em;
+	margin-top: 2em;
+}
+
+section section h1 {
+	font-size: 1.4em;
+	margin-top: 1.5em;
+}
+
+section section section h1 {
+	font-size: 1.2em;
+}
+
+
+
+article.references dt {
+	float: left;
+}
+
+article.references dt:nth-child(n+2), dd:nth-child(n+3) {
+	margin-top: 3em;
+}
+
+article.references dd {
+	margin-left: 5em;
+}
+
+/* print */
+
+article > section {
+	page-break-before: always;
+}
+
+/* hyphenate */
+p {
+	text-align: justify;
+}
+}
