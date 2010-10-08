@@ -2,3 +2,7 @@
 
 - HTML5:n mukana tuli getElementsByClassName ja querySelectorAll, 
   ei tartte enää for-kikkailua
+  
+- Image-viite
+
+- jos <section> elementin sisältä puuttuu <h1> tulee ruma virheilmoitus ja sivu räjähtää
