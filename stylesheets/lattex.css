@@ -53,6 +53,13 @@ article > section {
 	page-break-before: always;
 }
 
+
+/* images */
+img.fit-width {
+  max-width: 100%;
+}
+
+
 /* hyphenate */
 p {
 	text-align: justify;

@@ -8,6 +8,31 @@ var LatteX = function() {
 	
 };
 
+LatteX.ImageNumbering = function() {
+	this.rootElement = document.body;
+
+	this.imageCaptionElement = "span";
+	this.imageCaptionClass   = "image-caption";
+	this.imageCaptionKeyword = "Figure";
+}
+
+LatteX.ImageNumbering.prototype.process = function() {
+	var images = this.rootElement.getElementsByTagName("img");
+
+	this._numberImages(images);
+}
+
+LatteX.ImageNumbering.prototype._numberImages = function(images) {
+	for ( var i=0; i < images.length; i++) {
+		var captionElement = document.createElement(this.imageCaptionElement);
+		var imageNumber = i+1; // loop starts from 0, but image numbering from 1
+		captionElement.setAttribute('class', this.imageCaptionClass);
+		captionElement.innerHTML = this.imageCaptionKeyword + " " + imageNumber + ": " + images[i].title;
+
+		images[i].parentNode.insertBefore(captionElement, images[i].nextSibling); // inserts after images[i]
+	}
+}
+
 LatteX.SectionNumbering = function() {
 	this.rootElement = document.body;
 
@@ -296,6 +321,9 @@ window.onload = function() {
 	
 	var lsections = new LatteX.SectionNumbering;
 	lsections.process();
+
+	var limages = new LatteX.ImageNumbering;
+	limages.process();
 	
 	var lpre = new LatteX.PreParagraphs;
 	lpre.process();

@@ -1,1 +1,4 @@
 - Varmistaja, että otsikot Kirjoitetaan Isoilla Alkukirjaimilla
+
+- HTML5:n mukana tuli getElementsByClassName ja querySelectorAll, 
+  ei tartte enää for-kikkailua
