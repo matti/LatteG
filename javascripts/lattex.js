@@ -29,9 +29,32 @@ LatteX.ImageNumbering.prototype._numberImages = function(images) {
 		captionElement.setAttribute('class', this.imageCaptionClass);
 		captionElement.innerHTML = this.imageCaptionKeyword + " " + imageNumber + ": " + images[i].title;
 
-		images[i].parentNode.insertBefore(captionElement, images[i].nextSibling); // inserts after images[i]
+		this._insertCaption(captionElement, images[i]);
+		this._updateImageReferences(images[i], imageNumber);
 	}
 }
+
+/* Inserts captionElement into the DOM after imageElement. */
+LatteX.ImageNumbering.prototype._insertCaption = function(captionElement, imageElement) {
+	imageElement.parentNode.insertBefore(captionElement, imageElement.nextSibling);
+}
+
+/* Updates references to current image. 
+   A reference could be e.g. to a figure 
+        <a href="#image-id" data-lattex="image-ref"></a>
+  Output: 
+   "A reference could be e.g. to a figure 2"
+*/
+LatteX.ImageNumbering.prototype._updateImageReferences = function(imageElement, imageNumber) {
+	// selector: a[data-lattex~='image-ref'][href="#image-id"]
+	selector = "a[data-lattex~='image-ref']";
+	selector += "[href='#" + imageElement.id + "']";
+	referencingElements = this.rootElement.querySelectorAll(selector);
+	for (var i=0; i < referencingElements.length; i++) {
+		referencingElements[i].innerHTML = imageNumber;
+	}
+}
+
 
 LatteX.SectionNumbering = function() {
 	this.rootElement = document.body;

@@ -59,11 +59,27 @@
         </pre>
         <section>
           <h1>Another Paragraph</h1>
-    
+
           <pre>
             Content may be referenced with <em>cite</em> element <cite>ReferenceKeyword10</cite>.
             
-            <img src="images/broken_image.jpg" class="fit-width" title="Example of a non-existant image fit to page width."></img>
+            <img id="example-image"
+                 src="images/broken_image.jpg" 
+                 class="fit-width" 
+                 alt="Example Image"
+                 title="Example of a non-existant image fit to page width."></img>
+
+            <img id="github-logo"
+                 src="http://github.com/images/modules/header/logov3-hover.png" 
+                 class="fit-width" 
+                 alt="Github Logo"
+                 title="Github Logo as an another example"></img>
+
+            You may also create a reference to an image as shown in image 
+            <a data-lattex="image-ref" href="#example-image">IMG X</a>.
+
+            Here is a reference to Github logo which is shown in image
+            <a data-lattex="image-ref" href="#github-logo">IMG Y</a>.
           </pre>
         </section>
 
