@@ -60,13 +60,11 @@
         
         	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen. Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.
 				
+				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi Facebookkiin talletetaan yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
+				
 				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle yritykselle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
 				
-				objektit
-					
-				teemoja: luottamus, verkot <cite>MaB04</cite>
-				
-				three-tier arkkitehtuuri
+				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Kappaleessa TODO esitellään muutama suuren kokoluokan arkkitehtuuri, sitten tarkastellaan laajemmin toteutusongelmia ja lopuksi luodaan katsaus yleisesti kätettyihin tekniikkoihin ja arkkitehtuurimalleihin.
 			</pre>
 		</section>
 		
@@ -174,6 +172,13 @@
 			</pre>
 		</section>
 		
+		<section class="noNumbering">
+			<h1>Kiitokset</h1>
+			
+			<pre>
+				Tätä artikkelia ei olisi voitu kirjoittaa ilman Pekon lämmittämää Harjutorin Saunaa, Kurvin Grillin Porilaista ja Oljenkorren Sierra Nevada Celebration Alea. 
+			</pre>
+		</section>
 		
 		
     </article>
@@ -185,15 +190,6 @@
 
 		<dl>
 			
-			<dt data-lattex="MaB04">MaB04</dt>
-			<dd>@INPROCEEDINGS{MaB04,
-			    author = {Paolo Massa and Bobby Bhattacharjee},
-			    title = {Using Trust in Recommender Systems: An Experimental Analysis},
-			    booktitle = {In Proceedings of iTrust2004 International Conference},
-			    year = {2004},
-			    pages = {221--235}
-			}</dd>
-		
 			<dt data-lattex="GJW07">GJW07</dt>
 			<dd>
 				@inproceedings{1241011,
@@ -242,6 +238,24 @@
 			<dd>
 				Rothschild, Jeff. High Performance at Massive Scale - Lessons learned at Facebook, UC San Diego CNS 2009 Lecture Series Archives, October 8, 2009, http://cns.ucsd.edu/lecturearchive09.shtml#Roth
 			</dd>
+			
+			<dt data-lattex="YLM09">YLM09</dt>
+			<dd>
+				@inproceedings{1557123,
+				 author = {Yin, Zhijun and Li, Rui and Mei, Qiaozhu and Han, Jiawei},
+				 title = {Exploring social tagging graph for web object classification},
+				 booktitle = {KDD '09: Proceedings of the 15th ACM SIGKDD international conference on Knowledge discovery and data mining},
+				 year = {2009},
+				 isbn = {978-1-60558-495-9},
+				 pages = {957--966},
+				 location = {Paris, France},
+				 doi = {http://doi.acm.org/10.1145/1557019.1557123},
+				 publisher = {ACM},
+				 address = {New York, NY, USA},
+				 }
+			</dd>
+			
+
 			
 		</dl>
 			

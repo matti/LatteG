@@ -77,8 +77,9 @@ LatteX.SectionNumbering.prototype.process = function() {
 LatteX.SectionNumbering.prototype._numberSections = function(children) {
 
 	for ( var i=0; i<children.length; i++ ) {
-		
-		if ( children[i].tagName == "SECTION" ) {
+				
+		if ( children[i].tagName == "SECTION" && children[i].className != "noNumbering") {
+			
 			var section = children[i];
 			
 			var title = section.getElementsByTagName("h1")[0];
@@ -184,7 +185,7 @@ LatteX.ToC.prototype._generateContents = function(children) {
 	
 	for ( var i=0; i<children.length; i++ ) {
 		
-		if ( children[i].tagName == "SECTION" ) {
+		if ( children[i].tagName == "SECTION" && children[i].className != "noNumbering" ) {
 			var section = children[i];
 			
 			var title = section.getElementsByTagName("h1")[0];

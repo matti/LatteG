@@ -9,3 +9,5 @@
   pitäisikö tarkistaa, onko esim. kuvaviitteitä, jotka on rikki? (esim. typo id:ssä)
 
 - articlella ei ole id:tä eikä classia --> miten valitaan queryselectorilla..?
+
+article.abstract, section.acknowledgements ym. pitäisi olla id?
