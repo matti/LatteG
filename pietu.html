@@ -35,9 +35,6 @@
       </address>
       
     </header>
-    
-  
-	<nav></nav>
 
 	<article>
 		<h1>Tiivistelmä</h1>
@@ -47,7 +44,11 @@
 		</pre>
 	</article>
 	
-	
+	    
+  
+	<nav></nav>
+
+
 	
     <article>
 		<h1 data-lattex="title"></h1>
@@ -57,12 +58,61 @@
 		<section>
         	<h1>Johdanto</h1>
         
-        	<pre>
-				käyttäjämääriä
+        	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen. Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.
 				
+				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle yritykselle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
 				
-	        </pre>
+				objektit
+					
+				teemoja: luottamus, verkot <cite>MaB04</cite>
+				
+				three-tier arkkitehtuuri
+			</pre>
 		</section>
+		
+		<section>
+			<h1>Suuren kokoluokan arkkitehtuurit</h1>
+			
+			<pre>
+				Muutamia suosituimpia sosiaalisen median palveluita Alexa-yhtiön "Top 500 Global Sites" listauksessa olivat lokakuussa 2010: Facebook.com (2), Youtube.com (3), Linkedin.com (23) ja Flickr.com (36) <cite>Ale10</cite>.  Seuraavissa kappaleissa käydään läpi palveluiden muutamia tunnuslukuja ja yleiskuvaus arkkitehtuurista.  Luvut perustuvat palveluiden omiin ilmoituksiin, joita voitaneen pitää yleisesti luotettavina tai ainakin suuntaa-antavina.
+			</pre>
+			
+			<section>
+				<h1>Facebook.com</h1>
+				
+				<pre>
+				Facebook.com on ylivoimaisesti suurin sosiaalisen median verkosto, jossa käyttäjät voivat jakaa kuviaan, videoitaan ja vaihtaa viestejä.
+				
+				<ul>
+					<li>Yli 500 miljoonaa aktiivista käyttäjää</li>
+					<li>50% prosenttia käyttäjistä kirjautuu palveluun päivittäin</li>
+					<li>Käyttäjällä on keskimäärin 130 <em>ystävää</em>, eli henkilöä, jonka tuntee palvelussa.</li>
+					<li>Facebook palvelee yli 150 miljoonaa samanaikaista mobiilikäyttäjää.</li>
+				</ul>
+
+				Lisäksi Facebook tarjoaa myös kehittäjille API-rajapintoja, joiden kautta oma palvelu integroituu käyttäjän kannalta osaksi Facebookkia.  Aktiivisia Facebook-sovelluksia on tällä hetkellä 550,000 kappaletta. 70% palvelun käyttäjistä käyttää jotakin sovellusta vähintään kerran kuukaudessa.  Palvelun käyttäjämäärä on kasvanut jopa 40% puolen vuoden ajanjaksolla <cite>Fac10</cite>.
+				
+				TODO: Arkkitehtuuri <cite>Rot09</cite>
+				</pre>
+			</section>
+			
+			<section>
+				<h1>Youtube</h1>
+			
+				<cite>Cuo07</cite>
+			
+			</section>
+			
+			
+			<section>
+				<h1>Flickr</h1>
+					
+				<pre>
+				Flickr.com on vuonna 200TODO perustettu kuvien jakamiseen keskittynyt palvelu.
+				</pre>
+			</section>
+			
+	  	</section>
               
               
 		<section>
@@ -89,6 +139,22 @@
 	    		haasteita
 	    		
 				* cap
+
+				
+				ratkaisuja
+				
+				* aws
+				
+				* hadoop
+				
+				* heroku
+				
+				* googlaa ratkaisuja
+				
+				* onko mendeleyssä ratkaisuja
+			    
+			    * key-value
+			
 				
 			</pre>
  
@@ -119,9 +185,64 @@
 
 		<dl>
 			
-			<dt data-lattex="unified_ontology">YBS05</dt>
-			<dd>Youseff L, Butrico M, Da Silva D. Toward a Unified Ontology of Cloud Computing. 2008 Grid Computing Environments Workshop. 2008:1-10. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=4738443.</dd>
+			<dt data-lattex="MaB04">MaB04</dt>
+			<dd>@INPROCEEDINGS{MaB04,
+			    author = {Paolo Massa and Bobby Bhattacharjee},
+			    title = {Using Trust in Recommender Systems: An Experimental Analysis},
+			    booktitle = {In Proceedings of iTrust2004 International Conference},
+			    year = {2004},
+			    pages = {221--235}
+			}</dd>
 		
+			<dt data-lattex="GJW07">GJW07</dt>
+			<dd>
+				@inproceedings{1241011,
+				 author = {Golbeck, Jennifer and Wasser, Michael M.},
+				 title = {SocialBrowsing: integrating social networks and web browsing},
+				 booktitle = {CHI '07: CHI '07 extended abstracts on Human factors in computing systems},
+				 year = {2007},
+				 isbn = {978-1-59593-642-4},
+				 pages = {2381--2386},
+				 location = {San Jose, CA, USA},
+				 doi = {http://doi.acm.org/10.1145/1240866.1241011},
+				 publisher = {ACM},
+				 address = {New York, NY, USA},
+				 }
+			</dd>
+
+			<dt data-lattex="Gol07">Gol07</dt>
+			<dd>
+				@ARTICLE{Golbeck_thedynamics,
+				    author = {Jennifer Golbeck},
+				    title = {The dynamics of web-based social networks: Membership, relationships, and change},
+				    journal = {First Monday},
+				    year = {},
+				    volume = {12},
+				    pages = {2007}
+				}{New York, NY, USA},
+				 }
+			</dd>
+			
+			<dt data-lattex="Fac10">Fac10</dt>
+			<dd>
+				Facebook Statistics, http://www.facebook.com/press/info.php?statistics.  Haettu 19.10.2010.
+			</dd>
+
+			<dt data-lattex="Cuo07">Cuo07</dt>
+			<dd>
+				Do Cuong. YouTube Scalability, Google Seattle Conference on Scalability Saturday, June 23, 2007 - http://www.youtube.com/watch?v=ZW5_eEKEC28
+			</dd>
+
+			<dt data-lattex="Ale10">Ale10</dt>
+			<dd>
+			Alexa.com Top 500 Global Sites, http://www.alexa.com/topsites, haettu 19.10.2010
+			</dd>
+			
+			<dt data-lattex="Rot09">Rot09</dt>
+			<dd>
+				Rothschild, Jeff. High Performance at Massive Scale - Lessons learned at Facebook, UC San Diego CNS 2009 Lecture Series Archives, October 8, 2009, http://cns.ucsd.edu/lecturearchive09.shtml#Roth
+			</dd>
+			
 		</dl>
 			
 
