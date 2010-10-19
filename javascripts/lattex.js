@@ -68,7 +68,7 @@ LatteX.SectionNumbering = function() {
 };
 
 LatteX.SectionNumbering.prototype.process = function() {
-	var article = this.rootElement.getElementsByTagName("article")[0];
+	var article = this.rootElement.querySelectorAll("article")[1];
 	var children = article.children;
 	
 	this._numberSections(children);	
