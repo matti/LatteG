@@ -53,12 +53,13 @@ article.references dd {
 	margin-left: 5em;
 }
 
-/* print */
+/* print 
 
 article > section {
 	page-break-before: always;
 }
 
+*/
 
 /* images */
 img.fit-width {

@@ -99,8 +99,13 @@
 			<section>
 				<h1>CAP</h1>
 				
-				<pre>
-				käyttäjämäärät globaalisti --> CAP
+				<pre>Eric Brewer on esittänyt vuonna 2000 CAP-konjektuurin <cite>Bre02</cite> hajautettujen web-palveluiden kolmesta halutusta ominaisuudesta ja niiden saavutettavuuksista.  Kolme haluttua ominaisuutta ovat tiedon konsistenssi, saavutettavuus ja jakaminen (<strong>C</strong>onsistency, <strong>A</strong>vailability, <strong>P</strong>artitioning). 
+					
+					Hajautetun web-palvelun tietosisältöön kohdistuvat muokkaukset halutaan yleisesti pitää vahvasti konsistentteina. <!-- TODO: mikä on konsistentti-->Tämä tarkoittaa ACID-ominaisuudet tyydyttävää tietokantamaista toimintaa, eli esimerkiksi muokkausoperaatioiden suorittaminen siten, ettei muokkauksen kohteena oleva tietosisältö minään hetkenä koostu vanhasta ja uudesta tiedosta.  Tämä tiedon atomisuus vaatii esimerkiksi lukitusta, joka on haastavaa toteuttaa hajautetussa ympäristössä <cite>GiL02</cite>.
+										
+					Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sitä ei voida saavuttaa.  Jotta palvelu seliväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
+					
+					Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kaksi näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
 				</pre>
 			</section>
 			
@@ -108,7 +113,13 @@
 			<section>
 				<h1>BASE</h1>
 				
-				<pre>
+				<pre>Tietokantojen ACID-mallin rinnalle on hajautettujen web-palveluiden yleistymisen myötä noussut BASE-malli (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent).  Mallissa otetaan huomioon web-palveluiden erityispiirteet, kuten tilattomuus, joka mahdollistaa tiedon tallentamisen kevyimmin ehdoin <cite>Pri08</cite>.
+					
+					Ehdottoman saatavuuden (kaikki saatavilla, tai ei mitään saatavilla) sijaan tieto pyritään pitämään saatavilla niin hyvin kuin mahdollista.  Palvelu tulee olla rakennettu siten, että jos esimerkiksi 20% tietosisällöstä on hetkellisesti saavuttamattomissa, niin se vaikuttaa vain osaan käyttäjistä.  Parhaimmassa tapauksessa suurin osa käyttäjistä ei edes huomaa katkosta. Tämä on mahdollista saavuttaa jakamalla tieto toiminnallisiin kokonaisuuksinsa <cite>Pri08</cite>.
+				
+					Web-palveluissa, jotka eivät esimerkiksi käsittele rahaa, voidaan vahvasta transaktionaalisuudesta joustaa.  Katkoksen tapahtuminen kriittisellä hetkellä on yleisesti harvinaisia ja luopumalla transaktioista voidaan saavuttaa parempi suorituskyky ja joustavampi arkkitehtuuri.  Lisäksi virhetilanteita voidaan välttää esimerkiksi suunnittelemalla operaatiot <em>idempotenttisiksi</em> <!-- TODO: mikä on idempotent suomeksi -->, eli siten, että operaatio voidaan ajaa useasti peräkkäin ja sen vaiktus tietosisältöön on sama <cite>Pri08</cite>.
+			
+					Hetkelliset poikkeamat käyttäjille näkyvässä tietosisällössä voivat hyvinkin olla käytännössä siedettäviä.  Esimerkiksi kun käyttäjä jakaa jonkin tiedon kaveriverkostolleen, voidaan tiedon näyttämistä muille viivästyttää useitakin sekunteja.  Riittää, että muutoksen tehneelle käyttäjälle annetaan illuusio välittömästä päivittämisestä <cite>Pri08</cite>.
 					
 				</pre>
 			</section>
@@ -267,11 +278,20 @@
 		<h1>Lyhenteet</h1>
 		
 		<dl>
+			<dt>ACID</dt>
+			<dd>Atomicity, Consistency, Isolation, Durability</dd>
+			
 			<dt>API</dt>
-			<dd>Application Programming Interface, ohjelmointirajapinta</dd>
+			<dd>Application Programming Interface
+			<dd>Ohjelmointirajapinta</dd>
+			
+			<dt>BASE</dt>
+			<dd>BAsically Available, Soft state, Eventually consistent</dd>
+			<dd>Vaihtoehto ACID-mallille</dd>
 			
 			<dt>UGC</dt>
-			<dd>User-generated Content, käyttäjien luoma sisältö web-palvelussa</dd>
+			<dd>User-generated Content</dd>
+			<dd>Käyttäjien luoma sisältö web-palvelussa</dd>
 		</dl>
 	</article>
     
@@ -387,6 +407,15 @@
 			<dt data-lattex="PES10">PES10</dt>
 			<dd>Pujol JM, Erramilli V, Siganos G, et al. The Little Engine ( s ) That Could : Scaling Online Social Networks. 2010:375-386.
 			</dd>
+			
+			<dt data-lattex="Bre02">Bre02</dt>
+			<dd>Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing, Portland, Oregon, July 2000.</dd>
+			
+			<dt data-lattex="GiL02">GiL02</dt>
+			<dd>Gilbert S, Lynch N. Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News. 2002;33(2):51. Available at: http://portal.acm.org/citation.cfm?doid=564585.564601.</dd>
+			
+			<dt data-lattex="Pri08">Pri08</dt>
+			<dd>Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.</dd>
 		</dl>
 			
 
