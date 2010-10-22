@@ -45,7 +45,7 @@ article.references dt {
 	float: left;
 }
 
-article.references dt:nth-child(n+2), dd:nth-child(n+3) {
+article.references dt:nth-child(n+2), article.references dd:nth-child(n+3) {
 	margin-top: 3em;
 }
 
