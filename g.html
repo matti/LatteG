@@ -379,49 +379,53 @@
 	<section>
 		<h1>Scalable Architectures</h1>
 		
-		<pre>Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
+		<pre>
+			Storing large quantities of data in distrubuted architecture sets plenty of challanges for the design and implementation of the system.
 		</pre>
 
 		<section>
-			<h1>Vertikaalinen ja horisontaalinen skaalautuminen</h1>
+			<h1>Vertical and Horizontal Scaling</h1>
 
 			<pre>
-			Web-applikaatiot ovat yleensä rakennettu kahden kerroksen arkkitehtuurilla.  Ensimmäisessä kerroksessa on applikaatiopalvelin jolla on yhteys toiseen alempaan kerrokseen, eli tietokantapalvelimeen.  Applikaatiopalvelin vastaanottaa käyttäjän pyynnön ja muodostaa vasteen käyttäjälle hakemalla tietokantapalvelimelta tarvittavat tiedot <cite>PES10</cite>.
+			Typical small scale web application usually follow a two-tier server-side architecture. An application server that contains the business logic for the application is in the first layer in the network topology.  A database server is in the second layer, fulfilling the requests that application server makes according to users requests and the business logic <cite>PES10</cite>.
 			
-			Kun käyttäjämäärä kasvaa voidaan palvelua pääsääntöisesti skaalata kahdella tavalla: <em>vertikaalisesti</em> ja <em>horisontaalisesti</em>.  Vertikaalisessassa skaalauksessa lisätään yksittäisten koneiden suorituskykyä.  Tätä voidaan tehdä sekä applikaatiopalvelimissa, että tietokantapalvelimissa.  Yksittäisen koneen suorituskyvyn yläraja tulee nopeasti vastaan. Lisäksi kustannukset suhteessa saavutettuun suorituskykyeroon kasvavat huomattavasti <cite>PES10</cite>. 
+			As the popularity of the application increases it can be scaled in two ways: <em>vertically</em> and <em>horizontally</em>.  In vertical scaling the performance of single machines is increased by upgrading the hardware or optimizing the code.  Vertical scaling can be used for both application and database servers.  The limits are fairly early achieved and the costs increase rapidly when compared to the gained performance benefits <cite>PES10</cite>.
 			
-			Horisontaalisessa skaalaamisessa koneiden määrää kasvatetaan.  Tällöin myös vikasietoisuus paranee, sillä  yksittäisen koneen hajoaminen ei estä palvelun käyttöä.  Applikaatiopalvelimien lisääminen on helppoa, sillä ne ovat identtisiä ja toimivat samalla tavalla <cite>PES10</cite>.
+			In horizontal scaling the number of servers in the layer is increased.  This also increases the redundancy of the application as a single server downtime does not affect the system.  Scaling application servers is trivial due the fact that they are identical and operate in the same fashion <cite>PES10</cite>.
 			
-			Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.  Sosiaalisen median palveluissa tieto on usein vahvasti toisiinsa liittynyttä, joten tiedon jakaminen on hankalaa <cite>PES10</cite>.
-			
-			Käyttäjien väliset sosiaaliset verkostot tarkoittavat tietokannassa sitä, että tieto on vahvasti toisiinsa liittyvää <cite>Rot09</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shard) eri tietokantapalvelimille <cite>PES10</cite>.
-			</pre>
+			However, it is not as trivial to scale database servers horizontally, as the operations that modify the data are likely to conflict.  Horizontal scaling in the database level might be trivial if the data can be partitioned so that it is possible have federated collections of data.  In the real world, such as social networks the data is usually strongly interconnected and therefore not possible to split up <cite>PES10</cite>.
+
+			For this reason the data is <em>sharded</em> to number of equal shards with a hashing function [MORRIS-IBM-61, PES]</pre>
+
 		</section>
 		
 		<section>
-			<h1>CAP</h1>
+			<h1>CAP Conjecture</h1>
 			
-			<pre>Eric Brewer on esittänyt vuonna 2000 CAP-konjektuurin <cite>Bre02</cite> hajautettujen web-palveluiden kolmesta halutusta ominaisuudesta ja niiden saavutettavuuksista.  Kolme haluttua ominaisuutta ovat tiedon konsistenssi, saavutettavuus ja jakaminen (<strong>C</strong>onsistency, <strong>A</strong>vailability, <strong>P</strong>artitioning). 
-				
-				Hajautetun web-palvelun tietosisältöön kohdistuvat muokkaukset halutaan yleisesti pitää vahvasti konsistentteina. <!-- TODO: mikä on konsistentti-->Tämä tarkoittaa ACID-ominaisuudet tyydyttävää tietokantamaista toimintaa, eli esimerkiksi muokkausoperaatioiden suorittaminen siten, ettei muokkauksen kohteena oleva tietosisältö minään hetkenä koostu vanhasta ja uudesta tiedosta.  Tämä tiedon atomisuus vaatii esimerkiksi lukitusta, joka on haastavaa toteuttaa hajautetussa ympäristössä <cite>GiL02</cite>.
-									
-				Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sitä ei voida saavuttaa.  Jotta palvelu seliväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
-				
-				Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kahta näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
+			<pre>
+				In 2000 Eric Brewer presented in his keynote at TODO <cite>Bre02</cite> a conjecture of three wanted properties of data for distributed web services.  The three properties are <strong>C</strong>onsistency, <strong>A</strong>vailability and <strong>P</strong>artitioning of the data.
+
+			Operations that modify the data are generally wanted to perform fully consistent.  This means relational database like ACID compliant operations.  For example, when an update operation is being executed, the system may never return such dataset that would contain data from old and updated sets.  To achieve this the database needs to, for example, implement some sort of locking.  Such operations are costly and not trivial to implement in distributed environments <cite>GiL02</cite>.
+			
+			The availability of the data should also be high.  A web service does not exist if the data can not be reached at any given time.  To ensure better availability in the unreliable Internet where network splits can occur, the service needs to be distributed in different networks and maybe even continents.  This distribution makes the consistency requirement difficult to achieve <cite>GiL02</cite>.
+			
+			The updates that happened during the network split cause a synchronization problem when the connection is restored: which one of the updates will win in a conflict situation? <cite>GiL02</cite>.  According to Brewer it is only possible to maintain any two of the given three properties in distributed environment <cite>Bre02</cite>.
+			
 			</pre>
+			
 		</section>
 		
 		
 		<section>
 			<h1>BASE</h1>
 			
-			<pre>Tietokantojen ACID-mallin rinnalle on hajautettujen web-palveluiden yleistymisen myötä noussut BASE-malli (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent).  Mallissa otetaan huomioon web-palveluiden erityispiirteet, kuten tilattomuus, joka mahdollistaa tiedon tallentamisen kevyimmin ehdoin <cite>Pri08</cite>.
+			<pre>The BASE (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent) model is an opposite of the popular ACID model.  ACID operates in pessimistic fashion, forcing unconditional consistency at the end of every operation.  The BASE model takes the special characteristics of web services, such as the stateless nature, into account and copes with the real world requirements of the distributed web services <cite>Pri08</cite>.
 				
-				Ehdottoman saatavuuden (kaikki saatavilla, tai ei mitään saatavilla) sijaan tieto pyritään pitämään saatavilla niin hyvin kuin mahdollista.  Palvelu tulee olla rakennettu siten, että jos esimerkiksi 20% tietosisällöstä on hetkellisesti saavuttamattomissa, niin se vaikuttaa vain osaan käyttäjistä.  Parhaimmassa tapauksessa suurin osa käyttäjistä ei edes huomaa katkosta. Tämä on mahdollista saavuttaa jakamalla tieto toiminnallisiin kokonaisuuksinsa <cite>Pri08</cite>.
-			
-				Web-palveluissa, jotka eivät esimerkiksi käsittele rahaa, voidaan vahvasta transaktionaalisuudesta joustaa.  Katkoksen tapahtuminen kriittisellä hetkellä on yleisesti harvinaisia ja luopumalla transaktioista voidaan saavuttaa parempi suorituskyky ja joustavampi arkkitehtuuri.  Lisäksi virhetilanteita voidaan välttää esimerkiksi suunnittelemalla operaatiot <em>idempotenttisiksi</em> <!-- TODO: mikä on idempotent suomeksi -->, eli siten, että operaatio voidaan ajaa useasti peräkkäin ja sen vaiktus tietosisältöön on sama <cite>Pri08</cite>.
-		
-				Hetkelliset poikkeamat käyttäjille näkyvässä tietosisällössä voivat hyvinkin olla käytännössä siedettäviä.  Esimerkiksi kun käyttäjä jakaa jonkin tiedon kaveriverkostolleen, voidaan tiedon näyttämistä muille viivästyttää useitakin sekunteja.  Riittää, että muutoksen tehneelle käyttäjälle annetaan illuusio välittömästä päivittämisestä <cite>Pri08</cite>.
+				Instead of the unconditional availability of ACID (everything or nothing) the data that can be served is served.  The whole service needs to be designed so, that the data is partitioned into functional entities.  Then, for example, if the 20% of the data is not reachable, the 80% of the data still remains accessible.  This allows the majority of users to not even notice the temporary data unavailability <cite>Pri08</cite>.
+
+				Consistency can also be loosened in the transactions.  Most data (other than for example money) can cope with inconsistencies that can happen if the service is interrupted in the critical section, because the probability when this occurs is very low.  By dropping the transactions and accepting possible inconsistencies it is easier to scale the service up.  Another approach is to design update operations to be <em>idempotent</em> that always return the same value if applied multiple times on data <cite>Pri08</cite>.
+				
+				Momentary anomalies in the data can be worked around when the whole system is designed the eventual consistency in mind.  For example when a user updates something in the service, the actual update can be postponed by several seconds before actually updating: it is enough that the user sees the update in his view <cite>Pri08</cite>.
 				
 			</pre>
 		</section>
