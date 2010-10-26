@@ -70,14 +70,14 @@ LatteX.SectionNumbering = function() {
 LatteX.SectionNumbering.prototype.process = function() {
 	var article = this.rootElement.querySelectorAll("article")[1];
 	var children = article.children;
-	
+
 	this._numberSections(children);	
 }
 
 LatteX.SectionNumbering.prototype._numberSections = function(children) {
 
 	for ( var i=0; i<children.length; i++ ) {
-				
+		
 		if ( children[i].tagName == "SECTION" && children[i].className != "noNumbering") {
 			
 			var section = children[i];

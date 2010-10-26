@@ -37,7 +37,15 @@
     </header>
     
   
-	<nav style="display:none;"></nav>
+	<nav style=""></nav>
+	
+	<article class="abstract">
+		<h1>Abstract</h1>
+		
+		<pre>
+			todoloro</pre>
+			
+	</article>
 	
     <article>
 		<h1 data-lattex="title"></h1>
@@ -368,7 +376,55 @@
 		</section>
 	</section>
 	
-	
+	<section>
+		<h1>Scalable Architectures</h1>
+		
+		<pre>Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
+		</pre>
+
+		<section>
+			<h1>Vertikaalinen ja horisontaalinen skaalautuminen</h1>
+
+			<pre>
+			Web-applikaatiot ovat yleensä rakennettu kahden kerroksen arkkitehtuurilla.  Ensimmäisessä kerroksessa on applikaatiopalvelin jolla on yhteys toiseen alempaan kerrokseen, eli tietokantapalvelimeen.  Applikaatiopalvelin vastaanottaa käyttäjän pyynnön ja muodostaa vasteen käyttäjälle hakemalla tietokantapalvelimelta tarvittavat tiedot <cite>PES10</cite>.
+			
+			Kun käyttäjämäärä kasvaa voidaan palvelua pääsääntöisesti skaalata kahdella tavalla: <em>vertikaalisesti</em> ja <em>horisontaalisesti</em>.  Vertikaalisessassa skaalauksessa lisätään yksittäisten koneiden suorituskykyä.  Tätä voidaan tehdä sekä applikaatiopalvelimissa, että tietokantapalvelimissa.  Yksittäisen koneen suorituskyvyn yläraja tulee nopeasti vastaan. Lisäksi kustannukset suhteessa saavutettuun suorituskykyeroon kasvavat huomattavasti <cite>PES10</cite>. 
+			
+			Horisontaalisessa skaalaamisessa koneiden määrää kasvatetaan.  Tällöin myös vikasietoisuus paranee, sillä  yksittäisen koneen hajoaminen ei estä palvelun käyttöä.  Applikaatiopalvelimien lisääminen on helppoa, sillä ne ovat identtisiä ja toimivat samalla tavalla <cite>PES10</cite>.
+			
+			Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.  Sosiaalisen median palveluissa tieto on usein vahvasti toisiinsa liittynyttä, joten tiedon jakaminen on hankalaa <cite>PES10</cite>.
+			
+			Käyttäjien väliset sosiaaliset verkostot tarkoittavat tietokannassa sitä, että tieto on vahvasti toisiinsa liittyvää <cite>Rot09</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shard) eri tietokantapalvelimille <cite>PES10</cite>.
+			</pre>
+		</section>
+		
+		<section>
+			<h1>CAP</h1>
+			
+			<pre>Eric Brewer on esittänyt vuonna 2000 CAP-konjektuurin <cite>Bre02</cite> hajautettujen web-palveluiden kolmesta halutusta ominaisuudesta ja niiden saavutettavuuksista.  Kolme haluttua ominaisuutta ovat tiedon konsistenssi, saavutettavuus ja jakaminen (<strong>C</strong>onsistency, <strong>A</strong>vailability, <strong>P</strong>artitioning). 
+				
+				Hajautetun web-palvelun tietosisältöön kohdistuvat muokkaukset halutaan yleisesti pitää vahvasti konsistentteina. <!-- TODO: mikä on konsistentti-->Tämä tarkoittaa ACID-ominaisuudet tyydyttävää tietokantamaista toimintaa, eli esimerkiksi muokkausoperaatioiden suorittaminen siten, ettei muokkauksen kohteena oleva tietosisältö minään hetkenä koostu vanhasta ja uudesta tiedosta.  Tämä tiedon atomisuus vaatii esimerkiksi lukitusta, joka on haastavaa toteuttaa hajautetussa ympäristössä <cite>GiL02</cite>.
+									
+				Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sitä ei voida saavuttaa.  Jotta palvelu seliväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
+				
+				Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kahta näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
+			</pre>
+		</section>
+		
+		
+		<section>
+			<h1>BASE</h1>
+			
+			<pre>Tietokantojen ACID-mallin rinnalle on hajautettujen web-palveluiden yleistymisen myötä noussut BASE-malli (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent).  Mallissa otetaan huomioon web-palveluiden erityispiirteet, kuten tilattomuus, joka mahdollistaa tiedon tallentamisen kevyimmin ehdoin <cite>Pri08</cite>.
+				
+				Ehdottoman saatavuuden (kaikki saatavilla, tai ei mitään saatavilla) sijaan tieto pyritään pitämään saatavilla niin hyvin kuin mahdollista.  Palvelu tulee olla rakennettu siten, että jos esimerkiksi 20% tietosisällöstä on hetkellisesti saavuttamattomissa, niin se vaikuttaa vain osaan käyttäjistä.  Parhaimmassa tapauksessa suurin osa käyttäjistä ei edes huomaa katkosta. Tämä on mahdollista saavuttaa jakamalla tieto toiminnallisiin kokonaisuuksinsa <cite>Pri08</cite>.
+			
+				Web-palveluissa, jotka eivät esimerkiksi käsittele rahaa, voidaan vahvasta transaktionaalisuudesta joustaa.  Katkoksen tapahtuminen kriittisellä hetkellä on yleisesti harvinaisia ja luopumalla transaktioista voidaan saavuttaa parempi suorituskyky ja joustavampi arkkitehtuuri.  Lisäksi virhetilanteita voidaan välttää esimerkiksi suunnittelemalla operaatiot <em>idempotenttisiksi</em> <!-- TODO: mikä on idempotent suomeksi -->, eli siten, että operaatio voidaan ajaa useasti peräkkäin ja sen vaiktus tietosisältöön on sama <cite>Pri08</cite>.
+		
+				Hetkelliset poikkeamat käyttäjille näkyvässä tietosisällössä voivat hyvinkin olla käytännössä siedettäviä.  Esimerkiksi kun käyttäjä jakaa jonkin tiedon kaveriverkostolleen, voidaan tiedon näyttämistä muille viivästyttää useitakin sekunteja.  Riittää, että muutoksen tehneelle käyttäjälle annetaan illuusio välittömästä päivittämisestä <cite>Pri08</cite>.
+				
+			</pre>
+		</section>
 	
 	<section>
 		<h1>Ye olde</h1>
@@ -448,7 +504,28 @@
 		<h1>References</h1>
 
 		<dl>
+			<dt data-lattex="PES10">PES10</dt>
+			<dd>Pujol JM, Erramilli V, Siganos G, et al. The Little Engine ( s ) That Could : Scaling Online Social Networks. 2010:375-386.
+			</dd>
 			
+			<dt data-lattex="Bre02">Bre02</dt>
+			<dd>Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing, Portland, Oregon, July 2000.</dd>
+
+
+			<dt data-lattex="GiL02">GiL02</dt>
+			<dd>Gilbert S, Lynch N. Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News. 2002;33(2):51. Available at: http://portal.acm.org/citation.cfm?doid=564585.564601.</dd>
+
+
+			<dt data-lattex="Pri08">Pri08</dt>
+			<dd>Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.</dd>
+
+
+			<dt data-lattex="Rot09">Rot09</dt>
+			<dd>
+				Rothschild, Jeff. High Performance at Massive Scale - Lessons learned at Facebook, UC San Diego CNS 2009 Lecture Series Archives, October 8, 2009, http://cns.ucsd.edu/lecturearchive09.shtml#Roth
+			</dd>
+			
+					
 			<dt data-lattex="unified_ontology">YBS05</dt>
 			<dd>Youseff L, Butrico M, Da Silva D. Toward a Unified Ontology of Cloud Computing. 2008 Grid Computing Environments Workshop. 2008:1-10. Available at: http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=4738443.</dd>
 			
