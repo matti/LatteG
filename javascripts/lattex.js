@@ -338,6 +338,34 @@ LatteX.Data.prototype.process = function() {
 }
 
 
+LatteX.BibTex = function() {
+	this.rootElement = document.body;
+	
+}
+
+
+LatteX.BibTex.prototype.process = function() {
+	var dds = this.rootElement.querySelectorAll("article.references dl dd");
+	
+	
+	var bibtex = dds[1].innerHTML;
+//	console.log(bibtex);
+	
+	//var regex = XRegExp("/\s*@{1}(\w*)\{(\w*)\s*,\s*(.*)\}\s*/s");
+	var regex = XRegExp("@{\w*}","s");
+	
+	var type_tag_data = bibtex.split(regex);
+
+	var type = type_tag_data[1];
+	var tag = type_tag_data[2];
+	var data = type_tag_data[3];
+	
+	console.log(type);
+	console.log(tag);
+	console.log(data);
+}
+
+
 window.onload = function() {
 
 	var ltoc = new LatteX.ToC;
@@ -360,6 +388,9 @@ window.onload = function() {
 	
 	var lref = new LatteX.References;
 	lref.process();
+	
+	//var lbib = new LatteX.BibTex;
+	//lbib.process();
 	
 	Hyphenator.run();
 }
