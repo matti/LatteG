@@ -58,11 +58,8 @@
 		<section>
         	<h1>Johdanto</h1>
         
-        	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen. Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.
-	
-				Databases and Web 2.0 panel: web 2.0 määritelmä
-	
-				
+        	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen.  Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.  Tälläiset palvelut tunnetaan yleisemmin myös lyhenteellä OSN (Online Social Network) <cite>PES10</cite>.
+					
 				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi Facebookkiin talletetaan yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
 				
 				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle yritykselle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
@@ -72,29 +69,26 @@
 		</section>
 		
 		<section>
-			<h1>Backgroundz</h1>
+			<h1>Tausta</h1>
 			
-			<pre>
-				Käyttäjämäärät
-
-				Scaling little engines that cloud
-				<cite>PES10</cite>
-
-				OSNs online social networks
-
-				horisontaalinen ja vertikaalinen skaalaaminen
-
-				osnissä highly personal content
-				 - vertikaalinen skaalaaminen mahdotonta: datamäärä
-
-				OSN defacto partitoning is distrubuted
-				
-			    ---------
-			
-			
-				Skaalautuminen
+			<pre>Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
 			</pre>
-			
+
+			<section>
+				<h1>Vertikaalinen ja horisontaalinen skaalautuminen</h1>
+
+				<pre>
+				Web-applikaatiot ovat yleensä rakennettu kahden kerroksen arkkitehtuurilla.  Ensimmäisessä kerroksessa on applikaatiopalvelin jolla on yhteys toiseen alempaan kerrokseen, eli tietokantapalvelimeen.  Applikaatiopalvelin vastaanottaa käyttäjän pyynnön ja muodostaa vasteen käyttäjälle hakemalla tietokantapalvelimelta tarvittavat tiedot <cite>PES10</cite>.
+				
+				Kun käyttäjämäärä kasvaa voidaan palvelua pääsääntöisesti skaalata kahdella tavalla: <em>vertikaalisesti</em> ja <em>horisontaalisesti</em>.  Vertikaalisessassa skaalauksessa lisätään yksittäisten koneiden suorituskykyä.  Tätä voidaan tehdä sekä applikaatiopalvelimissa, että tietokantapalvelimissa.  Yksittäisen koneen suorituskyvyn yläraja tulee nopeasti vastaan. Lisäksi kustannukset suhteessa saavutettuun suorituskykyeroon kasvavat huomattavasti <cite>PES10</cite>. 
+				
+				Horisontaalisessa skaalaamisessa koneiden määrää kasvatetaan.  Tällöin myös vikasietoisuus paranee, sillä  yksittäisen koneen hajoaminen ei estä palvelun käyttöä.  Applikaatiopalvelimien lisääminen on helppoa, sillä ne ovat identtisiä ja toimivat samalla tavalla <cite>PES10</cite>.
+				
+				Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.  Sosiaalisen median palveluissa tieto on usein vahvasti toisiinsa liittynyttä, joten tiedon jakaminen on hankalaa <cite>PES10</cite>.
+				
+				Käyttäjien väliset sosiaaliset verkostot tarkoittavat tietokannassa sitä, että tieto on vahvasti toisiinsa liittyvää <cite>Rot09</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shard) eri tietokantapalvelimille <cite>PES10</cite>.
+				</pre>
+			</section>
 			
 			<section>
 				<h1>CAP</h1>
@@ -105,7 +99,7 @@
 										
 					Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sitä ei voida saavuttaa.  Jotta palvelu seliväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
 					
-					Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kaksi näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
+					Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kahta näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
 				</pre>
 			</section>
 			
@@ -123,23 +117,6 @@
 					
 				</pre>
 			</section>
-
-			
-			<section>
-	        	<h1>Cloud tasot</h1>
-
-	        	<pre>
-
-					saas
-					paas
-					iaas
-
-					attribuutit
-					* pay as you go
-					* kato gradu
-				</pre>
-
-	    	</section>				
 				
 
 		</section>
@@ -196,9 +173,6 @@
 			TODO:			Viestijonot: scribe, thrift
 			-->			
 						
-						
-						
-						
 					</pre>
 				</section>
 				
@@ -227,11 +201,13 @@
               
               
 		<section>
-	    	<h1>Mittee myö nyt</h1>
+	    	<h1>X</h1>
  
 	    	<pre>
 				<cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
-								
+				Accelerating YouTube with Video Correlation
+				
+				
 				commodity hardware
 				
 				share nothing
@@ -288,6 +264,9 @@
 			<dt>BASE</dt>
 			<dd>BAsically Available, Soft state, Eventually consistent</dd>
 			<dd>Vaihtoehto ACID-mallille</dd>
+			
+			<dt>OSN</dt>
+			<dd>Online Social Network</dd>
 			
 			<dt>UGC</dt>
 			<dd>User-generated Content</dd>
@@ -416,6 +395,7 @@
 			
 			<dt data-lattex="Pri08">Pri08</dt>
 			<dd>Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.</dd>
+			
 		</dl>
 			
 
