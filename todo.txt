@@ -10,4 +10,7 @@
 
 - articlella ei ole id:tä eikä classia --> miten valitaan queryselectorilla..?
 
-article.abstract, section.acknowledgements ym. pitäisi olla id?
+- article.abstract, section.acknowledgements ym. pitäisi olla id?
+
+- kuvan titlessä ei voi olla title="aofka <cite>citekey</cite>" - pitäisi olla "aodskfo [citekey]"
+

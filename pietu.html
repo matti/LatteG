@@ -65,6 +65,9 @@
 			</pre>
 		</section>
 		
+		
+		
+		
 		<section>
 			<h1>Tausta</h1>
 			
@@ -86,6 +89,7 @@
 				Sosiaalisen median palveluissa tieto mallintaa käyttäjien sosiaalisia verkostoja on tästä syystä vahvasti toisiinsa liittyvää.  Tiedon jakaminen osiin on tästä syystä hankalaa <cite>Rot09, PES10</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shards) eri tietokantapalvelimille <cite>PES10</cite>.
 				</pre>
 			</section>
+		
 			
 			<section>
 				<h1>CAP</h1>
@@ -118,8 +122,12 @@
 
 		</section>
 		
+		
+		
+		
+		
 		<section>
-			<h1>Facebook.com teknologiat ja arkkitehtuuri</h1>
+			<h1>Facebook.com</h1>
 			
 			<pre>
 				Alexa-yhtiön "Top 500 Global Sites" WWW-sivujen suosituimmuuslistauksessa olivat lokakuussa 2010 mm. seuraavat sosiaalisen median palvelut: Facebook.com (2), Youtube.com (3), Linkedin.com (23) ja Flickr.com (36) <cite>Ale10</cite>.  Luvut perustuvat palveluiden omiin ilmoituksiin, joita voitaneen pitää yleisesti luotettavina tai ainakin suuntaa-antavina.
@@ -137,11 +145,26 @@
 			
 			Vuonna 2009 Facebook palveli yli 200 miljardia kuukausittaista sivunäyttöä ja käyttäjistä 70% tuli Yhdysvaltojen ulkopuolelta.  Palvelua ajettiin n. 30,000 palvelimella, joista suurin osa oli applikaatiopalvelimia, jotka ajoivat PHP- ja C++-koodia.  Palvelimet sijaitsevat kahdessa palvelinkeskuksessa Yhdysvaltojen itä- ja länsirannikoilla <cite>Rot09</cite>.
 
-
-			Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä.  Kaikki tieto on pidettävä tallessa ja kokonaistietomäärä ylitti 15 petatavua.  Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui <cite>TSA10</cite>.
-
-			Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan.  Tärkein yksittäinen periaate on skaalautua horisontaalisesti käyttäen kuluttajatason laitteita <cite>TSA10</cite>. Suuri osa palvelun kehittämisen ja skaalaamisen yhteydessä kirjoitetuista komponenteista on julkistettu vapaana lähdekoodina <cite>Fac10b, TSA10</cite>.
+			Suuri osa palvelun kehittämisen ja skaalaamisen yhteydessä kirjoitetuista komponenteista on julkistettu vapaana lähdekoodina <cite>Fac10b, TSA10</cite>.
 			</pre>
+			
+			<section>
+				<h1>Kuluttajatason laitteet</h1>
+							
+				<pre>
+					Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä.  Kaikki tieto on pidettävä tallessa ja kokonaistietomäärä ylitti 15 petatavua.  Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui <cite>TSA10</cite>.
+
+					Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan <cite>TSA10</cite>.  Tärkein vaatimus Facebookin arkkitehtuurin suunnittelussa on skaalautuminen horisontaalisesti käyttäen halpoja kuluttajatason laitteita <cite>TSA10, LaM10</cite>
+				
+				ROC-lähde <cite>Fox02</cite>
+			
+				Koska palvelu on muodostettu tuhansista palvelimista ja verkkolaitteista, on jokin 
+			
+				Dealing with failures in an in- frastructure comprised of thousands of components is our standard mode of operation; there are always a small but significant number of server and network components that are failing at any given time. As such, the software systems need to be constructed in a manner that treats failures as the norm rather than the exception. <cite>LaM10</cite>
+			
+				</pre>
+			</section>
+
 
 			<section>
 				<h1>Eräajot ja prosessoinnin viivästyttäminen</h1>
@@ -150,14 +173,39 @@
 				</pre>
 			</section>
 
+
 			<section>
 				<h1>Eventual consistency, MYSQL repl</h1>
 
 				<pre>Johtuen suuresta välimatkasta palvelinkeskusten välillä, MySQL-tietokanta on jaettu kahtia siten, että tietokannan päivitysoperaatiot tehdään länsirannikon palvelinkeskuksessa ja replikoidaan itärannikolle.  Replikointi valmistuu 20 sekunnin aikaikkunan aikana.  Tuon 20 sekunnin aikana tietosisältöä muuttaneen käyttäjän kaikki pyynnöt ohjataan länsirannikolle, jotta tietosisältö on käyttäjän näkökulmasta ehjä <cite>Rot09, Sob08</cite>
+					
+				Hidastaa tuntuvasti muualla kuin jenkeissä, mutta vaikeaa korjata <cite>NSGC09</cite>
 				</pre>
 
 			</section>
 
+
+			<section>
+				<h1>Cassandra</h1>
+				
+				<pre>
+					
+					Cassandra is a distributed storage system for managing very large amounts of structured data spread out across many commodity servers, while providing highly available service with no single point of failure. Cassandra aims to run on top of an infrastructure of hundreds of nodes (possibly spread across different data centers). At this scale, small and large components fail continuously. The way Cassandra man- ages the persistent state in the face of these failures drives the reliability and scalability of the software systems rely- ing on this service. While in many ways Cassandra resem- bles a database and shares many design and implementation strategies therewith, Cassandra does not support a full rela- tional data model; instead, it provides clients with a simple data model that supports dynamic control over data lay- out and format. Cassandra system was designed to run on cheap commodity hardware and handle high write through- put while not sacrificing read efficiency.
+					
+					
+					api, key-value
+					
+					150 nodea, 50tb: voi hakea termiä ja ihmistä
+					
+					voi liittyä mukaan ja rack aware ja datacenter aware optimoinnit, tunnistaa putoamiset ja replikoi
+					hajauttaa rinkiin, valitsee paikkansa loadin perusteella
+					
+					
+				</pre>
+			</section>
+			
+
+			
 			<section>
 				<h1>Caching, Välimuisti</h1>
 
@@ -166,12 +214,16 @@
 
 			</section>
 
+
+
 			<section>
 				<h1>IO-kutsujen minimointi</h1>
 
 				<pre>Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa <cite>Vaj09</cite>.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä <em>haystack</em>.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto <cite>Vaj09, Rot09</cite>.
 				</pre>
 			</section>
+
+
 
 			<section>
 					<h1>Viestijonot</h1>
@@ -180,19 +232,33 @@
 		-->	
 			</section>
 			
+
+		
 			<section>
 				<h1>Laskennan siirtäminen kolmannelle osapuolelle</h1>
 				
-				<pre>
+				<pre>					
+					Facebookin applikaatiot ovat kolmansien osapuolien kehittämiä Facebookin sisällä toimivia ohjelmia, jotka käyttävät Facebookin tarjoamaa ohjelmointirajapintaa.  Applikaatiot ovat ylläpidetty Facebookin palvelimien ulkopuolella ja käyttäjä ei koskaan muodosta suoraa yhteyttä näihin palvelimiin, vaan kaikki liikenne kulkee Facebookin palvelimien kautta.  Käyttäjä tekemät pyynnöt menevät ensin Facebookille, joka kutsuu applikaatiopalvelinta ja vastaanottaa <em>FBML</em>-muotoisen vastauksen.  FBML-muoto käännetään Facebookin palvelimilla HTML:ksi, joka vastaa Facebookin tyylimäärityksiä ja annetaan käyttäjälle. Tämä toiminta on esitelty kuvassa TODO <cite>LuB08</cite>.
+										
+					<img src="pietuimages/facebook-dataflow.png" title="Kyselyn eteneminen Facebookin applikaatiossa [LuB08]" class="fit-width" data-lattex="fig-facebook-dataflow">
+					
+					Raskaan applikaatiokohtaisen laskennan tapahtuessa Facebookin ulkopuolella, Facebook ulkoistaa skaalautuvuusongelmat suurimmaksi osaksi applikaation kehittäjille.  Facebook voi myös halutessaan laittaa applikaatiolta saamiaan vasteita välimuistiin ja vaikuttaa applikaation näkymiin <cite>LuB08</cite>
+					
+					Kommunikoinnin kierrättäminen Facebookin palvelimien kautta tuottaa viiveen jokaiseen sivulataukseen.  Viivettä syntyy, kun vaste FBML-vaste käsitellään, HTTP-yhteyksiä luodaan ja  ovat vasteen käsittely ja <cite>NSGC09</cite>. 
+					
+					<img src="pietuimages/facebook-delays.png" title="Viiveet Facebook-applikaatiossa [NSGC09]" class="fit-width" data-lattex="fig-facebook-delays" />
 					Farmville, applikaatiot, FBML
+		
 				</pre>
+		
 			</section>
+
+
 
 		</section>
 					
 			
 
-   
               
 		<section>
 	    	<h1>X</h1>
@@ -211,6 +277,7 @@
 			</pre>
 			
 		</section>
+		
 		
 	
       	<section>
@@ -252,6 +319,9 @@
 			<dt>BASE</dt>
 			<dd>BAsically Available, Soft state, Eventually consistent</dd>
 			<dd>Vaihtoehto ACID-mallille</dd>
+			
+			<dt>FBML</dt>
+			<dd>Facebook Markup Language</dd>
 			
 			<dt>OSN</dt>
 			<dd>Online Social Network</dd>
@@ -379,6 +449,87 @@
 			
 			<dt data-lattex="Pri08">Pri08</dt>
 			<dd>Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.</dd>
+			
+			
+			<dt data-lattex="LuB08">LuB08</dt>
+			<dd>@inproceedings{Lucas:2008:FMP:1456403.1456405,
+			 author = {Lucas, Matthew M. and Borisov, Nikita},
+			 title = {FlyByNight: mitigating the privacy risks of social networking},
+			 booktitle = {Proceedings of the 7th ACM workshop on Privacy in the electronic society},
+			 series = {WPES '08},
+			 year = {2008},
+			 isbn = {978-1-60558-289-4},
+			 location = {Alexandria, Virginia, USA},
+			 pages = {1--8},
+			 numpages = {8},
+			 url = {http://doi.acm.org/10.1145/1456403.1456405},
+			 doi = {http://doi.acm.org/10.1145/1456403.1456405},
+			 acmid = {1456405},
+			 publisher = {ACM},
+			 address = {New York, NY, USA},
+			 keywords = {privacy, social networks},
+			}
+			</dd>
+			
+			<dt data-lattex="LaM10">LaM10</dt>	
+			<dd>
+			@article{Lakshman:2010:CDS:1773912.1773922,
+			 author = {Lakshman, Avinash and Malik, Prashant},
+			 title = {Cassandra: a decentralized structured storage system},
+			 journal = {SIGOPS Oper. Syst. Rev.},
+			 volume = {44},
+			 issue = {2},
+			 month = {April},
+			 year = {2010},
+			 issn = {0163-5980},
+			 pages = {35--40},
+			 numpages = {6},
+			 url = {http://doi.acm.org/10.1145/1773912.1773922},
+			 doi = {http://doi.acm.org/10.1145/1773912.1773922},
+			 acmid = {1773922},
+			 publisher = {ACM},
+			 address = {New York, NY, USA},
+			}
+			</dd>
+			
+			<dt data-lattex="Fox02">Fox02</dt>
+			<dd>
+				@inproceedings{Fox:2002:TRC:1287369.1287443,
+				 author = {Fox, Armando},
+				 title = {Toward recovery-oriented computing},
+				 booktitle = {Proceedings of the 28th international conference on Very Large Data Bases},
+				 series = {VLDB '02},
+				 year = {2002},
+				 location = {Hong Kong, China},
+				 pages = {873--876},
+				 numpages = {4},
+				 url = {http://portal.acm.org/citation.cfm?id=1287369.1287443},
+				 acmid = {1287443},
+				 publisher = {VLDB Endowment},
+				}
+			</dd>
+			
+			<dt data-lattex="NSGC09">NSGC09</dt>
+			<dd>
+				@inproceedings{Nazir:2009:NLF:1644893.1644901,
+				 author = {Nazir, Atif and Raza, Saqib and Gupta, Dhruv and Chuah, Chen-Nee and Krishnamurthy, Balachander},
+				 title = {Network level footprints of facebook applications},
+				 booktitle = {Proceedings of the 9th ACM SIGCOMM conference on Internet measurement conference},
+				 series = {IMC '09},
+				 year = {2009},
+				 isbn = {978-1-60558-771-4},
+				 location = {Chicago, Illinois, USA},
+				 pages = {63--75},
+				 numpages = {13},
+				 url = {http://doi.acm.org/10.1145/1644893.1644901},
+				 doi = {http://doi.acm.org/10.1145/1644893.1644901},
+				 acmid = {1644901},
+				 publisher = {ACM},
+				 address = {New York, NY, USA},
+				 keywords = {applications, delays, facebook, online social networks, platform, social games},
+				}
+			</dd>
+			
 			
 		</dl>
 			

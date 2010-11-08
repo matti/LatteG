@@ -3,7 +3,7 @@ article,aside,figure,footer,header,hgroup,nav,section {
 }
 
 
-html {
+body {
 	font-size: 11pt;
 	line-height: 18pt;
 	max-width: 600pt;
