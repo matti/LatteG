@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  
-    <title>Sosiaalisen Median Tekniikat</title>
+  	<meta charset="utf-8" />
+    <title>Facebookin arkkitehtuuri ja teknologiat</title>
 
 
     <link rel="stylesheet" href="stylesheets/lattex.css">    
@@ -57,11 +57,11 @@
         
         	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen.  Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.  Tälläiset palvelut tunnetaan yleisemmin myös lyhenteellä OSN (Online Social Network) <cite>PES10</cite>.
 					
-				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi Facebookkiin talletetaan yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
+				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi suuri sosiaalisen median palvelu Facebook tallentaa käyttäjien luomaa sisältöä yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
 				
-				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle yritykselle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
+				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle palveluntuottajalle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
 				
-				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Kappaleessa TODO esitellään muutama suuren kokoluokan arkkitehtuuri, sitten tarkastellaan laajemmin toteutusongelmia ja lopuksi luodaan katsaus yleisesti kätettyihin tekniikkoihin ja arkkitehtuurimalleihin.
+				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Seuraavassa kappaleessa taustoitetaan skaalautumista ja sen haasteita. Sitten tarkastellaan laajemmin Facebookin kokoluokkaa ja käydään läpi Facebookin käyttämiä teknikoita ja arkkitehtuuria.
 			</pre>
 		</section>
 		
@@ -81,9 +81,9 @@
 				
 				Horisontaalisessa skaalaamisessa koneiden määrää kasvatetaan.  Tällöin myös vikasietoisuus paranee, sillä  yksittäisen koneen hajoaminen ei estä palvelun käyttöä.  Applikaatiopalvelimien lisääminen on helppoa, sillä ne ovat identtisiä ja toimivat samalla tavalla <cite>PES10</cite>.
 				
-				Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.  Sosiaalisen median palveluissa tieto on usein vahvasti toisiinsa liittynyttä, joten tiedon jakaminen on hankalaa <cite>PES10</cite>.
+				Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.
 				
-				Käyttäjien väliset sosiaaliset verkostot tarkoittavat tietokannassa sitä, että tieto on vahvasti toisiinsa liittyvää <cite>Rot09</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shard) eri tietokantapalvelimille <cite>PES10</cite>.
+				Sosiaalisen median palveluissa tieto mallintaa käyttäjien sosiaalisia verkostoja on tästä syystä vahvasti toisiinsa liittyvää.  Tiedon jakaminen osiin on tästä syystä hankalaa <cite>Rot09, PES10</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shards) eri tietokantapalvelimille <cite>PES10</cite>.
 				</pre>
 			</section>
 			
@@ -119,106 +119,95 @@
 		</section>
 		
 		<section>
-			<h1>Suuren kokoluokan arkkitehtuurit</h1>
+			<h1>Facebook.com teknologiat ja arkkitehtuuri</h1>
 			
 			<pre>
-				Muutamia suosituimpia sosiaalisen median palveluita Alexa-yhtiön "Top 500 Global Sites" listauksessa olivat lokakuussa 2010: Facebook.com (2), Youtube.com (3), Linkedin.com (23) ja Flickr.com (36) <cite>Ale10</cite>.  Seuraavissa kappaleissa käydään läpi palveluiden muutamia tunnuslukuja ja yleiskuvaus arkkitehtuurista.  Luvut perustuvat palveluiden omiin ilmoituksiin, joita voitaneen pitää yleisesti luotettavina tai ainakin suuntaa-antavina.
+				Alexa-yhtiön "Top 500 Global Sites" WWW-sivujen suosituimmuuslistauksessa olivat lokakuussa 2010 mm. seuraavat sosiaalisen median palvelut: Facebook.com (2), Youtube.com (3), Linkedin.com (23) ja Flickr.com (36) <cite>Ale10</cite>.  Luvut perustuvat palveluiden omiin ilmoituksiin, joita voitaneen pitää yleisesti luotettavina tai ainakin suuntaa-antavina.
 			</pre>
-			
-			<section>
-				<h1>Facebook.com</h1>
 				
-				<pre>
-				Facebook.com on ylivoimaisesti suurin sosiaalisen median verkosto, jossa käyttäjät voivat jakaa kuviaan, videoitaan ja vaihtaa viestejä.
-				
-				<ul>
-					<li>Yli 500 miljoonaa aktiivista käyttäjää</li>
-					<li>50% prosenttia käyttäjistä kirjautuu palveluun päivittäin</li>
-					<li>Käyttäjällä on keskimäärin 130 <em>ystävää</em>, eli henkilöä, jonka tuntee palvelussa.</li>
-					<li>Facebook palvelee yli 150 miljoonaa samanaikaista mobiilikäyttäjää.</li>
-				</ul>
+			<pre>Facebook.com on kirjoitushetkellä ylivoimaisesti suurin sosiaalisen median verkosto, jossa käyttäjät voivat jakaa kuviaan, videoitaan ja vaihtaa viestejä.  Seuraavassa on listattu muutamia tunnuslukuja:	
+			<ul>
+				<li>Yli 500 miljoonaa aktiivista käyttäjää</li>
+				<li>50% käyttäjistä kirjautuu palveluun päivittäin</li>
+				<li>Käyttäjällä on keskimäärin 130 <em>ystävää</em>, eli henkilöä, jonka tuntee palvelussa.</li>
+				<li>Facebook palvelee yli 150 miljoonaa samanaikaista mobiilikäyttäjää.</li>
+			</ul>
 
-				Lisäksi Facebook tarjoaa myös kehittäjille API-rajapintoja, joiden kautta oma palvelu integroituu käyttäjän kannalta osaksi Facebookkia.  Aktiivisia Facebook-sovelluksia on tällä hetkellä 550,000 kappaletta. 70% palvelun käyttäjistä käyttää jotakin sovellusta vähintään kerran kuukaudessa <cite>Fac10</cite>.
+			Lisäksi Facebook tarjoaa myös kehittäjille API-rajapintoja, joiden kautta oma palvelu integroituu käyttäjän kannalta osaksi Facebookkia.  Aktiivisia Facebook-sovelluksia on tällä hetkellä 550,000 kappaletta. 70% palvelun käyttäjistä käyttää jotakin sovellusta vähintään kerran kuukaudessa <cite>Fac10</cite>.
+			
+			Vuonna 2009 Facebook palveli yli 200 miljardia kuukausittaista sivunäyttöä ja käyttäjistä 70% tuli Yhdysvaltojen ulkopuolelta.  Palvelua ajettiin n. 30,000 palvelimella, joista suurin osa oli applikaatiopalvelimia, jotka ajoivat PHP- ja C++-koodia.  Palvelimet sijaitsevat kahdessa palvelinkeskuksessa Yhdysvaltojen itä- ja länsirannikoilla <cite>Rot09</cite>.
+
+
+			Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä.  Kaikki tieto on pidettävä tallessa ja kokonaistietomäärä ylitti 15 petatavua.  Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui <cite>TSA10</cite>.
+
+			Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan.  Tärkein yksittäinen periaate on skaalautua horisontaalisesti käyttäen kuluttajatason laitteita <cite>TSA10</cite>. Suuri osa palvelun kehittämisen ja skaalaamisen yhteydessä kirjoitetuista komponenteista on julkistettu vapaana lähdekoodina <cite>Fac10b, TSA10</cite>.
+			</pre>
+
+			<section>
+				<h1>Eräajot ja prosessoinnin viivästyttäminen</h1>
+
+				<pre>Tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa <cite>TSA10</cite>.
 				</pre>
-				
-				<section>
-					<h1>Tiedon tallentamisen haasteet</h1>
-					
-					<pre>
-						Vuonna 2009 Facebook suoritti yli 200 miljardia kuukausittaista sivunäyttöä ja käyttäjistä 70% tuli Yhdysvaltojen ulkopuolelta.  Palvelua ajettiin n. 30,000 palvelimella, joista suurin osa oli applikaatiopalvelimia, jotka ajoivat PHP- ja C++-koodia.  Palvelimet sijaitsevat kahdessa palvelinkeskuksessa Yhdysvaltojen itä- ja länsirannikoilla <cite>Rot09</cite>.
-						
-						Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä.  Kaikki tieto on pidettävä tallessa ja kokonaistietomäärä ylitti 15 petatavua.  Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui <cite>TSA10</cite>.
-						
-						Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan.  Tärkein yksittäinen periaate on skaalautua horisontaalisesti käyttäen kuluttajatason laitteita <cite>TSA10</cite>. Suuri osa palvelun kehittämisen ja skaalaamisen yhteydessä kirjoitetuista komponenteista on julkistettu vapaana lähdekoodina <cite>Fac10b, TSA10</cite>.
-					</pre>
-				</section>	
-				
-				<section>
-					<h1>Käytettyjä tekniikoita</h1>
-					
-					<pre>
-						Tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa <cite>TSA10</cite>.
-						
-						Johtuen suuresta välimatkasta palvelinkeskusten välillä, MySQL-tietokanta on jaettu kahtia siten, että tietokannan päivitysoperaatiot tehdään länsirannikon palvelinkeskuksessa ja replikoidaan itärannikolle.  Replikointi valmistuu 20 sekunnin aikaikkunan aikana.  Tuon 20 sekunnin aikana tietosisältöä muuttaneen käyttäjän kaikki pyynnöt ohjataan länsirannikolle, jotta tietosisältö on käyttäjän näkökulmasta ehjä <cite>Rot09, Sob08</cite>
-						
-						
-						Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen <em>memcached</em>-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa <cite>Rot09</cite>.
-											 
-						Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa <cite>Vaj09</cite>.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä <em>haystack</em>.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto <cite>Vaj09, Rot09</cite>.
-		
-		<!-- 				
-			TODO:			Viestijonot: scribe, thrift
-			-->			
-						
-					</pre>
-				</section>
-				
+			</section>
+
+			<section>
+				<h1>Eventual consistency, MYSQL repl</h1>
+
+				<pre>Johtuen suuresta välimatkasta palvelinkeskusten välillä, MySQL-tietokanta on jaettu kahtia siten, että tietokannan päivitysoperaatiot tehdään länsirannikon palvelinkeskuksessa ja replikoidaan itärannikolle.  Replikointi valmistuu 20 sekunnin aikaikkunan aikana.  Tuon 20 sekunnin aikana tietosisältöä muuttaneen käyttäjän kaikki pyynnöt ohjataan länsirannikolle, jotta tietosisältö on käyttäjän näkökulmasta ehjä <cite>Rot09, Sob08</cite>
+				</pre>
+
+			</section>
+
+			<section>
+				<h1>Caching, Välimuisti</h1>
+
+				<pre>Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen <em>memcached</em>-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa <cite>Rot09</cite>.
+				</pre>
+
+			</section>
+
+			<section>
+				<h1>IO-kutsujen minimointi</h1>
+
+				<pre>Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa <cite>Vaj09</cite>.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä <em>haystack</em>.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto <cite>Vaj09, Rot09</cite>.
+				</pre>
+			</section>
+
+			<section>
+					<h1>Viestijonot</h1>
+	<!-- 				
+		TODO:			Viestijonot: scribe, thrift
+		-->	
 			</section>
 			
 			<section>
-				<h1>Youtube</h1>
-			
-				<cite>Cuo07</cite>
-			
-			</section>
-			
-			<section>
-				<h1>LinkedIn</h1>
-			</section>
-			
-			<section>
-				<h1>Flickr</h1>
-					
+				<h1>Laskennan siirtäminen kolmannelle osapuolelle</h1>
+				
 				<pre>
-				Flickr.com on vuonna 200TODO perustettu kuvien jakamiseen keskittynyt palvelu.
+					Farmville, applikaatiot, FBML
 				</pre>
 			</section>
+
+		</section>
+					
 			
-	  	</section>
-              
+
+   
               
 		<section>
 	    	<h1>X</h1>
  
 	    	<pre>
 				<cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
-				Accelerating YouTube with Video Correlation
 				
-				
-				commodity hardware
+							
 				
 				share nothing
 				
 				federated
 				
 				hadoop
-				
-				eventual consitency
-				
-				* onko mendeleyssä ratkaisuja
-
-				Farmville
-			
+							
 			</pre>
 			
 		</section>
@@ -233,6 +222,8 @@
 				<h2>Databases and Web 2.0 Panel at VLDB 2007</h2>
 				
 				heterogeeniset tietokannat nykyisten homogeenisten sijaan
+				
+				commodity hardware	
 			</pre>
 		</section>
 		
@@ -310,10 +301,6 @@
 				Facebook Statistics, http://www.facebook.com/press/info.php?statistics.  Haettu 19.10.2010.
 			</dd>
 
-			<dt data-lattex="Cuo07">Cuo07</dt>
-			<dd>
-				Do Cuong. YouTube Scalability, Google Seattle Conference on Scalability Saturday, June 23, 2007 - http://www.youtube.com/watch?v=ZW5_eEKEC28
-			</dd>
 
 			<dt data-lattex="Ale10">Ale10</dt>
 			<dd>
