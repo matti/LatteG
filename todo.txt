@@ -14,3 +14,5 @@
 
 - kuvan titlessä ei voi olla title="aofka <cite>citekey</cite>" - pitäisi olla "aodskfo [citekey]"
 
+- tiedoston pitäisi olla .xhtml
+
