@@ -178,24 +178,7 @@
 				
 				Adhoc-tietovarasto on toteuttu Apache Software Foundationin hajautetun laskentajärjestelmän <em>Apache Hadoopin</em> avulla.  Laskentajärjestelmä perustuu Googlen <em>MapReduce</em>-laskentaan, jossa laskettava data jaetaan pieniksi osiksi ja hajautetaan useille koneille (Map), joiden palauttamista arvoista yhdistetään lopullinen tulos (Reduce) <cite>Apa10b</cite>.
 				
-				Koska MapReduce-töiden luonti on hankalaa kehittäjille, on Facebook kehittänyt komponentin nimeltä Hive.  Hive tarjoaa myös strukturoidun kyselykielen, jonka avulla töiden luonti ja hallinta on helpompaa.  Facebookin adhoc-tietovarastossa, joka on toteutettu Hadoopin ja Hiven avulla on yli 20,000 taulua ja satoja käyttäjiä.   <cite>TSA10</cite>. 
-				
-				hive-artikkeli<cite>Fac09a</cite>
-				
-				
-				
-	
-				. 2009-05-01 partition for May 1, 2009 data and 2009-04-31 for April 31, 2009 data. The data for a particular date goes into a partition for that date
-				
-				archiving older data to cheaper storage while keeping the more recent data on the main cluster.
-				
-				The Query compiler uses the information stored in the metastore to convert SQL queries into a sequence of map/reduce jobs, e.g. the following query
-				
-				
-				SELECT * FROM t where t.c = 'xyz'
-				
-				
-				
+				Koska MapReduce-töiden luonti on hankalaa kehittäjille, on Facebook kehittänyt komponentin nimeltä Hive.  Hive tarjoaa myös strukturoidun kyselykielen, jonka avulla töiden luonti ja hallinta on helpompaa.  Facebookin adhoc-tietovarastossa, joka on toteutettu Hadoopin ja Hiven avulla on yli 20,000 taulua ja satoja käyttäjiä.   <cite>TSA10</cite> Hive on julkaistu avoimena lähdekoodia Apache Software Foundationin alaisuudessa <cite>Apa10c</cite>. 
 				
 				</pre>
 			</section>
@@ -596,15 +579,21 @@
 				}
 			</dd>
 			
-			<dt data-lattex="Apa10">Apa10a</dt>
+			<dt data-lattex="Apa10a">Apa10a</dt>
 			<dd>
 				The Apache Cassandra Project, http://cassandra.apache.org/. Haettu 9.11.2010
 			</dd>
 			
-			<dt data-lattex="Apa10">Apa10b</dt>
+			<dt data-lattex="Apa10b">Apa10b</dt>
 			<dd>
 				The Apache Hadoop, http://hadoop.apache.org/. Haettu 9.11.2010
 			</dd>
+
+			<dt data-lattex="Apa10c">Apa10c</dt>
+			<dd>
+				Hive, http://hive.apache.org/. Haettu 9.11.2010
+			</dd>
+
 			
 			<dt data-lattex="Fac09a">Fac09a</dt>
 			<dd>
