@@ -57,11 +57,11 @@
         
         	<pre>Sosiaalinen media tarkoittaa web-palveluita, joiden avulla käyttäjä voi luoda ja jakaa omaa sisältöään sosiaaliselle verkostolleen.  Esimerkkejä tälläisistä palveluista ovat omien kuvien tai videoiden jakaminen, paikkatiedon jakaminen ja tuotteiden tai palveluiden suosittelu.  Palveluita on kehitetty myös erityisesti työmaailmaan sopiviksi tehostamaan mm. ryhmätyöskentelyä ja tiedonvälitystä <cite>GJW07</cite>.  Tälläiset palvelut tunnetaan yleisemmin myös lyhenteellä OSN (Online Social Network) <cite>PES10</cite>.
 					
-				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi suuri sosiaalisen median palvelu Facebook tallentaa käyttäjien luomaa sisältöä yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
+				Palveluissa käyttäjien jakama (tai tuottama) sisältö tunnetaan nimellä <em>User-generated content</em> (UGC).  Sisältö muodostuu erilaisista web-objekteista (kuvista, kommenteista, ym.), jotka toimivat palveluiden varsinaisena sisältönä <cite>YLM09</cite>.  Esimerkiksi suurin sosiaalisen median palvelu Facebook tallentaa käyttäjien luomaa sisältöä yli 30 miljardia objektia kuukaudessa <cite>Fac10</cite>.
 				
 				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle palveluntuottajalle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
 				
-				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Seuraavassa kappaleessa taustoitetaan skaalautumista ja sen haasteita. Sitten tarkastellaan laajemmin Facebookin kokoluokkaa ja käydään läpi Facebookin käyttämiä teknikoita ja arkkitehtuuria.
+				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Seuraavassa kappaleessa taustoitetaan skaalautumista ja sen haasteita. Sitten tarkastellaan laajemmin Facebookin kokoluokkaa ja käydään läpi Facebookin käyttämiä teknikoita ja arkkitehtuuria. TODO: lopuksi blablalbalba
 			</pre>
 		</section>
 		
@@ -69,9 +69,11 @@
 		
 		
 		<section>
-			<h1>Tausta</h1>
+			<h1>Suurten web-applikaatioiden taustaa</h1>
 			
-			<pre>Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
+			<pre>TODO: deprecated -> kerro että suuria palvelua ei voi tehdä kuten pieniä.  älä toista mitä lukee ylhäällä jo.  määrittele web-applikaatio.
+				
+				Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
 			</pre>
 
 			<section>
@@ -80,25 +82,25 @@
 				<pre>
 				Web-applikaatiot ovat yleensä rakennettu kahden kerroksen arkkitehtuurilla.  Ensimmäisessä kerroksessa on applikaatiopalvelin jolla on yhteys toiseen alempaan kerrokseen, eli tietokantapalvelimeen.  Applikaatiopalvelin vastaanottaa käyttäjän pyynnön ja muodostaa vasteen käyttäjälle hakemalla tietokantapalvelimelta tarvittavat tiedot <cite>PES10</cite>.
 				
-				Kun käyttäjämäärä kasvaa voidaan palvelua pääsääntöisesti skaalata kahdella tavalla: <em>vertikaalisesti</em> ja <em>horisontaalisesti</em>.  Vertikaalisessassa skaalauksessa lisätään yksittäisten koneiden suorituskykyä.  Tätä voidaan tehdä sekä applikaatiopalvelimissa, että tietokantapalvelimissa.  Yksittäisen koneen suorituskyvyn yläraja tulee nopeasti vastaan. Lisäksi kustannukset suhteessa saavutettuun suorituskykyeroon kasvavat huomattavasti <cite>PES10</cite>. 
+				Kun käyttäjämäärä kasvaa voidaan palvelua pääsääntöisesti skaalata kahdella tavalla: <em>vertikaalisesti</em> ja <em>horisontaalisesti</em>.  Vertikaalisessassa skaalauksessa lisätään yksittäisten koneiden suorituskykyä.  Tätä voidaan tehdä sekä applikaatiopalvelimissa, että tietokantapalvelimissa.  Yksittäisen koneen suorituskyvyn yläraja tulee nopeasti vastaan. Lisäksi kustannukset suhteessa saavutettuun suorituskykyyn kasvavat huomattavasti <cite>PES10</cite>. 
 				
 				Horisontaalisessa skaalaamisessa koneiden määrää kasvatetaan.  Tällöin myös vikasietoisuus paranee, sillä  yksittäisen koneen hajoaminen ei estä palvelun käyttöä.  Applikaatiopalvelimien lisääminen on helppoa, sillä ne ovat identtisiä ja toimivat samalla tavalla <cite>PES10</cite>.
 				
-				Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin horisontaalinen skaalaaminen on mahdollista näiden yksiköiden määrän verran.
+				Tietokantapalvelimien lisääminen horisontaalisesti ei yleensä ole mahdollista, sillä useampi palvelin ei voi samanaikaisesti muokata samaa tietosisältöä. Jos tietokannan tietosisältö voidaan jakaa omiin itsenäisiin yksiköihinsä, niin on mahdollista parantaa suorituskykyä näiden yksiköiden sisällä.
 				
-				Sosiaalisen median palveluissa tieto mallintaa käyttäjien sosiaalisia verkostoja on tästä syystä vahvasti toisiinsa liittyvää.  Tiedon jakaminen osiin on tästä syystä hankalaa <cite>Rot09, PES10</cite>.  Tästä syystä tälläinen tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shards) eri tietokantapalvelimille <cite>PES10</cite>.
+				Sosiaalisen median palveluissa tieto mallintaa käyttäjien sosiaalisia verkostoja ja on tästä syystä vahvasti toisiinsa liittyvää.  Tiedon jakaminen osiin on täten hankalaa <cite>Rot09, PES10</cite>.  Vahvasti toisiinsa liittyvä tieto yleensä jaetaan hajautuksella samanarvoisiin sirpaleisiin (shards) eri tietokantapalvelimille <cite>PES10</cite>.
 				</pre>
 			</section>
 		
 			
 			<section>
-				<h1>CAP</h1>
+				<h1>Tiedon hajautuksen ongelma: CAP</h1>
 				
 				<pre>Eric Brewer on esittänyt vuonna 2000 CAP-konjektuurin <cite>Bre02</cite> hajautettujen web-palveluiden kolmesta halutusta ominaisuudesta ja niiden saavutettavuuksista.  Kolme haluttua ominaisuutta ovat tiedon konsistenssi, saavutettavuus ja jakaminen (<strong>C</strong>onsistency, <strong>A</strong>vailability, <strong>P</strong>artitioning). 
 					
 					Hajautetun web-palvelun tietosisältöön kohdistuvat muokkaukset halutaan yleisesti pitää vahvasti konsistentteina. <!-- TODO: mikä on konsistentti-->Tämä tarkoittaa ACID-ominaisuudet tyydyttävää tietokantamaista toimintaa, eli esimerkiksi muokkausoperaatioiden suorittaminen siten, ettei muokkauksen kohteena oleva tietosisältö minään hetkenä koostu vanhasta ja uudesta tiedosta.  Tämä tiedon atomisuus vaatii esimerkiksi lukitusta, joka on haastavaa toteuttaa hajautetussa ympäristössä <cite>GiL02</cite>.
 										
-					Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sitä ei voida saavuttaa.  Jotta palvelu seliväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
+					Tiedon saatavuus halutaan myös pitää korkeana.  Web-palvelua ei käytännössä ole olemassa jos sen tietoa ei voida saavuttaa.  Jotta palvelu selväisi verkkokatkoksista esimerkiksi eri mantereiden välillä, on palvelu ylläpidettävä hajautetusti.  Tämä hajautus taas vaikeuttaa tiedon pitämistä konsistenttina <cite>GiL02</cite>.
 					
 					Hetkellisen verkkokatkoksen aikana tehdyt päivitykset kahteen palvelinkeskukseen aiheuttavat tiedon synkronointiongelman, kun yhteys jälleen palautuu<cite>GiL02</cite>.  Saman tietosisällön hetkellinenkin jakaminen siten, että kaksi aiempaa haluttua ominaisuutta pysyvät voimassa on Brewerin mukaan mahdotonta.  Käytäntö on osoittanut, että vain kahta näistä kolmesta esitellystä omainaisuudesta voidaan pitää samanaikaisesti voimassa <cite>Bre02</cite>.
 				</pre>
@@ -106,19 +108,27 @@
 			
 			
 			<section>
-				<h1>BASE</h1>
+				<h1>Kevyempi arkkitehtuurimalli: BASE</h1>
 				
-				<pre>Tietokantojen ACID-mallin rinnalle on hajautettujen web-palveluiden yleistymisen myötä noussut BASE-malli (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent).  Mallissa otetaan huomioon web-palveluiden erityispiirteet, kuten tilattomuus, joka mahdollistaa tiedon tallentamisen kevyimmin ehdoin <cite>Pri08</cite>.
+				<pre>Tietokantojen ACID-mallin rinnalle on hajautettujen web-applikaatioiden yleistymisen myötä noussut BASE-malli (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent).  Mallissa otetaan huomioon web-applikaatioiden erityispiirteet, kuten tilattomuus, joka mahdollistaa tiedon tallentamisen kevyimmin ehdoin <cite>Pri08</cite>.
 					
-					Ehdottoman saatavuuden (kaikki saatavilla, tai ei mitään saatavilla) sijaan tieto pyritään pitämään saatavilla niin hyvin kuin mahdollista.  Palvelu tulee olla rakennettu siten, että jos esimerkiksi 20% tietosisällöstä on hetkellisesti saavuttamattomissa, niin se vaikuttaa vain osaan käyttäjistä.  Parhaimmassa tapauksessa suurin osa käyttäjistä ei edes huomaa katkosta. Tämä on mahdollista saavuttaa jakamalla tieto toiminnallisiin kokonaisuuksinsa <cite>Pri08</cite>.
+					TODO: tossa ylhäällä sanotaan tilattomuus, miksi se on syy, selitä?
+					
+					Ehdottoman saatavuuden (kaikki saatavilla, tai ei mitään saatavilla) sijaan tieto pyritään palvelemaan niin hyvin kuin mahdollista.  Palvelu tulee olla rakennettu siten, että jos esimerkiksi 20% tietosisällöstä on hetkellisesti saavuttamattomissa, niin se vaikuttaa vain osaan käyttäjistä.  Parhaimmassa tapauksessa suurin osa käyttäjistä ei edes huomaa katkosta. Tämä on mahdollista saavuttaa jakamalla tieto toiminnallisiin kokonaisuuksinsa <cite>Pri08</cite>.
 				
-					Web-palveluissa, jotka eivät esimerkiksi käsittele rahaa, voidaan vahvasta transaktionaalisuudesta joustaa.  Katkoksen tapahtuminen kriittisellä hetkellä on yleisesti harvinaisia ja luopumalla transaktioista voidaan saavuttaa parempi suorituskyky ja joustavampi arkkitehtuuri.  Lisäksi virhetilanteita voidaan välttää esimerkiksi suunnittelemalla operaatiot <em>idempotenttisiksi</em> <!-- TODO: mikä on idempotent suomeksi -->, eli siten, että operaatio voidaan ajaa useasti peräkkäin ja sen vaiktus tietosisältöön on sama <cite>Pri08</cite>.
+					Web-palveluissa, jotka eivät esimerkiksi käsittele rahaa, voidaan vahvasta transaktionaalisuudesta joustaa.  Katkoksen tapahtuminen kriittisellä hetkellä on yleisesti harvinaisia ja luopumalla transaktioista voidaan saavuttaa parempi suorituskyky ja joustavampi arkkitehtuuri.  Lisäksi virhetilanteita voidaan välttää esimerkiksi suunnittelemalla operaatiot <em>idempotenttisiksi</em>, <!-- TODO: mikä on idempotent suomeksi --> eli siten, että operaatio voidaan ajaa useasti peräkkäin ja sen vaiktus tietosisältöön on sama <cite>Pri08</cite>.
 			
 					Hetkelliset poikkeamat käyttäjille näkyvässä tietosisällössä voivat hyvinkin olla käytännössä siedettäviä.  Esimerkiksi kun käyttäjä jakaa jonkin tiedon kaveriverkostolleen, voidaan tiedon näyttämistä muille viivästyttää useitakin sekunteja.  Riittää, että muutoksen tehneelle käyttäjälle annetaan illuusio välittömästä päivittämisestä <cite>Pri08</cite>.
 					
 				</pre>
 			</section>
+			
+			<section>
+				<h1>Recovery-oriented computing</h1>
 				
+				ROC-lähde <cite>Fox02</cite>
+				
+			</section>
 
 		</section>
 		
@@ -149,30 +159,26 @@
 			</pre>
 			
 			<section>
-				<h1>Kuluttajatason laitteet</h1>
+				<h1>Kuluttajatason laitteiden käyttö</h1>
 							
 				<pre>
-					Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä.  Kaikki tieto on pidettävä tallessa ja kokonaistietomäärä ylitti 15 petatavua.  Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui <cite>TSA10</cite>.
-
-					Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan <cite>TSA10</cite>.  Tärkein vaatimus Facebookin arkkitehtuurin suunnittelussa on skaalautuminen horisontaalisesti käyttäen halpoja kuluttajatason laitteita <cite>TSA10, LaM10</cite>
+					Facebook tallentaa päivittäin valtavat määrät tietoa, josta muodostetaan mm. palveluun sisältöä käyttäjille, raportteja ja statistiikkaa mainostajille. Facebookin työntekijöiden Thusoo et al. kirjoittamassa artikkelissa <em>"Data Warehousing and Analytics Infrastructure at Facebook"</em> <cite>TSA10</cite> kerrotaan päivittäin talletettavan datamäärän ylittävän kirjoitushetkellä 60 teratavua päivässä kokonaistietomäärän ylittäessä 15 petatavua.  Tästä tiedosta kaikki on pidettävä tallessa.
+					
+					Tallennettavan tiedon määrä myös kasvaa jatkuvasti voimakkaasti: 6kk ajanjaksolla päivittäin talletettavan tiedon määrä kolminkertaistui. Tälläisen tietomäärän tallentaminen ja hallinta siten, että tietoa voidaan hyödyntää eri käyttötarkoituksiin samalla säilyttäen kustannustehokkuus ja skaalautuvuus asettaa uusia haasteita, joita harvoissa palveluissa on jouduttu ratkaisemaan <cite>TSA10</cite>.  Tärkein vaatimus Facebookin arkkitehtuurin suunnittelussa on skaalautuminen horisontaalisesti käyttäen halpoja kuluttajatason laitteita <cite>TSA10, LaM10</cite>
 				
-				ROC-lähde <cite>Fox02</cite>
-			
-				Koska palvelu on muodostettu tuhansista palvelimista ja verkkolaitteista, on jokin 
-			
+				TODO: Koska palvelu on muodostettu tuhansista palvelimista ja verkkolaitteista, on jokin 
 				Dealing with failures in an in- frastructure comprised of thousands of components is our standard mode of operation; there are always a small but significant number of server and network components that are failing at any given time. As such, the software systems need to be constructed in a manner that treats failures as the norm rather than the exception. <cite>LaM10</cite>
-			
 				</pre>
 			</section>
 
 
 			<section>
-				<h1>Eräajot ja prosessoinnin viivästyttäminen</h1>
+				<h1>Laskennan ja tallentamisen hajauttaminen</h1>
 
 				<pre>
-			 	Vuonna 2007 Facebookin tiedonprosessointi oli rakennettu relaatiotietokannan päälle.  Relaatiotietokanta ei pystynyt toimimaan riittävän nopeasti ja jäi tiedon prosessointi jäi jatkuvasti jälkeen yhden päivän tietomäärän prosessoinnin viedessä yli 24 tuntia.  Suurin osa Facebookin toiminnallisuudesta perustuu tiedon analysointiin ja laskentaan.  Relaatiokannasta luopuminen ja siirtyminen uudenlaiseen prosessointimalliin oli välttämätöntä <cite>Fac09a</cite>.
+			 	Vuonna 2007 Facebookin tiedonprosessointi oli rakennettu relaatiotietokannan päälle.  Relaatiotietokanta ei pystynyt toimimaan riittävän nopeasti jatkuvasti kasvavassa ympäristössä.  Tiedon prosessointi jäi jatkuvasti jälkeen yhden päivän tietomäärän prosessoinnin viedessä yli 24 tuntia.  Suurin osa Facebookin toiminnallisuudesta perustuu tiedon analysointiin ja laskentaan.  Relaatiokannasta luopuminen ja siirtyminen uudenlaiseen prosessointimalliin oli välttämätöntä <cite>Fac09a</cite>.
 					
-				Nykyään tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Viive tiedon siirtämisessä kyselyitä varten on maksimissaan 15 minuuttia. Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa.  Adhoc-tietovarastoon jätetään kaikki data, jotta kyselyitä on mahdollista muodostaa myös vanhasta datasta.  Vanha tieto kompressoidaan ja arkistoidaan hitaammalle ja halvemmalle levyjärjestelälle.  Toiminta on kuvattu kuvassa TODO <cite>TSA10</cite>.
+				Nykyään tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Viive tiedon siirtämisessä kyselyitä varten on maksimissaan 15 minuuttia. Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa.  Adhoc-tietovarastoon jätetään kaikki data, jotta kyselyitä on mahdollista muodostaa myös vanhasta datasta.  Vanha tieto kompressoidaan ja arkistoidaan hitaammalle ja halvemmalle levyjärjestelmälle.  Toiminta on kuvattu kuvassa TODO <cite>TSA10</cite>.
 
 				<img src="pietuimages/facebook-dataprocessing.png" title="Datan prosessointi Facebookissa [TSA10]" class="fit-width-50" data-lattex="fig-facebook-dataprocessing" />
 				
@@ -185,25 +191,27 @@
 
 
 			<section>
-				<h1>Eventual consistency, MYSQL repl</h1>
+				<h1>Kirjoituksen taattu viivästyttäminen</h1>
 
 				<pre>Johtuen suuresta välimatkasta palvelinkeskusten välillä, MySQL-tietokanta on jaettu kahtia siten, että tietokannan päivitysoperaatiot tehdään länsirannikon (Kalifornia) palvelinkeskuksessa ja replikoidaan itärannikolle (Virginia).  Replikointi valmistuu 20 sekunnin aikaikkunan aikana.  Tuon 20 sekunnin aikana tietosisältöä muuttaneen käyttäjän kaikki pyynnöt ohjataan länsirannikolle, jotta tietosisältö on käyttäjän näkökulmasta ehjä <cite>Rot09, Sob08</cite>
 					
-				Facebook pystyisi palvelemaan yhdysvaltojen ulkopuolelta tulevia käyttäjiä nopeammin, jos nämä käyttäjät ohjattaisiin palvelinkeskuksiin, jotka olisivat maantieteellisesti lähempänä käyttäjiä.  Nykyisellä arkkitehtuurilla Facebook ei voi laajentua enää kolmanteen lokaatioon, eikä ainakaan kauemmaksi yhdysvalloista <cite>NSGC09</cite>.
+				Facebook pystyisi palvelemaan yhdysvaltojen ulkopuolelta tulevia käyttäjiä nopeammin, jos nämä käyttäjät ohjattaisiin palvelinkeskuksiin, jotka olisivat maantieteellisesti lähempänä käyttäjiä.  Nykyisellä arkkitehtuurilla Facebook ei voi laajentua enää kolmanteen sijaintiin, eikä ainakaan kauemmaksi Yhdysvalloista <cite>NSGC09</cite>.
 				</pre>
 
 			</section>
 
 
 			<section>
-				<h1>Cassandra</h1>
+				<h1>Avain-arvo tietokanta: Cassandra</h1>
 				
 				<pre>
-					Facebookin kehittämä <em>avain-arvo</em> -tietokanta</em> <em>Cassandra</em> mahdollistaa mm. haut palvelussa lähetettyjen yksityisviestien sisällöstä.  Tietokantaan voidaan tallettaa jollakin avaimella arvo, esimerkiksi haettaessa viestejä sanojen perusteella sana ja viestin tietokannan tunniste.  Cassandra ei tue relaatiomallia ja on täten <em>noSQL</em> tietokanta, jossa API on hyvin yksinkertainen rajoittuen vain <code>insert</code>, <code>get</code> ja <code>delete</code> -operaatioihin.  Tällä saavutetaan hyvin nopea applikaatiospesifinen tietokanta, joka ei ole tarkoitettu korvaamaan relaatiotietokantoja, vaan ratkaisemaan tiettyjä rajattuja ongelmia <cite>LaM10</cite>.
+					Facebookin kehittämä <em>avain-arvo</em> -tietokanta</em> <em>Cassandra</em> mahdollistaa mm. haut palvelussa lähetettyjen yksityisviestien sisällöstä.  Tietokantaan voidaan tallettaa jollakin avaimella jokin arvo.  Esimerkiksi haettaessa viestejä sanojen perusteella, jokainen sana on avain ja viestin tietokannan tunniste on arvo.
 					
-					Tietokanta on suunniteltu toimimaan kuluttajatason laitteista muodostetussa klusterissa siten, että järjestelmä ei riipu yhdestäkään tietystä koneesta (no single point of failure, SPOF) ja tietokantaa takaa tiedon tallentumisen viivästettynä (eventual consistency).  Klusterissa voi olla useita satoja koneita jaettuna eri palvelinkeskuksiin (data centers) ja tietokannan toimintaa voidaan optimoida ottamaan huomioon eri palvelinkeskukset ja keskuksissa olevien kehikkojen väliset fyysiset etäisyydet.  Lisäksi klusteriin voi jatkuvasti liittyä ja poistua uusia koneita automaattisesti <cite>LaM10</cite>.
+					Cassandra ei tue relaatiomallia ja on täten <em>noSQL</em> tietokanta, jossa API on hyvin yksinkertainen rajoittuen vain <code>insert</code>, <code>get</code> ja <code>delete</code> -operaatioihin.  Tällä saavutetaan hyvin nopea applikaatiospesifinen tietokanta, joka ei ole tarkoitettu korvaamaan relaatiotietokantoja, vaan ratkaisemaan tiettyjä rajattuja ongelmia <cite>LaM10</cite>.
 					
-					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa <cite>Apa10a</cite>. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandrassa tämä on otettu suunnittelun lähtökohdaksi <cite>LaM10</cite>.
+					Tietokanta on suunniteltu toimimaan kuluttajatason laitteista muodostetussa klusterissa siten, että järjestelmä ei riipu yhdestäkään tietystä koneesta (no single point of failure, SPOF) ja tietokantaa takaa tiedon tallentumisen viivästettynä (eventual consistency).  Klusterissa voi olla useita satoja koneita jaettuna eri palvelinkeskuksiin (data centers) ja tietokannan toimintaa voidaan optimoida ottamaan huomioon eri palvelinkeskukset ja keskuksissa olevien kehikkojen väliset fyysiset etäisyydet.  Lisäksi klusteriin voi jatkuvasti liittyä uusia ja poistua vanhoja koneita <cite>LaM10</cite>.
+					
+					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa <cite>Apa10a</cite>. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandran toiminnassa koneiden jatkuvat vikatilat on otettu suunnittelun lähtökohdaksi <cite>LaM10</cite>.
 					
 					Cassandran lähdekoodi on julkaistu avoimena lähdekoodina vuonna 2008 Apache Software Foundationin alaisuudessa nimellä "Apache Cassandra".  Myös muut sosiaalisen median palvelut, kuten Digg, Twitter ja Reddit käyttävät Cassandraa <cite>Apa10a</cite>.
 					
@@ -211,37 +219,44 @@
 			</section>
 			
 
-			
 			<section>
-				<h1>Caching, Välimuisti</h1>
+				<h1>Muita optimointeja</h1>
 
-				<pre>Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen <em>memcached</em>-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa <cite>Rot09</cite>.
+				<pre>
+					TODO kirjoita tähän jotain
 				</pre>
+				
+				
+				<section>
+					<h1>Välimuisti</h1>
+
+					<pre>Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen <em>memcached</em>-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa <cite>Rot09</cite>.
+					</pre>
+				</section>
+				
+				
+				<section>
+					<h1>IO-kutsujen minimointi</h1>
+
+					<pre>Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa <cite>Vaj09</cite>.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä <em>haystack</em>.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto <cite>Vaj09, Rot09</cite>.
+					</pre>
+				</section>
+
+
+				<section>
+						<h1>Viestinvälitys</h1>
+
+						TODO: kuva sellasesta funnelista, facebookin webissä tais olla
+		<!-- 				
+			TODO:			Viestijonot: scribe, thrift
+			-->	
+				</section>
 
 			</section>
 
 
 
-			<section>
-				<h1>IO-kutsujen minimointi</h1>
 
-				<pre>Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa <cite>Vaj09</cite>.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä <em>haystack</em>.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto <cite>Vaj09, Rot09</cite>.
-				</pre>
-			</section>
-
-
-
-			<section>
-					<h1>Viestijonot</h1>
-					
-					TODO: kuva sellasesta funnelista, facebookin webissä tais olla
-	<!-- 				
-		TODO:			Viestijonot: scribe, thrift
-		-->	
-			</section>
-			
-
-		
 			<section>
 				<h1>Laskennan siirtäminen kolmannelle osapuolelle</h1>
 				
@@ -255,7 +270,8 @@
 					Kommunikoinnin kierrättäminen Facebookin palvelimien kautta tuottaa viiveen jokaiseen sivulataukseen.  Viivettä syntyy, kun vaste FBML-vaste käsitellään, HTTP-yhteyksiä luodaan ja  ovat vasteen käsittely ja <cite>NSGC09</cite>. 
 					
 					<img src="pietuimages/facebook-delays.png" title="Viiveet Facebook-applikaatiossa [NSGC09]" class="fit-width" data-lattex="fig-facebook-delays" />
-					Farmville, applikaatiot, FBML
+					
+					TODO: yhteenveto ylemmistä ja ehkä Farmville, applikaatiot, FBML
 		
 				</pre>
 		
@@ -265,32 +281,37 @@
 
 		</section>
 					
+			              
+	
+      	<section>
+			<h1>Yhteenveto</h1>
 			
+			<pre>
 
-              
-		<section>
-	    	<h1>X</h1>
- 
-	    	<pre>
-				<cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
+				sosiaalinen media tekee passiivisesta kuluttajasta tuottajan -> hard to scale, joka puolelta tulee dataa.
+				
+				tulee keskittymään entisestään, tarvitaan isoja, skaalautuvia järjestelmiä
+				
+				data on monimutkaista, interconnectedia ja määrällisesti vitullista.  hirvee hallintaongelma
+				
+				hajauttaminen on vaikeeta koska valonnopeus
+				
+				uusia arkkitehtuurimalleja tulee kuten BASE
+				
+				palveluista tulee platformeja ja ne lisäävät kuromaa entisestään
+				
+				
+
+				kirvoittaa tutkijoiden mieliä: <cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
 				
 							
 				
 				share nothing
 				
 				federated
-			
-							
-			</pre>
-			
-		</section>
-		
-		
-	
-      	<section>
-			<h1>Yhteenveto</h1>
-			
-			<pre>
+
+
+
 				Eventual consistency.
 				
 				<h2>Databases and Web 2.0 Panel at VLDB 2007</h2>
@@ -307,7 +328,7 @@
 				
 				
 
-				commodity hardware
+				commodity hardware ja roc
 				
 				omat tietokannat: cassandra: digg, twitter ... 
 				
