@@ -66,6 +66,15 @@ img.fit-width {
   max-width: 100%;
 }
 
+img.fit-width-75 {
+  max-width: 75%;
+}
+
+img.fit-width-50 {
+  max-width: 50%;
+}
+
+
 .image-caption {
   display: block;
 }

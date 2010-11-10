@@ -169,15 +169,32 @@
 			<section>
 				<h1>Eräajot ja prosessoinnin viivästyttäminen</h1>
 
-				<pre>Tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa <cite>TSA10</cite>.
+				<pre>
+			 	Vuonna 2007 Facebookin tiedonprosessointi oli rakennettu relaatiotietokannan päälle.  Relaatiotietokanta ei pystynyt toimimaan riittävän nopeasti ja jäi tiedon prosessointi jäi jatkuvasti jälkeen yhden päivän tietomäärän prosessoinnin viedessä yli 24 tuntia.  Suurin osa Facebookin toiminnallisuudesta perustuu tiedon analysointiin ja laskentaan.  Relaatiokannasta luopuminen ja siirtyminen uudenlaiseen prosessointimalliin oli välttämätöntä <cite>Fac09a</cite>.
+					
+				Nykyään tietoa tallennetaan viivästetysti siten, että sen tallentaminen ei haittaa arkkitehtuurin muuta toimintaa.  WWW-applikaatiopalvelimien tuottama logitieto tallennetaan eräajoina väliaikaiseen tietovarastoon, josta se talletetaan edelleen kahteen päätietovarastoon: tuotantoon ja <em>adhoc</em>-tietovarastoihin.  Viive tiedon siirtämisessä kyselyitä varten on maksimissaan 15 minuuttia. Tuotantotietovarastosta tieto siirretään edelleen MySQL-klusteriin, kun taas adhoc-tietovarastosta kuka tahansa kehittäjä voi ajaa tarvittaessa kyselyitä häiritsemättä tuotantoa.  Adhoc-tietovarastoon jätetään kaikki data, jotta kyselyitä on mahdollista muodostaa myös vanhasta datasta.  Vanha tieto kompressoidaan ja arkistoidaan hitaammalle ja halvemmalle levyjärjestelälle.  Toiminta on kuvattu kuvassa TODO <cite>TSA10</cite>.
+
+				<img src="pietuimages/facebook-dataprocessing.png" title="Datan prosessointi Facebookissa [TSA10]" class="fit-width-50" data-lattex="fig-facebook-dataprocessing" />
 				
-				Adhoc-tietovarasto on toteuttu Apache Software Foundationin hajautetun laskentajärjestelmän <em>Apache Hadoopin</em> avulla.   	
-				TODO: map-reduce, hadoop ja hive
+				Adhoc-tietovarasto on toteuttu Apache Software Foundationin hajautetun laskentajärjestelmän <em>Apache Hadoopin</em> avulla.  Laskentajärjestelmä perustuu Googlen <em>MapReduce</em>-laskentaan, jossa laskettava data jaetaan pieniksi osiksi ja hajautetaan useille koneille (Map), joiden palauttamista arvoista yhdistetään lopullinen tulos (Reduce) <cite>Apa10b</cite>.
 				
-				keroo map-reducesta ja hivestä: <cite>TSA10</cite>
-				
+				Koska MapReduce-töiden luonti on hankalaa kehittäjille, on Facebook kehittänyt komponentin nimeltä Hive.  Hive tarjoaa myös strukturoidun kyselykielen, jonka avulla töiden luonti ja hallinta on helpompaa.  Facebookin adhoc-tietovarastossa, joka on toteutettu Hadoopin ja Hiven avulla on yli 20,000 taulua ja satoja käyttäjiä.   <cite>TSA10</cite>. 
 				
 				hive-artikkeli<cite>Fac09a</cite>
+				
+				
+				
+	
+				. 2009-05-01 partition for May 1, 2009 data and 2009-04-31 for April 31, 2009 data. The data for a particular date goes into a partition for that date
+				
+				archiving older data to cheaper storage while keeping the more recent data on the main cluster.
+				
+				The Query compiler uses the information stored in the metastore to convert SQL queries into a sequence of map/reduce jobs, e.g. the following query
+				
+				
+				SELECT * FROM t where t.c = 'xyz'
+				
+				
 				
 				
 				</pre>
@@ -203,9 +220,9 @@
 					
 					Tietokanta on suunniteltu toimimaan kuluttajatason laitteista muodostetussa klusterissa siten, että järjestelmä ei riipu yhdestäkään tietystä koneesta (no single point of failure, SPOF) ja tietokantaa takaa tiedon tallentumisen viivästettynä (eventual consistency).  Klusterissa voi olla useita satoja koneita jaettuna eri palvelinkeskuksiin (data centers) ja tietokannan toimintaa voidaan optimoida ottamaan huomioon eri palvelinkeskukset ja keskuksissa olevien kehikkojen väliset fyysiset etäisyydet.  Lisäksi klusteriin voi jatkuvasti liittyä ja poistua uusia koneita automaattisesti <cite>LaM10</cite>.
 					
-					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa <cite>Apa10</cite>. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandrassa tämä on otettu suunnittelun lähtökohdaksi <cite>LaM10</cite>.
+					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa <cite>Apa10a</cite>. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandrassa tämä on otettu suunnittelun lähtökohdaksi <cite>LaM10</cite>.
 					
-					Cassandran lähdekoodi on julkaistu avoimena lähdekoodina vuonna 2008 Apache Software Foundationin alaisuudessa nimellä "Apache Cassandra".  Myös muut sosiaalisen median palvelut, kuten Digg, Twitter ja Reddit käyttävät Cassandraa <cite>Apa10</cite>.
+					Cassandran lähdekoodi on julkaistu avoimena lähdekoodina vuonna 2008 Apache Software Foundationin alaisuudessa nimellä "Apache Cassandra".  Myös muut sosiaalisen median palvelut, kuten Digg, Twitter ja Reddit käyttävät Cassandraa <cite>Apa10a</cite>.
 					
 				</pre>
 			</section>
@@ -295,8 +312,18 @@
 				
 				<h2>Databases and Web 2.0 Panel at VLDB 2007</h2>
 				
-				heterogeeniset tietokannat nykyisten homogeenisten sijaan
+				heterogeeniset tietokannat nykyisten homogeenisten sijaan:
 				
+				- feder-mysql vs hive-hadooc and adchoc-production [tsa10]
+				- AND cassandra!
+				
+				- By leveraging and developing a lot of open source technologies we have been able to meet the demands placed on our infrastructure and we are working on many other enhancements [tsa10]
+				
+				- The production cluster usually has to hold only one month's worth of data as the periodic production jobs seldom look at data beyond that time frame. However, the ad hoc cluster does need to hold all the historical data so that measures, models and hypotheses can be tested on historical data and [tsa10]
+				
+				
+				
+
 				commodity hardware
 				
 				omat tietokannat: cassandra: digg, twitter ... 
@@ -317,6 +344,29 @@
 		
     </article>
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <article class="glossary">
 		<h1>Lyhenteet</h1>
 		
@@ -546,9 +596,14 @@
 				}
 			</dd>
 			
-			<dt data-lattex="Apa10">Apa10</dt>
+			<dt data-lattex="Apa10">Apa10a</dt>
 			<dd>
 				The Apache Cassandra Project, http://cassandra.apache.org/. Haettu 9.11.2010
+			</dd>
+			
+			<dt data-lattex="Apa10">Apa10b</dt>
+			<dd>
+				The Apache Hadoop, http://hadoop.apache.org/. Haettu 9.11.2010
 			</dd>
 			
 			<dt data-lattex="Fac09a">Fac09a</dt>
