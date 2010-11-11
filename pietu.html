@@ -61,7 +61,7 @@
 				
 				Vaikka saman sektorin palveluita on useita, on palveluiden tuottaminen yleensä keskittynyt muutamalle palveluntuottajalle.  Koska palveluiden idea perustuu sosiaalisiin verkostoihin, on kilpailijoiden vaikeaa saada tarpeeksi käyttäjiä omaan palveluunsa, jotta se voisi olla kannattava.  Suosituimpien web-palveluiden käyttäjämäärät kasvavatkin yleensä varsin nopeasti, sillä palveluita käytetään maailmanlaajuisesti.  Käyttäjät käyttävät palveluita myös hyvin aktiivisesti, yleensä jopa päivittäin <cite>Gol07</cite>.
 				
-				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Seuraavassa kappaleessa taustoitetaan skaalautumista ja sen haasteita. Sitten tarkastellaan laajemmin Facebookin kokoluokkaa ja käydään läpi Facebookin käyttämiä teknikoita ja arkkitehtuuria. TODO: lopuksi blablalbalba
+				Tässä artikkelissa tarkistellaan suurten käyttäjämäärien ja objektien tuomia ongelmia arkkitehtuurisella toteutustasolla.  Seuraavassa kappaleessa taustoitetaan skaalautumista ja sen haasteita. Sitten tarkastellaan laajemmin Facebookin kokoluokkaa ja sen inspiroimia tekniikoita ja arkkitehtuuria.  Lopuksi tehdään yhteenveto kaikista tekniikoista ja ratkaisuista, joita suuren kokoluokan sosiaalisen median palvelu joutuu rakentamaan.
 			</pre>
 		</section>
 		
@@ -71,9 +71,7 @@
 		<section>
 			<h1>Suurten web-applikaatioiden taustaa</h1>
 			
-			<pre>TODO: deprecated -> kerro että suuria palvelua ei voi tehdä kuten pieniä.  älä toista mitä lukee ylhäällä jo.  määrittele web-applikaatio.
-				
-				Suuret tietomäärät ja hajautettu arkkitehtuuri asettaa haasteita palvelun suunnittelulle ja toteutukselle.  Keskeisiä teemoja ovat skaalautuminen suurille käyttäjämassoille ja tiedon tallentaminen.
+			<pre>Suurten web-applikaatioiden toteuttaminen poikkeaa ratkaisevasti pienistä, muutamalla koneella tuotetuista palveluista.  Suuret, globaalit käyttäjämäärät tuovat useita haasteita toteuttamiseen.	
 			</pre>
 
 			<section>
@@ -126,8 +124,15 @@
 			<section>
 				<h1>Recovery-oriented computing</h1>
 				
-				ROC-lähde <cite>Fox02</cite>
+				<pre>
+				Tietojärjestelmät pyritään suunnittelemaan siten, että niissä esiintyy virhetilanteita mahdollisimman vähän.  Kuitenkin kaikesta suunnittelusta huolimatta katkoksia tapahtuu.  Suurilla käyttäjämäärillä häiriöt voivat maksaa paljon, esimerkiksi amazon.comin tunnin katkoksen on arvioitu maksavan $200,000.  Artikkelissa <em>"Toward Recovery-Oriented Computing"</em>  Fox määrittelee mallin, jossa järjestelmien vikaantuminen otetaan suunnittelun lähtökohdaksi <cite>Fox02</cite>.
 				
+				<em>Recovery-oriented computing</em> ottaa lähtökohdaksi kaikkien kerroksien vikaantumisen ja keksittyy siihen, kuinka nopeasti tilanne voidaan palauttaa ennalleen.  Vikatilanteet ovat myös hyvin ennustettavissa, sillä esimerkiksi kovalevyjen keskimääräinen vikaantumisaika on hyvin tiedossa.
+				
+				Lisäksi palvelun laatu saattaa parantua loppukäyttäjän näkökulmasta, sillä jos esimerkiksi palvelun alimman tason virhe korjataan palautumalla mahdollisimman, näyttää se ylemmälle tasolle vain hetkelliseltä suorituskykyongelmalta.
+				
+				Lisäksi palvelun yleistä toimintavarmuutta voidaan parantaa jos tuotantopalvelimet palautetaan hyvin testattuun ja toimivaan alkutilaan jatkuvasti, esimerkiksi viikoittain.  Tällöin muistivuodot ja muut "stale"-tilassa olevat resurssihukat korjaantuvat automaattisesti.	
+				</pre>
 			</section>
 
 		</section>
@@ -287,40 +292,39 @@
 			<h1>Yhteenveto</h1>
 			
 			<pre>
+				Sosiaalisen median palvelut tekevät muuttavat web-applikaation käyttämistä siten, että kuluttajasta tulee tuottaja.  Palveluissa tuotettu data on vahvasti toisiinsa liittyvää, keskittymisestä johtuen määrällisesti suurta ja voimakkaasti kasvavaa.  Tämä tarkoittaa sitä, että web-applikaation kehitys ja ylläpito monimutkaistuu.
 
-				sosiaalinen media tekee passiivisesta kuluttajasta tuottajan -> hard to scale, joka puolelta tulee dataa.
-				
-				tulee keskittymään entisestään, tarvitaan isoja, skaalautuvia järjestelmiä
-				
-				data on monimutkaista, interconnectedia ja määrällisesti vitullista.  hirvee hallintaongelma
+				palveluista tulee platformeja ja ne lisäävät kuromaa entisestään
+
 				
 				hajauttaminen on vaikeeta koska valonnopeus
 				
-				uusia arkkitehtuurimalleja tulee kuten BASE
-				
-				palveluista tulee platformeja ja ne lisäävät kuromaa entisestään
-				
-				
 
-				kirvoittaa tutkijoiden mieliä: <cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
-				
-							
+				uusia arkkitehtuurimalleja tulee kuten BASE
 				
 				share nothing
 				
 				federated
-
-
-
+				
 				Eventual consistency.
 				
+
+				kirvoittaa tutkijoiden mieliä ja : <cite>XXJ09</cite> viittaavat haystack-noteen ja tarjoavat omaa ratkaisuaan.
+
+
 				<h2>Databases and Web 2.0 Panel at VLDB 2007</h2>
 				
 				heterogeeniset tietokannat nykyisten homogeenisten sijaan:
 				
 				- feder-mysql vs hive-hadooc and adchoc-production [tsa10]
 				- AND cassandra!
+
+
 				
+							
+				
+
+
 				- By leveraging and developing a lot of open source technologies we have been able to meet the demands placed on our infrastructure and we are working on many other enhancements [tsa10]
 				
 				- The production cluster usually has to hold only one month's worth of data as the periodic production jobs seldom look at data beyond that time frame. However, the ad hoc cluster does need to hold all the historical data so that measures, models and hypotheses can be tested on historical data and [tsa10]
