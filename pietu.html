@@ -213,16 +213,16 @@
 					
 					Tietokanta on suunniteltu toimimaan kuluttajatason laitteista muodostetussa klusterissa siten, että järjestelmä ei riipu yhdestäkään tietystä koneesta (no single point of failure, SPOF) ja tietokantaa takaa tiedon tallentumisen viivästettynä (eventual consistency).  Klusterissa voi olla useita satoja koneita jaettuna eri palvelinkeskuksiin ja tietokannan toimintaa voidaan optimoida ottamaan huomioon eri palvelinkeskukset ja keskuksissa olevien kehikkojen väliset fyysiset etäisyydet.  Lisäksi klusteriin voi jatkuvasti liittyä uusia ja poistua vanhoja koneita \cite{LaM10}.
 					
-					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa \cite{Apa10a}. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandran toiminnassa koneiden jatkuvat vikatilat on otettu suunnittelun lähtökohdaksi \cite{LaM10.
+					Facebookin tämän hetkisessä klusterissa yli 150 konetta, jotka tallentavat 100 TB tietoa \cite{Apa10a}. Tälläisellä määrällä kuluttajatason laitteita klusterissa on jatkuvasti toimimattomia koneita.  Cassandran toiminnassa koneiden jatkuvat vikatilat on otettu suunnittelun lähtökohdaksi \cite{LaM10}.
 					
-					Cassandran lähdekoodi on julkaistu avoimena lähdekoodina vuonna 2008 Apache Software Foundationin alaisuudessa nimellä "Apache Cassandra".  Myös muut sosiaalisen median palvelut, kuten Digg, Twitter ja Reddit käyttävät Cassandraa \cite{Apa10a.
+					Cassandran lähdekoodi on julkaistu avoimena lähdekoodina vuonna 2008 Apache Software Foundationin alaisuudessa nimellä ''Apache Cassandra''.  Myös muut sosiaalisen median palvelut, kuten Digg, Twitter ja Reddit käyttävät Cassandraa \cite{Apa10a}.
 					
 				
 			</section>
 			
 
 			<section>
-				\section{Muita tekniikoita}
+\subsection{Muita tekniikoita}
 
 				
 					Seuraavaksi esitellään muita web-applikaatioissa käytettyjä optimointeja ja tekniikoita.
@@ -230,23 +230,23 @@
 				
 				
 				<section>
-					\section{Välimuisti}
+					\subsubsection{Välimuisti}
 
-					Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen \emph{memcached}-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa \cite{Rot09.
+					Tärkein näkymä käyttäjälle muodostetaan käyttäjän sosiaalisen verkoston viimeaikaisista tapahtumista.  Tällöin suuri osa palvelun tietosisällöstä saa jatkuvasti paljon lukuoperaatiota.  Applikaatiopalvelimien ja MySQL-tietokannan välissä on suurikokoinen \emph{memcached}-välimuisti, jossa käytännössä koko tietosisältö on talletettuna RAM-muistiin.  Kun tietosisältöä päivitetään, päivitetään samalla myös välimuistin sisältö, jolloin tietokanta välttyy kyselyiltä.  Yhteensä välimuistikerros palvelee noin. 120 miljoonaa pyyntöä sekunnissa \cite{Rot09}.
 					
 				</section>
 				
 				
 				<section>
-					\section{IO-kutsujen minimointi}
+					\subsubsection{IO-kutsujen minimointi}
 
-					Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa \cite{Vaj09}.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä \emph{haystack}.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto \cite{Vaj09, Rot09.
+					Staattisten tiedostojen palveleminen käyttäjille, kuten kuvatiedostojen näyttämien aiheuttaa helposti useita IO-kutsuja.  Kuvatiedostoja jaettiin hetkittäin vuonna 2009 jopa 550,000 kappaletta sekunnissa \cite{Vaj09}.  Kuvien jakaminen IO-kutsujen minimointiin on kehitty palvelu nimeltä \emph{haystack}.  Haystack kirjoittaa kuvatiedostot albumeittain yhteen logitiedostoon.  Logitiedostosta voidaan hakea kuvadataa hakemiston avulla, joka tallettaa tiedston paikan logissa ym. metatietoa.  Ratkaisulla pienennettiin IO-kutsujen määrä n. 10:stä 2-4:n / palveltu kuvatiedosto \cite{Vaj09, Rot09}.
 					
 				</section>
 
 
 				<section>
-						\section{Viestinvälitys}
+						\subsubsection{Viestinvälitys}
 
 						TODO: Jos jaksaa: scribe ja thrift
 		<!-- 				
@@ -260,10 +260,10 @@
 
 
 			<section>
-				\section{Laskennan siirtäminen kolmannelle osapuolelle}
+\subsection{Laskennan siirtäminen kolmannelle osapuolelle}
 				
 									
-					Facebookin applikaatiot ovat kolmansien osapuolien kehittämiä Facebookin sisällä toimivia ohjelmia, jotka käyttävät Facebookin tarjoamaa ohjelmointirajapintaa.  Applikaatiot ovat ylläpidetty Facebookin palvelimien ulkopuolella ja käyttäjä ei koskaan muodosta suoraa yhteyttä näihin palvelimiin, vaan kaikki liikenne kulkee Facebookin palvelimien kautta.  Käyttäjä tekemät pyynnöt menevät ensin Facebookille, joka kutsuu applikaatiopalvelinta ja vastaanottaa \emph{FBML}-muotoisen vastauksen.  FBML-muoto käännetään Facebookin palvelimilla HTML:ksi, joka vastaa Facebookin tyylimäärityksiä ja annetaan käyttäjälle. Tämä toiminta on esitelty kuvassa TODO \cite{LuB08.
+					Facebookin applikaatiot ovat kolmansien osapuolien kehittämiä Facebookin sisällä toimivia ohjelmia, jotka käyttävät Facebookin tarjoamaa ohjelmointirajapintaa.  Applikaatiot ovat ylläpidetty Facebookin palvelimien ulkopuolella ja käyttäjä ei koskaan muodosta suoraa yhteyttä näihin palvelimiin, vaan kaikki liikenne kulkee Facebookin palvelimien kautta.  Käyttäjä tekemät pyynnöt menevät ensin Facebookille, joka kutsuu applikaatiopalvelinta ja vastaanottaa \emph{FBML}-muotoisen vastauksen.  FBML-muoto käännetään Facebookin palvelimilla HTML:ksi, joka vastaa Facebookin tyylimäärityksiä ja annetaan käyttäjälle. Tämä toiminta on esitelty kuvassa TODO \cite{LuB08}.
 										
 					<img src="pietuimages/facebook-dataflow.png" title="Kyselyn eteneminen Facebookin applikaatiossa [LuB08]" class="fit-width" data-lattex="fig-facebook-dataflow" />
 					
@@ -285,16 +285,16 @@
 			              
 	
       	<section>
-			\section{Yhteenveto}
+\section{Yhteenveto}
 			
 			
 					Suuret, keskitetyt käyttäjämäärät ovat toistaiseksi haaste palveluiden toteuttamiselle.  Viimeaikoina tapahtunut muutos Internetin käyttötavassa asettaa palveluntarjoajille haasteita, jotka ratkaistakseen näiden on kehitettävä uusia teknologioita.  Erityisesti sosiaalisen median palvelut tekevät muuttavat web-applikaation käyttämistä siten, että kuluttajasta tulee tuottaja.  Palveluissa tuotettu data on vahvasti toisiinsa liittyvää, keskittymisestä johtuen määrällisesti suurta ja voimakkaasti kasvavaa.  Tämä tarkoittaa sitä, että web-applikaation kehitys ja ylläpito monimutkaistuu.
 
 				Palvelut muodostetaan useista pienistä itsenäisistä palveluista, joilla on selkeät vastuualueet ja ne eivät jaa keskenään tilaa.  Tällöin jokainen pienempi osapalvelu skaalautuu itsenäisesti ja on helpompi toteuttaa. Uudet joustavammat arkkitehtuurimallit kuten BASE, jossa ehdottomasta datan konsistenssista luovutaan mahdollistavat suurien järjestelmien toiminnan.
 				
-				Facebookin tieto on siirtynyt yhdestä homogeenisestä MySQL-klusterista useampaan applikaatiospesifisempään tietokantaan (Cassandra, Hadoop).  Tietokantojen kehityssuunta tulee oletettavasti suuntautumaan enemmän heterogeeniseen kokoelmaan erilaisia malleja nykyisen homogeenisen relaatiomallin ja ACID-ominaisuuksijen sijasta.  Muut suuret palveluntuottajat, kuten Amazon.com ja Google ovat kehittäneet paremmin skaalautuvia ja liiketoimintaansa sopivia tietokantoja, kuten Amazon Dynamo \cite{DGH07} ja Googlen BigTable \cite{CFD06.
+				Facebookin tieto on siirtynyt yhdestä homogeenisestä MySQL-klusterista useampaan applikaatiospesifisempään tietokantaan (Cassandra, Hadoop).  Tietokantojen kehityssuunta tulee oletettavasti suuntautumaan enemmän heterogeeniseen kokoelmaan erilaisia malleja nykyisen homogeenisen relaatiomallin ja ACID-ominaisuuksijen sijasta.  Muut suuret palveluntuottajat, kuten Amazon.com ja Google ovat kehittäneet paremmin skaalautuvia ja liiketoimintaansa sopivia tietokantoja, kuten Amazon Dynamo \cite{DGH07} ja Googlen BigTable \cite{CFD06}.
 
-			 	Palveluihin kehitettyjen komponenttien julkaistaan usein avoimena lähdekoodina. Komponenteilla ei itsessään ole rahallista arvoa, vaan arvo on niistä rakennetulla palvelulla.  Julkaiseminen parantaa laatua ja tuo lisää kehitysresursseja \cite{SGK09,ZhE03}.  Oikeista palveluista eriytetyt avoimen lähdekoodin komponentit mahdollistavat tutkimusta ja jatkokehitystä.  Esimerkiksi Xing et al. ovat analysoineet Facebookin Haystack -toteutusta ja raportoivat sen pohjalta oman toteutuksensa \cite{XXJ09}.  Lisäksi erityisesti Googlen BigTable on vaikuttanut taas uusien tietokantojen kehitykseen <cite>LaM10, DGH07.
+			 	Palveluihin kehitettyjen komponenttien julkaistaan usein avoimena lähdekoodina. Komponenteilla ei itsessään ole rahallista arvoa, vaan arvo on niistä rakennetulla palvelulla.  Julkaiseminen parantaa laatua ja tuo lisää kehitysresursseja \cite{SGK09,ZhE03}.  Oikeista palveluista eriytetyt avoimen lähdekoodin komponentit mahdollistavat tutkimusta ja jatkokehitystä.  Esimerkiksi Xing et al. ovat analysoineet Facebookin Haystack -toteutusta ja raportoivat sen pohjalta oman toteutuksensa \cite{XXJ09}.  Lisäksi erityisesti Googlen BigTable on vaikuttanut taas uusien tietokantojen kehitykseen \cite{LaM10, DGH07}.
 								
 				Projektit, kuten Hadoop ja Cassandra ovat suunniteltu toimimaan suurella määrällä palvelimia.  Näitä palveluita ajetaan kalliiden palvelinkoneiden sijasta kuluttajatason laitteilla.  Toimintahäiriöiden yleisyys pakottaa kehittäjät suunnittelemaan komponenttinsa siten, että mikä suoritus tahansa voi koska tahansa loppua.  Tämä parantaa ohjelmistojen vikasietoisuutta ja nostaa koko palvelun laatua.
 						 
@@ -339,29 +339,29 @@
 		\section{Lyhenteet}
 		
 		<dl>
-			<dt>ACID</dt>
-			<dd>Atomicity, Consistency, Isolation, Durability</dd>
+			\textbf{ACID\\
+			Atomicity, Consistency, Isolation, Durability\\\n\\
 			
-			<dt>API</dt>
-			<dd>Application Programming Interface</dd>
-			<dd>Ohjelmointirajapinta</dd>
+			\textbf{API\\
+			Application Programming Interface\\\n\\
+			Ohjelmointirajapinta\\\n\\
 			
-			<dt>BASE</dt>
-			<dd>BAsically Available, Soft state, Eventually consistent</dd>
-			<dd>Vaihtoehto ACID-mallille</dd>
+			\textbf{BASE\\
+			BAsically Available, Soft state, Eventually consistent\\\n\\
+			Vaihtoehto ACID-mallille\\\n\\
 			
-			<dt>FBML</dt>
-			<dd>Facebook Markup Language</dd>
+			\textbf{FBML\\
+			Facebook Markup Language\\\n\\
 			
-			<dt>noSQL</dt>
-			<dd>Tietokanta, josta ei voi tehdä hakuja SQL-kyselykielellä, eikä toteuta relaatiomallia tai takaa viite-eheyttä</dd>
+			\textbf{noSQL\\
+			Tietokanta, josta ei voi tehdä hakuja SQL-kyselykielellä, eikä toteuta relaatiomallia tai takaa viite-eheyttä\\\n\\
 			
-			<dt>OSN</dt>
-			<dd>Online Social Network</dd>
+			\textbf{OSN\\
+			Online Social Network\\\n\\
 			
-			<dt>UGC</dt>
-			<dd>User-generated Content</dd>
-			<dd>Käyttäjien luoma sisältö web-palvelussa</dd>
+			\textbf{UGC\\
+			User-generated Content\\\n\\
+			Käyttäjien luoma sisältö web-palvelussa\\\n\\
 		</dl>
 	</article>
     
@@ -370,136 +370,136 @@
 
 		<dl>
 			
-			<dt data-lattex="GJW07">GJW07</dt>
-			<dd>
+			<dt data-lattex="GJW07">GJW07\\
+			
 Jennifer Golbeck and Michael M. Wasser. 2007. SocialBrowsing: integrating social networks and web browsing. In CHI '07 extended abstracts on Human factors in computing systems (CHI '07). ACM, New York, NY, USA, 2381-2386. DOI=10.1145/1240866.1241011 http://doi.acm.org/10.1145/1240866.1241011 
-			</dd>
+			\\\n\\
 
-			<dt data-lattex="Gol07">Gol07</dt>
-			<dd>
-				Jennifer Golbeck. 2007. The dynamics of web-based social networks: Membership, relationships, and change. First Monday</dd>
+			<dt data-lattex="Gol07">Gol07\\
+			
+				Jennifer Golbeck. 2007. The dynamics of web-based social networks: Membership, relationships, and change. First Monday\\\n\\
 			
 			
-			<dt data-lattex="Fac10">Fac10</dt>
-			<dd>
+			<dt data-lattex="Fac10">Fac10\\
+			
 				Facebook Statistics, http://www.facebook.com/press/info.php?statistics.  Haettu 19.10.2010.
-			</dd>
+			\\\n\\
 
 
-			<dt data-lattex="Ale10">Ale10</dt>
-			<dd>
-			Alexa.com Top 500 Global Sites, http://www.alexa.com/topsites, haettu 19.10.2010
-			</dd>
+			<dt data-lattex="Ale10">Ale10\\
 			
-			<dt data-lattex="Rot09">Rot09</dt>
-			<dd>
+			Alexa.com Top 500 Global Sites, http://www.alexa.com/topsites, haettu 19.10.2010
+			\\\n\\
+			
+			<dt data-lattex="Rot09">Rot09\\
+			
 				Rothschild, Jeff. High Performance at Massive Scale - Lessons learned at Facebook, UC San Diego CNS 2009 Lecture Series Archives, October 8, 2009, http://cns.ucsd.edu/lecturearchive09.shtml#Roth
-			</dd>
+			\\\n\\
 			<!--
 			http://idleprocess.wordpress.com/2009/11/24/presentation-summary-high-performance-at-massive-scale-lessons-learned-at-facebook/
 			-->
 			
-			<dt data-lattex="YLM09">YLM09</dt>
-			<dd>
+			<dt data-lattex="YLM09">YLM09\\
+			
 				Zhijun Yin, Rui Li, Qiaozhu Mei, and Jiawei Han. 2009. Exploring social tagging graph for web object classification. In Proceedings of the 15th ACM SIGKDD international conference on Knowledge discovery and data mining (KDD '09). ACM, New York, NY, USA, 957-966. DOI=10.1145/1557019.1557123 http://doi.acm.org/10.1145/1557019.1557123
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="Sob08">Sob08</dt>
-			<dd>
+			<dt data-lattex="Sob08">Sob08\\
+			
 				Sobel, Jason.  Scaling Out. August 20, 2008. http://www.facebook.com/note.php?note_id=23844338919&amp;id=9445547199&amp;index=0 
-			</dd>
+			\\\n\\
 
-			<dt data-lattex="Fac10b">Fac10b</dt>
-			<dd>
+			<dt data-lattex="Fac10b">Fac10b\\
+			
 				Facebook Developers - Open Source. http://developers.facebook.com/opensource/. Haettu 19.10.2010
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="Vaj09">Vaj09</dt>
-			<dd>
+			<dt data-lattex="Vaj09">Vaj09\\
+			
 			Vajgel, Peter.  Needle in a haystack: efficient storage of billions of photos.  http://www.facebook.com/note.php?note_id=76191543919.  Haettu 19.10.2010.
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="XXJ09">XXJ09</dt>
-			<dd>
+			<dt data-lattex="XXJ09">XXJ09\\
+			
 				Jing Xing, Jin Xiong, Ninghui Sun, and Jie Ma. 2009. Adaptive and scalable metadata management to support a trillion files. In Proceedings of the Conference on High Performance Computing Networking, Storage and Analysis (SC '09). ACM, New York, NY, USA, , Article 26 , 11 pages. DOI=10.1145/1654059.1654086 http://doi.acm.org/10.1145/1654059.1654086
-			</dd>
+			\\\n\\
 			
 			
-			<dt data-lattex="TSA10">TSA10</dt>
-			<dd>Thusoo A, Shao Z, Anthony S, et al. Data warehousing and analytics infrastructure at facebook. Proceedings of the 2010 international conference on Management of data - SIGMOD '10. 2010:1013. Available at: http://portal.acm.org/citation.cfm?doid=1807167.1807278.
-			</dd>
+			<dt data-lattex="TSA10">TSA10\\
+			Thusoo A, Shao Z, Anthony S, et al. Data warehousing and analytics infrastructure at facebook. Proceedings of the 2010 international conference on Management of data - SIGMOD '10. 2010:1013. Available at: http://portal.acm.org/citation.cfm?doid=1807167.1807278.
+			\\\n\\
 			
-			<dt data-lattex="PES10">PES10</dt>
-			<dd>Pujol JM, Erramilli V, Siganos G, et al. The Little Engine ( s ) That Could : Scaling Online Social Networks. 2010:375-386.
-			</dd>
+			<dt data-lattex="PES10">PES10\\
+			Pujol JM, Erramilli V, Siganos G, et al. The Little Engine ( s ) That Could : Scaling Online Social Networks. 2010:375-386.
+			\\\n\\
 			
-			<dt data-lattex="Bre02">Bre02</dt>
-			<dd>Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing, Portland, Oregon, July 2000.</dd>
+			<dt data-lattex="Bre02">Bre02\\
+			Eric A. Brewer. Towards robust distributed systems. (Invited Talk) Principles of Distributed Computing, Portland, Oregon, July 2000.\\\n\\
 			
-			<dt data-lattex="GiL02">GiL02</dt>
-			<dd>Gilbert S, Lynch N. Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News. 2002;33(2):51. Available at: http://portal.acm.org/citation.cfm?doid=564585.564601.</dd>
+			<dt data-lattex="GiL02">GiL02\\
+			Gilbert S, Lynch N. Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News. 2002;33(2):51. Available at: http://portal.acm.org/citation.cfm?doid=564585.564601.\\\n\\
 			
-			<dt data-lattex="Pri08">Pri08</dt>
-			<dd>Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.</dd>
+			<dt data-lattex="Pri08">Pri08\\
+			Pritchett D. BASE: An Acid Alternative. Queue. 2008;(June 2008). Available at: http://portal.acm.org/citation.cfm?id=1394128.\\\n\\
 			
 			
-			<dt data-lattex="LuB08">LuB08</dt>
-			<dd>
+			<dt data-lattex="LuB08">LuB08\\
+			
 Matthew M. Lucas and Nikita Borisov. 2008. FlyByNight: mitigating the privacy risks of social networking. In Proceedings of the 7th ACM workshop on Privacy in the electronic society (WPES '08). ACM, New York, NY, USA, 1-8. DOI=10.1145/1456403.1456405 http://doi.acm.org/10.1145/1456403.1456405 
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="LaM10">LaM10</dt>	
-			<dd>Avinash Lakshman and Prashant Malik. 2010. Cassandra: a decentralized structured storage system. SIGOPS Oper. Syst. Rev. 44, 2 (April 2010), 35-40. DOI=10.1145/1773912.1773922 http://doi.acm.org/10.1145/1773912.1773922
-			</dd>
+			<dt data-lattex="LaM10">LaM10\\	
+			Avinash Lakshman and Prashant Malik. 2010. Cassandra: a decentralized structured storage system. SIGOPS Oper. Syst. Rev. 44, 2 (April 2010), 35-40. DOI=10.1145/1773912.1773922 http://doi.acm.org/10.1145/1773912.1773922
+			\\\n\\
 			
-			<dt data-lattex="Fox02">Fox02</dt>
-			<dd>
+			<dt data-lattex="Fox02">Fox02\\
+			
 Armando Fox. 2002. Toward recovery-oriented computing. In Proceedings of the 28th international conference on Very Large Data Bases (VLDB '02). VLDB Endowment 873-876. 
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="NSGC09">NSGC09</dt>
-			<dd>
+			<dt data-lattex="NSGC09">NSGC09\\
+			
 Atif Nazir, Saqib Raza, Dhruv Gupta, Chen-Nee Chuah, and Balachander Krishnamurthy. 2009. Network level footprints of facebook applications. In Proceedings of the 9th ACM SIGCOMM conference on Internet measurement conference (IMC '09). ACM, New York, NY, USA, 63-75. DOI=10.1145/1644893.1644901 http://doi.acm.org/10.1145/1644893.1644901 
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="Apa10a">Apa10a</dt>
-			<dd>
+			<dt data-lattex="Apa10a">Apa10a\\
+			
 				The Apache Cassandra Project, http://cassandra.apache.org/. Haettu 9.11.2010
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="Apa10b">Apa10b</dt>
-			<dd>
+			<dt data-lattex="Apa10b">Apa10b\\
+			
 				The Apache Hadoop, http://hadoop.apache.org/. Haettu 9.11.2010
-			</dd>
+			\\\n\\
 
-			<dt data-lattex="Apa10c">Apa10c</dt>
-			<dd>
+			<dt data-lattex="Apa10c">Apa10c\\
+			
 				Hive, http://hive.apache.org/. Haettu 9.11.2010
-			</dd>
+			\\\n\\
 
 			
-			<dt data-lattex="Fac09a">Fac09a</dt>
-			<dd>
+			<dt data-lattex="Fac09a">Fac09a\\
+			
 				Thusoo Ashish, Hive - A Petabyte Scale Data Warehouse using Hadoop, http://www.facebook.com/note.php?note_id=89508453919 Haettu 9.11.2010
-			</dd>
+			\\\n\\
 			
-			<dt data-lattex="DGH07">DGH07</dt>
-			<dd>Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. Dynamo: amazon's highly available key-value store. SIGOPS Oper. Syst. Rev. 41, 6 (October 2007), 205-220. DOI=10.1145/1323293.1294281 http://doi.acm.org/10.1145/1323293.1294281
-			</dd>
+			<dt data-lattex="DGH07">DGH07\\
+			Giuseppe DeCandia, Deniz Hastorun, Madan Jampani, Gunavardhan Kakulapati, Avinash Lakshman, Alex Pilchin, Swaminathan Sivasubramanian, Peter Vosshall, and Werner Vogels. 2007. Dynamo: amazon's highly available key-value store. SIGOPS Oper. Syst. Rev. 41, 6 (October 2007), 205-220. DOI=10.1145/1323293.1294281 http://doi.acm.org/10.1145/1323293.1294281
+			\\\n\\
 			
-			<dt data-lattex="CFD06">CFD06</dt>
-			<dd>Fay Chang, Jeffrey Dean, Sanjay Ghemawat, Wilson C. Hsieh, Deborah A. Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert E. Gruber. 2006. Bigtable: a distributed storage system for structured data. In Proceedings of the 7th USENIX Symposium on Operating Systems Design and Implementation - Volume 7 (OSDI '06), Vol. 7. USENIX Association, Berkeley, CA, USA, 15-15. 
-			</dd>
+			<dt data-lattex="CFD06">CFD06\\
+			Fay Chang, Jeffrey Dean, Sanjay Ghemawat, Wilson C. Hsieh, Deborah A. Wallach, Mike Burrows, Tushar Chandra, Andrew Fikes, and Robert E. Gruber. 2006. Bigtable: a distributed storage system for structured data. In Proceedings of the 7th USENIX Symposium on Operating Systems Design and Implementation - Volume 7 (OSDI '06), Vol. 7. USENIX Association, Berkeley, CA, USA, 15-15. 
+			\\\n\\
 			
-			<dt data-lattex="SGK09">SGK09</dt>
-			<dd>Diomidis Spinellis, Georgios Gousios, Vassilios Karakoidas, Panagiotis Louridas, Paul J. Adams, Ioannis Samoladas, and Ioannis Stamelos. 2009. Evaluating the Quality of Open Source Software. Electron. Notes Theor. Comput. Sci. 233 (March 2009), 5-28. DOI=10.1016/j.entcs.2009.02.058 http://dx.doi.org/10.1016/j.entcs.2009.02.058 
-			</dd>
+			<dt data-lattex="SGK09">SGK09\\
+			Diomidis Spinellis, Georgios Gousios, Vassilios Karakoidas, Panagiotis Louridas, Paul J. Adams, Ioannis Samoladas, and Ioannis Stamelos. 2009. Evaluating the Quality of Open Source Software. Electron. Notes Theor. Comput. Sci. 233 (March 2009), 5-28. DOI=10.1016/j.entcs.2009.02.058 http://dx.doi.org/10.1016/j.entcs.2009.02.058 
+			\\\n\\
 			
-			<dt data-lattex="ZhE03">ZhE03</dt>
-			<dd>
+			<dt data-lattex="ZhE03">ZhE03\\
+			
 				Luyin Zhao, Sebastian Elbaum, Quality assurance under the open source development model, Journal of Systems and Software, Volume 66, Issue 1, 15 April 2003, Pages 65-75, ISSN 0164-1212, DOI: 10.1016/S0164-1212(02)00064-X.
 				(http://www.sciencedirect.com/science/article/B6V0N-48F5SBP-B/2/3be0bb475e3bc396d21cc6a1762c58ea)
-			</dd>
+			\\\n\\
 			
 			
 		</dl>
