@@ -1,0 +1,96 @@
+Scalable Cloud Architecture on Platform Level
+Matti Paksula
+
+1 Introduction
+
+	# Research Questions
+	
+		- How to utilize cloud platforms
+			- WTF is cloud
+			- Does it scale?
+			- Does it improve quality?
+			- Does it reduces costs?
+			- Does it reduces time-to-market?
+
+	# Scope of The Thesis
+		- Small scale software development company
+	# Structure of The Thesis
+
+2 Background for Cloud Computing
+
+	# Pre-networking Computing
+
+	# Networked Computing
+
+		# Client-Server
+
+		# Software Packaged in the Web
+
+		# Application Service Providers
+
+	# Modern Thingz
+		# Service-Oriented Architectures
+		 	- small, fedrated, share nothing
+		 	- interfaces
+		
+		# Autonomic Computing
+			- 
+		# Recovery-oriented Computing
+	
+		# Grid Computing
+
+
+3 Cloud Computing
+
+	# Attributes of Cloud
+		- on-demand, pay-as-you-go
+		- infinite
+		- automated
+		- high utilization
+	
+	# Cloud Ontologies
+	  - stakeholderit
+	  	
+		# Cloud Application Layer
+
+		# Cloud Software Environment Layer
+
+		# Cloud Software Infrastructure Layer
+
+	# XaaS
+		
+
+	# Beyond Cloud Computing  (Future?)
+
+	# Critic to Cloud Computing Paradigm
+
+4 Cloud Architecture
+	# Palvelukompositio
+	
+	# Data
+		# Static
+			- s3
+			- cdn
+		# Database data
+			- sql
+			- nosql
+	
+	# Computation
+		- distributed
+		
+		# hardware
+			# virtualized
+			# elastic
+		# software
+			# hadoop
+	
+	# Networking
+		# Load balancing
+		# Cloud of clouds
+	
+	# Security
+	# Api
+	
+5 CLoud Platforms
+	
+	

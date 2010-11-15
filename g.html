@@ -63,37 +63,44 @@
 				To implement such distributed, large scale, high reliability and scalability services is not trivial.  Many of the problems are being solved for the very first time in the history.  This thesis explores the background for Cloud Computing, gives an overview on desired attributes for Cloud services and identifies common problems associated when designing scalable cloud architectures.
 	        </pre>
 
-			<section style="display: none;">
+			<section style="">
 				<h1>Research Questions</h1>
 		
-				<pre>The main research questions that this thesis provides answers to are..</pre>
+				<pre>The main research questions is how to utilize Cloud Computing platforms?  The question is divided in to following subquestions</pre>
+				
+				<ul>
+					<li>What is the definition of Cloud Computing?</li>
+					<li>Does it improve overall quality of service?</li>
+					<li>Does it reduce costs?</li>
+					<li>Does it reduce time-to-market?</li>
+				</ul>
+				
 			</section>
 
-			<section style="display: none;">
+			<section style="">
 				<h1>Scope of The Thesis</h1>
 		
-				<pre>PaaS</pre>
+				<pre>How can a software development company who wants to reduce time-to-market, costs and quality use cloud computing platforms?</pre>
 			</section>
 		
 		
-			<section style="display: none;">
+			<section style="">
 				<h1>Structure of The Thesis</h1>
 		
 				<pre>
+					Definition of Cloud Computing
 
-					Cloud definition
-			
-					Scalability
-			
-					Measuring
-			
-					Problems
+					Cloud computing architecture
+					
+					Using Cloud platforms
 				</pre>
 			</section>
 		
 		</section>
               
-              
+
+
+ 
               
 		<section>
         	<h1>Background for Cloud Computing</h1>
@@ -105,19 +112,20 @@
 	        </pre>
       
       
-        <section>
-        	<h1>Pre-networking Computing</h1>
+        	<section>
+        		<h1>Pre-networking Computing</h1>
         
-          	<pre>
+          		<pre>
 				In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularly performed by <em>"human computers"</em>.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high <cite>zuse</cite>.
 			
 				These computers evolved in to more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
 				
 				In the early 1960's a concept called <em>multi-tenancy</em> was introduced.  This means that a single resource hosts different users with different needs at the same time.  These <em>Time-sharing Systems</em> allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used <cite>TimeSharing64</cite>.  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing that we know today.
 
-				Cloud Computing shares the same idea of providing computing power for different tenants, who can rent the resources for the time they need them.  After the tenant frees the resources, they are instantly provisioned for the next customer.  As these isolated and flexible resources are available for any organization or individual,  the utilization rate of the data centers is high and this brings the costs down.
+				Cloud Computing shares the same idea of providing computing power for different tenants, who can rent the resources for the time they need them.  After the tenant frees the resources, they are instantly provisioned for the next customer.  As these isolated and flexible resources are available for any organization or individual,  the utilization rate of the data centers is high and this brings the costs down. <!-- todo: cite -->
 	  			</pre>
 			</section>
+
 
 
 			
@@ -158,93 +166,224 @@
 					</pre>
 				</section>
 
+			</section>
 
-				<section>
-					<h1>Application Service Providers</h1>
 
-					<pre>
-						An organization can outsource their software to a separate company to gain savings of operating costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
+
+			<section>
+				<h1>Application Service Providers</h1>
+
+				<pre>
+				An organization can outsource their software to a separate company to gain savings of operating costs and better the focus on their own business.  While this <em>one to one</em> hosting of own software on external provider is still used, majority of the software is provided as service in <em>one to many</em> fashion.
 					
-						Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
+				Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
 					
-						<em>Savings</em> in upfront and total costs are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availability.  This is usually enforced with service level agreements (SLAs).  Also, the expertise needed in <em>maintenance</em> are not needed inside the customer.
+				<em>Savings</em> in upfront and total costs are possible, as service is paid on monthly or per user basis. <em>Scalability</em> and better <em>service level</em> is achieved as the providers business model needs to focus on service availability.  This is usually enforced with service level agreements (SLAs).  Also, the expertise needed in <em>maintenance</em> are not needed inside the customer.
 					
-						This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
-					</pre>
-				</section>
+				This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled <cite>asp</cite>.					
+				</pre>
+			</section>
 
 			
-				<section>
-					<h1>Service-Oriented Architectures</h1>
+			<section>
+				<h1>Service-Oriented Architectures</h1>
 
-					<pre>
-					In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
+				<pre>
+				In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
 					
-					The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page <cite>vogels</cite>.
-					</pre>
-				</section>
+				The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page <cite>vogels</cite>.
+					
+				- Intefaces
+				
+				- Tuleeko varmasti mainittua, että: small federated share nothing
+					
+				</pre>
+			</section>
 
 			
-				<section>
-					<h1>Autonomic Computing</h1>
+			<section>
+				<h1>Autonomic Computing</h1>
 					
-					<pre>
-						Distributed large scale systems are complex to design.  Due their asynchronous nature, many issues are dealt with at runtime, not in the design phase.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personnel to focus on higher level goals <cite>autonomic_vision</cite>.  Other similar initiatives are also presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) <cite>autonomic_research</cite>
+				<pre>
+					Distributed large scale systems are complex to design.  Due their asynchronous nature, many issues are dealt with at runtime, not in the design phase.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personnel to focus on higher level goals <cite>autonomic_vision</cite>.  Other similar initiatives are also presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) <cite>autonomic_research</cite>
 						
-						Similarly to Service-oriented Architectures, monolithic systems are decomposed as smaller resources.  Any resource can be viewed as an autonomic element: data storage, load balancer, application servers and so on.  Each of the resources will manage its operations over the life time of operation.  Human operators will only define high-level goals and the elements will continuously seek ways to fulfill these goals.  This frees human resources required for maintaining the services <cite>autonomic_research</cite>.
+					Similarly to Service-oriented Architectures, monolithic systems are decomposed as smaller resources.  Any resource can be viewed as an autonomic element: data storage, load balancer, application servers and so on.  Each of the resources will manage its operations over the life time of operation.  Human operators will only define high-level goals and the elements will continuously seek ways to fulfill these goals.  This frees human resources required for maintaining the services <cite>autonomic_research</cite>.
 						
-						This self-management of autonomic elements consists of four aspects: self-configuration, self-optimization, self-healing and self-protection.  Elements will continuously ensure that they are configured in the best possible way for their environment.  Same goes for optimization, as systems evolution might change the operation environment.  Self-healing ensures that systems try to recover from failures by themselves.  In addition to just preventing unauthorized access, elements will also try detect access violations and isolate these issues.  This kind of mitigation of bigger problems is part of all aspects in autonomic elements <cite>autonomic_research, autonomic_vision</cite>
-												
-						<em>Recovery-Oriented Computing</em> (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter <cite>ROC</cite>.
+					This self-management of autonomic elements consists of four aspects: self-configuration, self-optimization, self-healing and self-protection.  Elements will continuously ensure that they are configured in the best possible way for their environment.  Same goes for optimization, as systems evolution might change the operation environment.  Self-healing ensures that systems try to recover from failures by themselves.  In addition to just preventing unauthorized access, elements will also try detect access violations and isolate these issues.  This kind of mitigation of bigger problems is part of all aspects in autonomic elements <cite>autonomic_research, autonomic_vision</cite>
+				</pre>
+			</section>
+										
+			<section>
+				<h1>Recovery-oriented Computing</h1>
+				
+				<pre>
+				<em>Recovery-oriented Computing</em> (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter <cite>ROC</cite>.
 						
-					</pre>
-				</section>
+				</pre>
+			</section>
 
 
 			
-				<section>
-					<h1>Grid Computing</h1>
+			<section>
+				<h1>Grid Computing</h1>
 
-					<pre>
-					In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers <cite>TheGrid08</cite>. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article <cite>WhatIsGrid02</cite>.
+				<pre>
+				In the book "The Grid: Blueprint for a New Computing Infrastructure" Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers <cite>TheGrid08</cite>. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a "Grid Checklist" in his followup article <cite>WhatIsGrid02</cite>.
 				
-					In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
-					</pre>
+				In the article following description for a grid system is given: <em>"Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service."</em>  This can be divided into three separate parts.
+				</pre>
 				
-					<ol>
-						<li><em>"coordinates resources that are not subject to centralized control ..."</em>
-							<br/>System is accessible for example, for users of different administrative units of the same company or different companies.</li>
+				<ol>
+					<li><em>"coordinates resources that are not subject to centralized control ..."</em>
+						<br/>System is accessible for example, for users of different administrative units of the same company or different companies.</li>
 				
-						<li><em>"... using standard, open, general-purpose protocols and interfaces ..."</em>
-							<br/>All protocols used in grid are open standards. Using closed or proprietary standards would mean that grid is application specific and not an utility.
-						</li>
+					<li><em>"... using standard, open, general-purpose protocols and interfaces ..."</em>
+						<br/>All protocols used in grid are open standards. Using closed or proprietary standards would mean that grid is application specific and not an utility.
+					</li>
 				
-						<li><em>"... to deliver nontrivial qualities of service."</em>
-							<br/>Grid as whole delivers various qualities of service, such as response time, availability and security so that utility of the combined system (grid) is greater than separate components that it consists of.
-						</li>
-					</ol>
+					<li><em>"... to deliver nontrivial qualities of service."</em>
+						<br/>Grid as whole delivers various qualities of service, such as response time, availability and security so that utility of the combined system (grid) is greater than separate components that it consists of.
+					</li>
+				</ol>
 
-					<pre>Foster summarizes that the checklist given above is a definition for "a Grid".  The distinction between "a Grid" and "the Grid" is important: the implementation of grid infrastructure needs to follow a common standard.  When a common standard is followed, then successful application can be built on top of "the Grid" architecture <cite>WhatIsGrid02</cite>.</pre>
-				
-				</section>
-
+				<pre>Foster summarizes that the checklist given above is a definition for "a Grid".  The distinction between "a Grid" and "the Grid" is important: the implementation of grid infrastructure needs to follow a common standard.  When a common standard is followed, then successful application can be built on top of "the Grid" architecture <cite>WhatIsGrid02</cite>.</pre>
 				
 			</section>
+
+
+
+
+
+
+			<section>
+				<h1>Scalability in web</h1>
+				
+				<section>
+					<h1>Vertical and Horizontal Scaling</h1>
+
+					<pre>
+					Typical small scale web application usually follows a two-tier server-side architecture. An application server that contains the business logic for the application is in the first layer in the network topology.  A database server is in the second layer, fulfilling the requests that application server makes according to users requests and the business logic <cite>PES10</cite>.
+
+					As the popularity of the application increases it can be scaled in two ways: <em>vertically</em> and <em>horizontally</em>.  In vertical scaling the performance of single machines is increased by upgrading the hardware or optimizing the code.  Vertical scaling can be used for both application and database servers.  The limits are fairly early achieved and the costs increase rapidly when compared to the gained performance benefits <cite>PES10</cite>.
+
+					In horizontal scaling the number of servers in the layer is increased.  This also increases the redundancy of the application as a single server downtime does not affect the system.  Scaling application servers is trivial due the fact that they are identical and operate in the same fashion <cite>PES10</cite>.
+
+					However, it is not as trivial to scale database servers horizontally, as the operations that modify the data are likely to conflict.  Horizontal scaling in the database level might be trivial if the data can be partitioned so that it is possible have federated collections of data.  In the real world, such as social networks the data is usually strongly interconnected and therefore not possible to split up <cite>PES10</cite>.
+
+					For this reason the data is <em>sharded</em> to number of equal shards with a hashing function [MORRIS-IBM-61, PES]</pre>
+
+				</section>
+
+			
+				<section>
+					<h1>CAP Conjecture</h1>
+
+					<pre>
+						In 2000 Eric Brewer presented in his keynote at TODO <cite>Bre02</cite> a conjecture of three wanted properties of data for distributed web services.  The three properties are <strong>C</strong>onsistency, <strong>A</strong>vailability and <strong>P</strong>artitioning of the data.
+
+					Operations that modify the data are generally wanted to perform fully consistent.  This means relational database like ACID compliant operations.  For example, when an update operation is being executed, the system may never return such dataset that would contain data from old and updated sets.  To achieve this the database needs to, for example, implement some sort of locking.  Such operations are costly and not trivial to implement in distributed environments <cite>GiL02</cite>.
+
+					The availability of the data should also be high.  A web service does not exist if the data can not be reached at any given time.  To ensure better availability in the unreliable Internet where network splits can occur, the service needs to be distributed in different networks and maybe even continents.  This distribution makes the consistency requirement difficult to achieve <cite>GiL02</cite>.
+
+					The updates that happened during the network split cause a synchronization problem when the connection is restored: which one of the updates will win in a conflict situation? <cite>GiL02</cite>.  According to Brewer it is only possible to maintain any two of the given three properties in distributed environment <cite>Bre02</cite>.
+
+					</pre>
+
+				</section>
+
+
+				<section>
+					<h1>BASE</h1>
+
+					<pre>The BASE (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent) model is an opposite of the popular ACID model.  ACID operates in pessimistic fashion, forcing unconditional consistency at the end of every operation.  The BASE model takes the special characteristics of web services, such as the stateless nature, into account and copes with the real world requirements of the distributed web services <cite>Pri08</cite>.
+
+						Instead of the unconditional availability of ACID (everything or nothing) the data that can be served is served.  The whole service needs to be designed so, that the data is partitioned into functional entities.  Then, for example, if the 20% of the data is not reachable, the 80% of the data still remains accessible.  This allows the majority of users to not even notice the temporary data unavailability <cite>Pri08</cite>.
+
+						Consistency can also be loosened in the transactions.  Most data (other than for example money) can cope with inconsistencies that can happen if the service is interrupted in the critical section, because the probability when this occurs is very low.  By dropping the transactions and accepting possible inconsistencies it is easier to scale the service up.  Another approach is to design update operations to be <em>idempotent</em> that always return the same value if applied multiple times on data <cite>Pri08</cite>.
+
+						Momentary anomalies in the data can be worked around when the whole system is designed the eventual consistency in mind.  For example when a user updates something in the service, the actual update can be postponed by several seconds before actually updating: it is enough that the user sees the update in his view <cite>Pri08</cite>.
+
+					</pre>
+				</section>
+			
+			</section>
+
+
+
+
+
+			<section>
+				<h1>Summary</h1>
+
+				<pre>
+					Time-sharing: pay-as-you-go, expensive investment becomes cheaper due utilization rate
+
+					Client-server: many clients accessing many servers, centralized data management, utilize server resources
+
+					Thin-clients: different devices, computing resources on server
+
+					Web software: distribution method, centralized updates
+
+					SOA: service composed of many individual services, but with simple http rest
+
+					Grid computing: computing as electricity, illusion of infinity
+
+					Autonomic computing: self-healing systems
+				</pre>
+			</section>
+			
+			
+							
 		</section>
+
+				
+
+
+
+				
+				
+				
+				
+				
+				
+				
 		
 		<section>
 			<h1>Cloud Computing</h1>
 
-			<pre>In "Toward a Unified Ontology of Cloud Computing" Youseff et al. <cite>unified_ontology</cite> state that the term Cloud Computing is a composite of old concepts introduced in several research fields like Service-Oriented Architectures, distributed systems, grid computing and virtualization.  They propose an ontology that dissects the Cloud into five main layers: Cloud Application Layer, Cloud Software Environment, Cloud Software Infrastructure, Software Kernel and Firmware / Hardware.  
+			<pre>
+				Mitä koko luvussa käydään, miksi pitää lukea.  Lyhyt kuvaus cloudista.
+			
 			</pre>
+			
+			<section>
+				<h1>Attributes of Cloud</h1>
+				
+				<pre>
+					- on-demand, pay-as-you-go
+				
+					- infinite
+				
+					- automated
+				
+					- high utilization
+									
+					- Self-healing
+			
+					- Commodity Hardware
+				</pre>
+			</section>
+			
 			
 			<section>
 				<h1>Cloud Ontologies</h1>
 				
-		
+				
+				<pre>In "Toward a Unified Ontology of Cloud Computing" Youseff et al. <cite>unified_ontology</cite> state that the term Cloud Computing is a composite of old concepts introduced in several research fields like Service-Oriented Architectures, distributed systems, grid computing and virtualization.  They propose an ontology that dissects the Cloud into five main layers: Cloud Application Layer, Cloud Software Environment, Cloud Software Infrastructure, Software Kernel and Firmware / Hardware.  
+				</pre>
+
 				<pre>
-							<h1>Liimaappa noi kaikki ylhäällä läpikäydyt nyt sitten tähän.</h1>
-					TODO: introa kuvalla yms.  tsekkaa toi ylempi teksti, ehkä sen pitäis olla tässä ja sitten ois yleinen intro.
+					- stakeholderit mainitaan seuraavassa, nää ontologiat on nimenomaan niiden määrittelyä
 				</pre>
 				
 				<section>
@@ -252,7 +391,9 @@
 				
 					<pre>The application layer is where the users interact with the cloud.  In the same sense as in <em>software packaged in the web</em>, users access the software usually with a web browser and data is stored on the server.  When looking this from the perspective of the Cloud computing, the difference is in the pricing model.  The software, that was just accessed through the web browser did not take pricing in the account.  In the Cloud the pricing model is integrated in the definition.  The users pay for the service and resources they actually use <cite>Cusumano10</cite>. 
 					
-					This model is commonly known as the <em>Software-as-a-Service</em> (SaaS).  In addition of being another mode for the delivery and pricing for the end-users, the SaaS model also enables new industry platforms for businesses.  The web browser with what the software is most commonly accessed, is just one interface for the service.  Additional interfaces for the data and business logic are provided that other application companies can use to built their new products from.  This enables new services to form in top of existing services.  For example, a payroll application can use another SaaS application from a different vendor to calculate tax deductibles <cite>Cusumano10, unified_ontology</cite>.
+					This model is commonly known as the <em>Software-as-a-Service</em> (SaaS).  In addition of being another mode for the delivery and pricing for the end-users, the SaaS model also enables new industry platforms for businesses.  The web browser with what the software is most commonly accessed, is just one interface for the service.  
+					
+					Additional interfaces for the data and business logic are provided that other application companies can use to built their new products from.  This enables new services to form in top of existing services.  For example, a payroll application can use another SaaS application from a different vendor to calculate tax deductibles <cite>Cusumano10, unified_ontology</cite>.
 					
 					Network Level Footprints of Facebook Applications sanoo että fb:n käyttöaste kasvo 30% ja twitterin jotain kun avasivat platforminsa.
 									
@@ -281,69 +422,7 @@
 				
 					</pre>
 				</section>
-			</section>
-			
-			
-
-			
-			
-			<pre>
-				Time-sharing: pay-as-you-go, expensive investment becomes cheaper due utilization rate
-		
-				Client-server: many clients accessing many servers, centralized data management, utilize server resources
-		
-				Thin-clients: different devices, computing resources on server
-		
-				Web software: distribution method, centralized updates
-		
-				SOA: service composed of many individual services, but with simple http rest
-		
-				Grid computing: computing as electricity, illusion of infinity
-		
-				Autonomic computing: self-healing systems        
-	      	</pre>                     
-
-
-
-			<section>
-				<h1>Attributes of Cloud Service</h1>
-	
-				<pre>				
-					Infinite Scaling
-		
-					On-demand Elastic Allocation of Resources
 				
-						dna-albumi
-				
-					Self-healing
-			
-					Commodity Hardware
-				</pre>
-		
-			</section>
-	
-			<section>
-				<h1>Components of Cloud Service</h1>
-
-				<pre>
-					XaaS and Service Oriented Architectures
-
-					implementation levels
-				
-					cloud ontologies
-				</pre>
-			
-				<section>
-					<h1>Infrastucture as a Service</h1>
-				</section>
-	
-				<section>
-					<h1>Platform as a Service</h1>
-				</section>
-	
-				<section>
-					<h1>Software as a Service</h1>
-				</section>
 
 				<section>
 					<h1>XaaS</h1>
@@ -356,18 +435,10 @@
 						Hardware as a Service
 					</pre>
 				</section>
-			</section>
-	
-			<section>
-				<h1>Beyond Cloud Computing</h1>
-				
-				<pre>
-					Intercloud: if internet is the net of nets, then intercloud is cloud of clouds
-					
-					Sky Computing: clouds in the sky
-				</pre>
+
 			</section>
 			
+
 			
 			<section>
 				<h1>Critic to Cloud Computing Paradigm</h1>
@@ -385,61 +456,51 @@
 				</pre>
 			</section>
 		</section>
-	</section>
+		
 	
+
 	<section>
-		<h1>Scalable Architectures</h1>
+		<h1>Cloud Application Architecture</h1>
+		
 		
 		<pre>
-			Storing large quantities of data in distrubuted architecture sets plenty of challanges for the design and implementation of the system.
+			
+			4 Cloud Architecture
+				# Palvelukompositio
+
+				# Data
+					# Static
+						- s3
+						- cdn
+					# Database data
+						- sql
+						- nosql
+
+				# Computation
+					- distributed
+
+					# hardware
+						# virtualized
+						# elastic
+					# software
+						# hadoop
+
+				# Networking
+					# Load balancing
+					# Cloud of clouds
+
+				# Security
+				# Api
+			
 		</pre>
+	</section>
 
-		<section>
-			<h1>Vertical and Horizontal Scaling</h1>
 
-			<pre>
-			Typical small scale web application usually follow a two-tier server-side architecture. An application server that contains the business logic for the application is in the first layer in the network topology.  A database server is in the second layer, fulfilling the requests that application server makes according to users requests and the business logic <cite>PES10</cite>.
-			
-			As the popularity of the application increases it can be scaled in two ways: <em>vertically</em> and <em>horizontally</em>.  In vertical scaling the performance of single machines is increased by upgrading the hardware or optimizing the code.  Vertical scaling can be used for both application and database servers.  The limits are fairly early achieved and the costs increase rapidly when compared to the gained performance benefits <cite>PES10</cite>.
-			
-			In horizontal scaling the number of servers in the layer is increased.  This also increases the redundancy of the application as a single server downtime does not affect the system.  Scaling application servers is trivial due the fact that they are identical and operate in the same fashion <cite>PES10</cite>.
-			
-			However, it is not as trivial to scale database servers horizontally, as the operations that modify the data are likely to conflict.  Horizontal scaling in the database level might be trivial if the data can be partitioned so that it is possible have federated collections of data.  In the real world, such as social networks the data is usually strongly interconnected and therefore not possible to split up <cite>PES10</cite>.
-
-			For this reason the data is <em>sharded</em> to number of equal shards with a hashing function [MORRIS-IBM-61, PES]</pre>
-
-		</section>
+	<section>
+		<h1>Cloud platforms</h1>
 		
-		<section>
-			<h1>CAP Conjecture</h1>
-			
-			<pre>
-				In 2000 Eric Brewer presented in his keynote at TODO <cite>Bre02</cite> a conjecture of three wanted properties of data for distributed web services.  The three properties are <strong>C</strong>onsistency, <strong>A</strong>vailability and <strong>P</strong>artitioning of the data.
+	</section>
 
-			Operations that modify the data are generally wanted to perform fully consistent.  This means relational database like ACID compliant operations.  For example, when an update operation is being executed, the system may never return such dataset that would contain data from old and updated sets.  To achieve this the database needs to, for example, implement some sort of locking.  Such operations are costly and not trivial to implement in distributed environments <cite>GiL02</cite>.
-			
-			The availability of the data should also be high.  A web service does not exist if the data can not be reached at any given time.  To ensure better availability in the unreliable Internet where network splits can occur, the service needs to be distributed in different networks and maybe even continents.  This distribution makes the consistency requirement difficult to achieve <cite>GiL02</cite>.
-			
-			The updates that happened during the network split cause a synchronization problem when the connection is restored: which one of the updates will win in a conflict situation? <cite>GiL02</cite>.  According to Brewer it is only possible to maintain any two of the given three properties in distributed environment <cite>Bre02</cite>.
-			
-			</pre>
-			
-		</section>
-		
-		
-		<section>
-			<h1>BASE</h1>
-			
-			<pre>The BASE (<strong>BA</strong>sically available, <strong>S</strong>oft state, <strong>E</strong>ventually consistent) model is an opposite of the popular ACID model.  ACID operates in pessimistic fashion, forcing unconditional consistency at the end of every operation.  The BASE model takes the special characteristics of web services, such as the stateless nature, into account and copes with the real world requirements of the distributed web services <cite>Pri08</cite>.
-				
-				Instead of the unconditional availability of ACID (everything or nothing) the data that can be served is served.  The whole service needs to be designed so, that the data is partitioned into functional entities.  Then, for example, if the 20% of the data is not reachable, the 80% of the data still remains accessible.  This allows the majority of users to not even notice the temporary data unavailability <cite>Pri08</cite>.
-
-				Consistency can also be loosened in the transactions.  Most data (other than for example money) can cope with inconsistencies that can happen if the service is interrupted in the critical section, because the probability when this occurs is very low.  By dropping the transactions and accepting possible inconsistencies it is easier to scale the service up.  Another approach is to design update operations to be <em>idempotent</em> that always return the same value if applied multiple times on data <cite>Pri08</cite>.
-				
-				Momentary anomalies in the data can be worked around when the whole system is designed the eventual consistency in mind.  For example when a user updates something in the service, the actual update can be postponed by several seconds before actually updating: it is enough that the user sees the update in his view <cite>Pri08</cite>.
-				
-			</pre>
-		</section>
 	
 	<section>
 		<h1>Ye olde</h1>
@@ -450,6 +511,8 @@
 			
 			The second contribution of the paper is the characterization of
 			various delays involved in user and Facebook third-party applica- tion interactions—the first-of-its-kind large-scale study.
+			
+			
 			
 			
 			
@@ -499,7 +562,33 @@
 		
 		</pre>
 		
+		
+
+		
+		
 		</section>
+		
+		
+		
+		<section>
+			<h1>Future</h1>
+			
+			<section>
+				<h1>Beyond Cloud Computing</h1>
+			
+				<pre>
+					Intercloud: if internet is the net of nets, then intercloud is cloud of clouds
+				
+					Sky Computing: clouds in the sky
+				</pre>
+			</section>
+		
+			<section>
+				<h1>Services->innovate-reflect</h1>
+			</section>	
+			
+		</section>
+		
 		
       	<section>
 			<h1>Conclusions</h1>
