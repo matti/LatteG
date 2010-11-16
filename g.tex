@@ -1,0 +1,521 @@
+\documentclass{tktltiki}
+\usepackage{ae,aecompl}
+\usepackage{url}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage{graphicx}
+
+\begin{document}
+
+
+ 
+\title{Scalable Cloud Architecture on Platform Level}
+\author{Matti Paksula}
+\date{\today}
+\level{Gardu}
+\maketitle
+
+\faculty{Matemaattis-luonnontieteellinen}
+\department{Tietojenksittelytieteen laitos}
+\subject{Tietojenksittelytiede}
+
+
+\keywords{TODO, TODOISM}
+
+\begin{abstract}
+	TODO
+\end{abstract}
+
+
+\onehalfspacing
+\numberofpagesinformation{\numberofpages\ sivua}
+  
+\setcounter{tocdepth}{3}
+\mytableofcontents
+    
+  
+
+\section{Introduction}
+
+        
+        
+The ways and purposes for what computers have been used has changed many times in the history of computing.  The concept of how computers are used, a paradigm, defines not only individual experience, but also the business models available to the the IT industry.
+
+Cloud Computing is the latest paradigm shift in the history of computing.  The word \emph{cloud} refers to networking diagrams, where a complex network, usually the Internet, is abstracted in a cloud form shape.  Raise of the abstraction level is done because the things presented in the diagram do not require that the implementation details of the Internet are also presented: the Internet is assumed to operate correctly with the architecture presented in the diagram.  In Cloud Computing, the networked computing resources are abstracted in the same sense, so that it is possible to focus on actual service implementation.
+
+The definition of Cloud Computing is as vague.  Computing is not the only part that is abstracted in the Cloud, as also data storage, networking and other resources are also part of the.  Moreover, the definition varies among the stakeholders. One of the few common attributes of Cloud is that the nature of resources abstracted is service based.  Resources are transferred in to utilities that are delivered by service providers.  Therefore, the term \emph{Utility Computing} is also used.
+
+To implement such distributed, large scale, high reliability and scalability services is not trivial.  Many of the problems are being solved for the very first time in the history.  This thesis explores the background for Cloud Computing, gives an overview on desired attributes for Cloud services and identifies common problems associated when designing scalable cloud architectures.
+        
+
+\subsection{Research Questions}
+
+The main research question is: What are the benefits of using Cloud Computing platforms?  The question is divided in to following subquestions
+
+\begin{itemize}
+\item{What is the definition of Cloud Computing?}
+\item{what are the -lities}
+\item{development benefits}
+\end{itemize}
+
+
+findings:
+
+\begin{itemize}
+\item{It improves overall quality of service}
+\item{it reduces costs under some conditions}
+\item{it reduce time-to-market, always}
+\end{itemize}
+
+
+
+
+
+\subsection{Scope of The Thesis}
+
+How can a software development company who wants to reduce time-to-market, costs and quality use cloud computing platforms?
+
+
+\subsection{Structure of The Thesis}
+
+Definition of Cloud Computing
+
+Cloud computing architecture
+
+Benefits on Using Cloud platforms
+
+
+
+
+
+
+
+
+
+
+\section{Background for Cloud Computing}
+
+Cloud Computing draws technical background and principles from all computing paradigms and industry business models since 1960's, starting from the early time-sharing systems in the 1960's to latest web packaged software of the late 1990's.  As a composition of old models and principles it is sometimes also seen as a buzzword or umbrella term, not an actual computing paradigm.
+
+In the next sections the history of computing is briefly explored to identify the background from what the Cloud is composed of.  Then the attributes that are unique to the Cloud Computing of are presented justifying Cloud Computing as a true paradigm shift.
+        
+      
+      
+
+\subsection{Pre-networking Computing}
+In the early days of computing, computers were physically big, complicated machines, that were used for specialized tasks.  These tasks included calculations for roofs, airplane wing designs and such tasks that were regularly performed by \emph{''human computers''}.  When a calculation was to be made, one needed physical access to the machine and also deep knowledge of how to operate the machine itself.  As the machines were not mass produced, the price tag for a single machine was very high \cite{zuse}.
+
+These computers evolved in to more generic in their ability to solve different problems.  Computers were still costly, and to get better value of for the investment, developments in getting the utilization rate of a computing resource up was under research.
+
+In the early 1960's a concept called \emph{multi-tenancy} was introduced.  This means that a single resource hosts different users with different needs at the same time.  These \emph{Time-sharing Systems} allowed users to utilize one powerful centralized computer at the same time.   This reduced the costs of computing, as the organizations could share one big system.  Each user could log on and load their own program to be run simultaneously for a fraction of time.  Usage was accounted and billed by the actual time and resourced used \cite{TimeSharing64}.  These systems evolved and became more standardized.  Centralized mainframe systems were accessed with wired remote terminals resembling the computing that we know today.
+
+Cloud Computing shares the same idea of providing computing power for different tenants, who can rent the resources for the time they need them.  After the tenant frees the resources, they are instantly provisioned for the next customer.  As these isolated and flexible resources are available for any organization or individual,  the utilization rate of the data centers is high and this brings the costs down. 
+  
+
+
+\subsection{Networked Computing}
+
+The networked computing as we know it today, evolved from terminal-computer communication needed to access mainframes.  Wide networks already existed between centralized mainframes, but as the need for computer-computer interconnectivity grew, a technology called Ethernet become successful.
+
+Ethernet allowed computers to be networked together without need for computers themselves to provide communication.  Probabilistic delivery of the network provided solid base for the growth of the largest unreliable network, the Internet.  The design principles of the Ethernet still influences architectural design patterns of modern web applications \cite{Ethernet}.
+
+
+\subsubsection{Client-Server}
+
+During the 1980's networking enabled networked desktops to communicate with a shared networked resource, a server.  Desktops became workstations that could store their data also on the shared server, and their software could utilize the resources available on the server for computation.  This client-server architecture made working in groups more efficient and reduced the maintenance required by user, as the updates could be deployed in the server and the shared data could be backed up from one centralized location \cite{ClientServer96, CloudComputing}.
+
+When the networks became more established during the 1990's, visions of cost efficient and mainly maintenance free client computer were largely discussed and supported by major companies of the hardware industry, like the IBM.  These thin-clients would only provide basic hardware and make use of the software loaded from a centralized server.  Due limited network speeds and availability of reliable network links this model did not become very popular \cite{InTheClouds07}.
+
+During this era, the Relational Database Management Systems (RDBMS) also became a popular solution for enterprise data management.  RDBMSes provided and still provide all-purpose structured storage for data with querying abilities \cite{ClientServer96}.
+
+Services running on top of Cloud are accessed in client-server fashion, usually with a web browser.  Computing is done in the distributed application servers, and data is stored and replicated across different data centers.  RDBMSes are still used by the Cloud service providers to provide reliable data storage, although more scalable alternatives have recently appeared. 
+
+
+\subsubsection{Software Packaged in the Web}
+
+As the costs of manufacturing computers reduced, the computers became personal in the beginning of the 1980's.  This also gave a boost to the software industry as each desktop computer needed its own, physical copy of the software package, so called ''shrink-wrapped software''.  Users became responsible of maintaining their hardware, software and the data associated with it \cite{CloudComputing}. 
+
+The success of the Internet in the late 1990's and early 2000's opened a new industry for software packaged in the web instead of shrink-wrap.  Familiar desktop software such as simple word processing, shared calendars, intranets and other groupware are delivered through the web browser liberating the user from installation or maintenance \cite{Cusumano10}.
+
+From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however \emph{not} automatically Cloud Computing, because it often does not satisfy the attributes that will be explored in the last section of this chapter.
+
+
+
+\subsection{Application Service Providers}
+
+An organization can outsource their software to a separate company to gain savings of operating costs and better the focus on their own business.  While this \emph{one to one} hosting of own software on external provider is still used, majority of the software is provided as service in \emph{one to many} fashion.
+
+Application Service Provider (ASP) a software that is accessible through network, most commonly the Internet, is provided for many different customers from a data center.  As the same software and infrastructure can be used in together with isolation of the data this brings many advantages for clients.
+
+\emph{Savings} in upfront and total costs are possible, as service is paid on monthly or per user basis. \emph{Scalability} and better \emph{service level} is achieved as the providers business model needs to focus on service availability.  This is usually enforced with service level agreements (SLAs).  Also, the expertise needed in \emph{maintenance} are not needed inside the customer.
+
+This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled \cite{asp}.
+
+
+
+\subsection{Service-Oriented Architectures}
+
+In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
+
+The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page \cite{vogels}.
+
+- Intefaces
+
+- Tuleeko varmasti mainittua, että: small federated share nothing
+
+
+
+\subsection{Autonomic Computing}
+
+Distributed large scale systems are complex to design.  Due their asynchronous nature, many issues are dealt with at runtime, not in the design phase.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personnel to focus on higher level goals \cite{autonomic_vision}.  Other similar initiatives are also presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) \cite{autonomic_research}
+
+Similarly to Service-oriented Architectures, monolithic systems are decomposed as smaller resources.  Any resource can be viewed as an autonomic element: data storage, load balancer, application servers and so on.  Each of the resources will manage its operations over the life time of operation.  Human operators will only define high-level goals and the elements will continuously seek ways to fulfill these goals.  This frees human resources required for maintaining the services \cite{autonomic_research}.
+
+This self-management of autonomic elements consists of four aspects: self-configuration, self-optimization, self-healing and self-protection.  Elements will continuously ensure that they are configured in the best possible way for their environment.  Same goes for optimization, as systems evolution might change the operation environment.  Self-healing ensures that systems try to recover from failures by themselves.  In addition to just preventing unauthorized access, elements will also try detect access violations and isolate these issues.  This kind of mitigation of bigger problems is part of all aspects in autonomic elements \cite{autonomic_research, autonomic_vision}
+
+
+
+\subsection{Recovery-oriented Computing}
+
+\emph{Recovery-oriented Computing} (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter \cite{ROC}.
+
+
+\subsection{Grid Computing}
+
+In the book ''The Grid: Blueprint for a New Computing Infrastructure'' Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers \cite{TheGrid08}. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a ''Grid Checklist'' in his followup article \cite{WhatIsGrid02}.
+
+In the article following description for a grid system is given: \emph{''Coordinates resources that are not subject to centralized control using standard, open, general-purpose protocols and interfaces to deliver nontrivial qualities of service.''}  This can be divided into three separate parts.
+
+\begin{itemize}
+	\item{\emph{''coordinates resources that are not subject to centralized control ...''}
+System is accessible for example, for users of different administrative units of the same company or different companies.}
+	\item{\emph{''... using standard, open, general-purpose protocols and interfaces ...''}
+All protocols used in grid are open standards. Using closed or proprietary standards would mean that grid is application specific and not an utility.
+}
+	\item{\emph{''... to deliver nontrivial qualities of service.''}
+Grid as whole delivers various qualities of service, such as response time, availability and security so that utility of the combined system (grid) is greater than separate components that it consists of.
+}
+
+\end{itemize}
+
+
+Foster summarizes that the checklist given above is a definition for ''a Grid''.  The distinction between ''a Grid'' and ''the Grid'' is important: the implementation of grid infrastructure needs to follow a common standard.  When a common standard is followed, then successful application can be built on top of ''the Grid'' architecture \cite{WhatIsGrid02}.
+
+
+
+\subsection{Scalability in web}
+
+\subsubsection{Vertical and Horizontal Scaling}
+
+Typical small scale web application usually follows a two-tier server-side architecture. An application server that contains the business logic for the application is in the first layer in the network topology.  A database server is in the second layer, fulfilling the requests that application server makes according to users requests and the business logic \cite{PES10}.
+
+As the popularity of the application increases it can be scaled in two ways: \emph{vertically} and \emph{horizontally}.  In vertical scaling the performance of single machines is increased by upgrading the hardware or optimizing the code.  Vertical scaling can be used for both application and database servers.  The limits are fairly early achieved and the costs increase rapidly when compared to the gained performance benefits \cite{PES10}.
+
+In horizontal scaling the number of servers in the layer is increased.  This also increases the redundancy of the application as a single server downtime does not affect the system.  Scaling application servers is trivial due the fact that they are identical and operate in the same fashion \cite{PES10}.
+
+However, it is not as trivial to scale database servers horizontally, as the operations that modify the data are likely to conflict.  Horizontal scaling in the database level might be trivial if the data can be partitioned so that it is possible have federated collections of data.  In the real world, such as social networks the data is usually strongly interconnected and therefore not possible to split up \cite{PES10}.
+
+For this reason the data is \emph{sharded} to number of equal shards with a hashing function [MORRIS-IBM-61, PES]
+
+
+\subsubsection{CAP Conjecture}
+
+In 2000 Eric Brewer presented in his keynote at TODO \cite{Bre02} a conjecture of three wanted properties of data for distributed web services.  The three properties are \textbf{C}onsistency, \textbf{A}vailability and \textbf{P}artitioning of the data.
+
+Operations that modify the data are generally wanted to perform fully consistent.  This means relational database like ACID compliant operations.  For example, when an update operation is being executed, the system may never return such dataset that would contain data from old and updated sets.  To achieve this the database needs to, for example, implement some sort of locking.  Such operations are costly and not trivial to implement in distributed environments \cite{GiL02}.
+
+The availability of the data should also be high.  A web service does not exist if the data can not be reached at any given time.  To ensure better availability in the unreliable Internet where network splits can occur, the service needs to be distributed in different networks and maybe even continents.  This distribution makes the consistency requirement difficult to achieve \cite{GiL02}.
+
+The updates that happened during the network split cause a synchronization problem when the connection is restored: which one of the updates will win in a conflict situation? \cite{GiL02}.  According to Brewer it is only possible to maintain any two of the given three properties in distributed environment \cite{Bre02}.
+
+
+\subsubsection{BASE}
+
+The BASE (\textbf{BA}sically available, \textbf{S}oft state, \textbf{E}ventually consistent) model is an opposite of the popular ACID model.  ACID operates in pessimistic fashion, forcing unconditional consistency at the end of every operation.  The BASE model takes the special characteristics of web services, such as the stateless nature, into account and copes with the real world requirements of the distributed web services \cite{Pri08}.
+
+Instead of the unconditional availability of ACID (everything or nothing) the data that can be served is served.  The whole service needs to be designed so, that the data is partitioned into functional entities.  Then, for example, if the 20\% of the data is not reachable, the 80\% of the data still remains accessible.  This allows the majority of users to not even notice the temporary data unavailability \cite{Pri08}.
+
+Consistency can also be loosened in the transactions.  Most data (other than for example money) can cope with inconsistencies that can happen if the service is interrupted in the critical section, because the probability when this occurs is very low.  By dropping the transactions and accepting possible inconsistencies it is easier to scale the service up.  Another approach is to design update operations to be \emph{idempotent} that always return the same value if applied multiple times on data \cite{Pri08}.
+
+Momentary anomalies in the data can be worked around when the whole system is designed the eventual consistency in mind.  For example when a user updates something in the service, the actual update can be postponed by several seconds before actually updating: it is enough that the user sees the update in his view \cite{Pri08}.
+
+
+
+\subsection{Summary}
+
+Time-sharing: pay-as-you-go, expensive investment becomes cheaper due utilization rate
+
+Client-server: many clients accessing many servers, centralized data management, utilize server resources
+
+Thin-clients: different devices, computing resources on server
+
+Web software: distribution method, centralized updates
+
+SOA: service composed of many individual services, but with simple http rest
+
+Grid computing: computing as electricity, illusion of infinity
+
+Autonomic computing: self-healing systems
+
+
+
+
+
+
+
+
+
+\section{Cloud Computing}
+
+Mitä koko luvussa käydään, miksi pitää lukea.  Lyhyt kuvaus cloudista.
+
+
+\subsection{Attributes of Cloud}
+
+- on-demand, pay-as-you-go
+
+- infinite
+
+- automated
+
+- high utilization
+
+- Self-healing
+
+- Commodity Hardware
+
+
+\subsection{Cloud Ontologies}
+
+In ''Toward a Unified Ontology of Cloud Computing'' Youseff et al. \cite{unified_ontology} state that the term Cloud Computing is a composite of old concepts introduced in several research fields like Service-Oriented Architectures, distributed systems, grid computing and virtualization.  They propose an ontology that dissects the Cloud into five main layers: Cloud Application Layer, Cloud Software Environment, Cloud Software Infrastructure, Software Kernel and Firmware / Hardware.  
+
+- stakeholderit mainitaan seuraavassa, nää ontologiat on nimenomaan niiden määrittelyä
+
+
+\subsubsection{Cloud Application Layer}
+
+The application layer is where the users interact with the cloud.  In the same sense as in \emph{software packaged in the web}, users access the software usually with a web browser and data is stored on the server.  When looking this from the perspective of the Cloud computing, the difference is in the pricing model.  The software, that was just accessed through the web browser did not take pricing in the account.  In the Cloud the pricing model is integrated in the definition.  The users pay for the service and resources they actually use \cite{Cusumano10}. 
+
+This model is commonly known as the \emph{Software-as-a-Service} (SaaS).  In addition of being another mode for the delivery and pricing for the end-users, the SaaS model also enables new industry platforms for businesses.  The web browser with what the software is most commonly accessed, is just one interface for the service.  
+
+Additional interfaces for the data and business logic are provided that other application companies can use to built their new products from.  This enables new services to form in top of existing services.  For example, a payroll application can use another SaaS application from a different vendor to calculate tax deductibles \cite{Cusumano10, unified_ontology}.
+
+Network Level Footprints of Facebook Applications sanoo että fb:n käyttöaste kasvo 30\% ja twitterin jotain kun avasivat platforminsa.
+
+
+
+\subsubsection{Cloud Software Environment Layer}
+
+
+Service-based model is also extended for the developers who are building cloud services.  The providers in this layer offer developers well-defined APIs that take care common issues and decrease the overall development time.
+
+Environment layer is commonly referred as \emph{Platform as a Service} (PaaS).  When the application utilizes the platform, the platform will take care of for example scaling, data processing and security to some extend.  This reduces development time and makes developing less complex allowing the developers to concentrate on the actual application \cite{unified_ontology}.
+
+
+\subsubsection{Cloud Software Infrastructure Layer}
+
+
+The two layers described above need actual hardware. Hardware needed can be categorized into: computational resources, data storage and communications (networking).  All of these are provided as a service for the PaaS providers and SaaS developers.  This service is more commonly known as \emph{Infrastructure-as-a-Service} (IaaS).
+
+Computational resources
+
+Data Storage
+
+Communications
+
+
+\subsubsection{XaaS}
+
+Datastorage as a Service
+
+Communications as a Service
+
+Hardware as a Service
+
+
+\subsection{Critic to Cloud Computing Paradigm}
+
+
+''Critics of outsourcing argue that, in many instances, outsourcing can result in organizations inadvertently becoming dependent on vendors.'' vs Open Source
+
+''ASP applications are generally packaged, of the shelf rather than customized to the organizations business processes. ASP''
+
+''An ASP is not just for hosting applications but ensuring that the applications are maintained, monitored, scaled and upgrades effectively over time.''
+
+''Security issues are likely to deter the adoption of web-enabled ASP applications.''
+\cite{asp}
+
+
+
+\section{Cloud Application Architecture}
+
+
+
+4 Cloud Architecture
+- Palvelukompositio
+
+- Data
+- Static
+- s3
+- cdn
+- Database data
+- sql
+- nosql
+
+--> homogeenisen tietokantavalinnan sijaan heterogeeninen kantakokoelma applikaatiospefisiä tietokantoja.  eli: rahaat -> sql, countterit -> redis, metadata -> mongo, flowdockin viestit -> .txt, 
+
+- Computation
+- distributed
+
+- hardware
+ virtualized
+- elastic
+- software
+- hadoop
+
+- Networking
+- Load balancing
+- Cloud of clouds
+
+- Security
+- Api
+
+
+
+kysymys: what are the benefits
+
+1 understanding where we come from --> cloud
+2 what is cloud
+3 generic example architecture
+
+
+4 New it vs Future it
+  - current vs cloud architectures
+- MOAR scalability
+  - current vs cloud development
+- .java files / gems vs apis
+- kahden hengen tiimillä voi tehdä vitun ison facebookin, koska valmiit palvelut
+  - current vs cloud users point of view: miten maksaa/kk .. onko ohjelmia?
+- thin client vs fat server
+
+4 mistä maksat tällä hetkellä
+    mistä maksat cloudissa
+    millä edellytyksillä cloud on
+   - halvempi
+   - tehokkaampi
+   - nopeammin käytössä
+   - ylläpidettävämpi
+   - turvallisempi
+   - ...
+
+5 conclusions
+
+
+1 what is cloud
+2 architecture
+3 implementation
+4 measuring
+5 results
+6 conclusions
+
+
+1 what is cloud
+2 architecture
+3 evaluation
+5 results
+6 conclusions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Ye olde}
+
+
+
+
+The client can be an OSN user anywhere on the globe, with varying access speed and browser rendering capabilities. The OSN may serve the client’s requests from a server farm or CDNs. The third-party ap- plication servers are also geographically distributed with different server capabilities. No single entity controls how users running an OSN application are served
+
+The second contribution of the paper is the characterization of
+various delays involved in user and Facebook third-party applica- tion interactions—the first-of-its-kind large-scale study.
+
+
+
+
+
+Implementing cloud, the bad parts
+
+CAP theorem
+
+Proof of CAP
+
+Critic to CAP theorem
+
+Architectural Patterns
+
+Old world architectures
+
+ACID
+
+Cloud compliant architectures
+
+BASE
+
+Basically Available
+
+Soft State
+
+Eventually Consistent
+
+BASE vs ACID
+
+Emerging Technology
+
+Measuring Cloud Services
+
+TPC-C Like Traditional Measurement wont do
+
+Requirements for Cloud Measurement
+
+Measurement techniques
+
+YCBS Benchmarking
+
+Identifying Common X,Y,Z Requirements for Cloud Services
+
+Implementing X, Y, Z
+
+Evaluation of X, Y, Z
+
+
+
+
+\section{Future}
+
+\subsection{Beyond Cloud Computing}
+
+Intercloud: if internet is the net of nets, then intercloud is cloud of clouds
+
+Sky Computing: clouds in the sky
+
+\subsection{Services->innovate-reflect}
+
+
+\section{Conclusions}
+
+none.
+
+
+
+
+    
+\end{document}

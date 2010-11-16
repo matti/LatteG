@@ -2,15 +2,50 @@
 
 <!-- USAGE: xsltproc ––html ––encoding utf-8 latte.xsl pietu.html > pietu.tex -->
 
+<!-- Global TODO:
+
+	loppuun \end{document}
+
+-->
+
+
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
 	version="1.0"
 	xmlns:str="http://exslt.org/strings">
 <xsl:output method="text" />
 
+
+<!-- TODO: ANTEEKSI part 1-->
+<xsl:variable name="apos">
+	<xsl:text>'</xsl:text>
+</xsl:variable>
+<xsl:variable name="quot">
+	<xsl:text>"</xsl:text>
+</xsl:variable>
+<xsl:variable name="hash">
+	<xsl:text>#</xsl:text>
+</xsl:variable>
+
 <!-- latex-erikoismerkit, eli kommentti-prosentit % pitäis suojata TODO: onko muita? -->
 <xsl:template match="text()">
 	<xsl:value-of select="str:replace(.,'%','\%')" />
 </xsl:template>
+
+<xsl:template match="text()">
+	<xsl:value-of select="str:replace(.,'$','\$')" />
+</xsl:template>
+
+<!-- TODO: ei toimi millään! ei '#', eikä $hashina -->
+<xsl:template match="text()">
+	<xsl:value-of select="str:replace(.,$hash,concat('\',$hash))" />
+</xsl:template>
+
+<!-- TODO: ANTEEKSI part 2-->
+
+<xsl:template match="text()">
+	<xsl:value-of select="str:replace(.,$quot,concat($apos,$apos))" />
+</xsl:template>
+
 
 <!-- EMO-ELEMENTIT -->
 
@@ -105,8 +140,7 @@
 <xsl:template match="ul | ol">
 	<!-- TODO: ol tekee varmaan eri itemizen? -->
 	\begin{itemize}
-	<xsl:for-each select="li">
-		\item{<xsl:apply-templates />}
+	<xsl:for-each select="li">\item{<xsl:apply-templates />}
 	</xsl:for-each>
 	\end{itemize}
 </xsl:template>
@@ -114,17 +148,10 @@
 
 <!-- LOPPUHIFISTELYT -->
 
-<xsl:template match="em">
-	\emph{<xsl:apply-templates />}
-</xsl:template>
+<!-- TODO: näihin tulee aina rivinvaihto, pitäiskö olla samalla rivillä ettei tulis? -->
+<xsl:template match="em">\emph{<xsl:apply-templates />}</xsl:template>
+<xsl:template match="strong">\textbf{<xsl:apply-templates />}</xsl:template>
+<xsl:template match="cite">\cite{<xsl:apply-templates />}</xsl:template>
 
-<xsl:template match="strong">
-	\textbf{<xsl:apply-templates />}
-</xsl:template>
-
-<xsl:template match="cite">
-	% TODO
-	\cite{<xsl:apply-templates />}
-</xsl:template>
 
 </xsl:stylesheet>
