@@ -5,6 +5,10 @@
 \usepackage{color}
 \usepackage{graphicx}
 
+\makeindex
+
+
+
 \begin{document}
 
 
@@ -19,7 +23,6 @@
 \department{Tietojenksittelytieteen laitos}
 \subject{Tietojenksittelytiede}
 
-
 \keywords{TODO, TODOISM}
 
 \begin{abstract}
@@ -29,6 +32,8 @@
 
 \onehalfspacing
 \numberofpagesinformation{\numberofpages\ sivua}
+
+
   
 \setcounter{tocdepth}{3}
 \mytableofcontents
@@ -138,8 +143,10 @@ The success of the Internet in the late 1990's and early 2000's opened a new ind
 From an end users point of view, this step usually is as cloud as it gets.  Users have accepted that data resides on the server and gain many advantages from it.  The software that is delivered as a web application is however \emph{not} automatically Cloud Computing, because it often does not satisfy the attributes that will be explored in the last section of this chapter.
 
 
+\subsection{Models for computing}
 
-\subsection{Application Service Providers}
+
+\subsubsection{Application Service Providers}
 
 An organization can outsource their software to a separate company to gain savings of operating costs and better the focus on their own business.  While this \emph{one to one} hosting of own software on external provider is still used, majority of the software is provided as service in \emph{one to many} fashion.
 
@@ -150,20 +157,7 @@ Application Service Provider (ASP) a software that is accessible through network
 This model of using software essentially converts traditional thinking of software products in to a delivery service, where the software is constantly being delivered until the service is cancelled \cite{asp}.
 
 
-
-\subsection{Service-Oriented Architectures}
-
-In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
-
-The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page \cite{vogels}.
-
-- Intefaces
-
-- Tuleeko varmasti mainittua, että: small federated share nothing
-
-
-
-\subsection{Autonomic Computing}
+\subsubsection{Autonomic Computing}
 
 Distributed large scale systems are complex to design.  Due their asynchronous nature, many issues are dealt with at runtime, not in the design phase.  In 2001 IBM announced Autonomic Computing Initiative that derives its name from biological autonomic nervous system.  In the same sense as nervous system adjusts for example the heart rate according to changes in the body, the autonomic computing environment would adjust its resources constantly freeing up administrative personnel to focus on higher level goals \cite{autonomic_vision}.  Other similar initiatives are also presented like Adaptive Enterprise (HP) and Dynamic Systems (Microsoft) \cite{autonomic_research}
 
@@ -172,13 +166,12 @@ Similarly to Service-oriented Architectures, monolithic systems are decomposed a
 This self-management of autonomic elements consists of four aspects: self-configuration, self-optimization, self-healing and self-protection.  Elements will continuously ensure that they are configured in the best possible way for their environment.  Same goes for optimization, as systems evolution might change the operation environment.  Self-healing ensures that systems try to recover from failures by themselves.  In addition to just preventing unauthorized access, elements will also try detect access violations and isolate these issues.  This kind of mitigation of bigger problems is part of all aspects in autonomic elements \cite{autonomic_research, autonomic_vision}
 
 
-
-\subsection{Recovery-oriented Computing}
+\subsubsection*{Recovery-oriented Computing}
 
 \emph{Recovery-oriented Computing} (ROC) shares some of the same goals of the Autonomic Computing.  The main idea of ROC is that in large scale systems failures are evident.  In ROC the focus is in minimizing the time required to recover from failures.  As this recovery time is measurable, it can be constantly improved and optimized.  Systems must always be designed to recover from all kind of failures they encounter \cite{ROC}.
 
 
-\subsection{Grid Computing}
+\subsubsection{Grid Computing}
 
 In the book ''The Grid: Blueprint for a New Computing Infrastructure'' Kesselman and Foster introduce an idea of computing power as electricity like utility.  In the vision a user could just plug computer in computer grid and applications would take use of a grid  of computers \cite{TheGrid08}. The grid computing is usually implemented as a cluster of nodes that users can allocate and run their computations on.   As the definition of the term is vague, Foster proposes a ''Grid Checklist'' in his followup article \cite{WhatIsGrid02}.
 
@@ -198,6 +191,30 @@ Grid as whole delivers various qualities of service, such as response time, avai
 
 
 Foster summarizes that the checklist given above is a definition for ''a Grid''.  The distinction between ''a Grid'' and ''the Grid'' is important: the implementation of grid infrastructure needs to follow a common standard.  When a common standard is followed, then successful application can be built on top of ''the Grid'' architecture \cite{WhatIsGrid02}.
+
+
+
+
+
+
+
+\subsection{Web application architectures}
+
+\subsubsection{Needs: data, computation, networking}
+
+\subsubsection{Two-tier architecture}
+
+\subsubsection{Service-Oriented Architectures}
+
+In Service-Oriented Architectures (SOA) the architecture consists of loosely coupled individual services.  Each of the services can expose the functionality it provides by publishing a description.  This description can be given as Web Services Description Language (WSDL), that is based on XML.  Another option is not to publish a description, but to use common standards and conventions, like Representational State Transfer (REST).  When a service design follows commonly accepted standards, it is fast to other services to start using them.
+
+The main use case for SOA is that services can be composed of many autonomous services.  Composing services of smaller components has advantages in maintainability and scalability.  The online retailer Amazon.com was one of the first web services, who renewed their internal architecture from monolithic service to a set distributed service-oriented services.  For example the front page of amazon.com can call more than 100 services to construct the page \cite{vogels}.
+
+- Intefaces
+
+- Tuleeko varmasti mainittua, että: small federated share nothing
+
+- "service oriented architectures play key role in cloud computing.." 
 
 
 
@@ -347,20 +364,33 @@ Hardware as a Service
 
 \section{Cloud Application Architecture}
 
+\subsection{Service composition}
 
+\subsection{Platforms}
 
-4 Cloud Architecture
-- Palvelukompositio
+\subsection{Data}
 
-- Data
-- Static
+\subsubsection{Static}
+
 - s3
+
 - cdn
+
+\subsubsection{Database}
+
+
+
 - Database data
+
 - sql
+
 - nosql
 
---> homogeenisen tietokantavalinnan sijaan heterogeeninen kantakokoelma applikaatiospefisiä tietokantoja.  eli: rahaat -> sql, countterit -> redis, metadata -> mongo, flowdockin viestit -> .txt, 
+--> homogeenisen tietokantavalinnan sijaan heterogeeninen kantakokoelma applikaatiospefisiä tietokantoja.  eli: rahaat -> sql, countterit -
+
+> redis, metadata -> mongo, flowdockin viestit -> .txt, 
+
+\subsection{Computation}
 
 - Computation
 - distributed
@@ -371,20 +401,15 @@ Hardware as a Service
 - software
 - hadoop
 
-- Networking
-- Load balancing
-- Cloud of clouds
 
-- Security
-- Api
+\subsection{Networking}
 
+\subsubsection{DNS}
+\subsubsection{Load balancing}
 
+\subsection{Security}
 
-kysymys: what are the benefits
-
-1 understanding where we come from --> cloud
-2 what is cloud
-3 generic example architecture
+\subsection{API}
 
 
 4 New it vs Future it
@@ -409,19 +434,13 @@ kysymys: what are the benefits
 5 conclusions
 
 
-1 what is cloud
-2 architecture
-3 implementation
-4 measuring
-5 results
-6 conclusions
+\section{Evaluation of benefits}
 
+\subsection{Quality}
 
-1 what is cloud
-2 architecture
-3 evaluation
-5 results
-6 conclusions
+\subsection{Costs}
+
+\subsection{Time-to-market}
 
 
 
@@ -429,14 +448,23 @@ kysymys: what are the benefits
 
 
 
+\section{Future}
+
+\subsection{Beyond Cloud Computing}
+
+Intercloud: if internet is the net of nets, then intercloud is cloud of clouds
+
+\subsection{Cloud of clouds, Interclouds, Sky Computing}
+
+\subsection{Services->innovate-reflect}
 
 
+\section{Conclusions}
+
+none.
 
 
-
-
-
-\section{Ye olde}
+\subsection{Ye olde}
 
 
 
@@ -496,21 +524,6 @@ Evaluation of X, Y, Z
 
 
 
-
-\section{Future}
-
-\subsection{Beyond Cloud Computing}
-
-Intercloud: if internet is the net of nets, then intercloud is cloud of clouds
-
-Sky Computing: clouds in the sky
-
-\subsection{Services->innovate-reflect}
-
-
-\section{Conclusions}
-
-none.
 
 \bibliographystyle{tktl}
 \bibliography{references.bib}
